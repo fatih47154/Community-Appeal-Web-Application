@@ -133,6 +133,8 @@
     <Content Include="Content\advanced_table.html" />
     <Content Include="Content\basic_table.html" />
     <Content Include="Content\blank.html" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\boxed_page.html" />
     <Content Include="Content\buttons.html" />
     <Content Include="Content\calendar.html" />
@@ -168,14 +170,22 @@
     <Content Include="Content\registration.html" />
     <Content Include="Content\responsive_table.html" />
     <Content Include="Content\search_result.html" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\slider.html" />
     <Content Include="Content\todo_list.html" />
     <Content Include="Content\widget.html" />
     <Content Include="Content\xchart.html" />
     <Content Include="DB Script\ToplulukDB Script.sql" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\jquery-1.10.2.js" />
+    <Content Include="scripts\jquery-1.10.2.min.js" />
+    <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -204,6 +214,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Shared\_LayoutPage.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\form1.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -218,7 +235,6 @@
     <Folder Include="Content\fonts\" />
     <Folder Include="Content\img\" />
     <Folder Include="Content\js\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

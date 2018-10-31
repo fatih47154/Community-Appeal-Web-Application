@@ -9,7 +9,7 @@ namespace Community_Appeal_Web_Application.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        public ActionResult Index()
+        public ActionResult form1()
         {
             return View();
         }
