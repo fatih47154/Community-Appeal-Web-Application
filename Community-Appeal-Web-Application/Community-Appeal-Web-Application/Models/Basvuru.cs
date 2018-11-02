@@ -43,11 +43,9 @@ namespace Community_Appeal_Web_Application.Models
         [StringLength(100)]
         public string mekan { get; set; }
 
-        [StringLength(100)]
-        public string toplantiNo { get; set; }
+        public int? toplantiNo { get; set; }
 
-        [StringLength(50)]
-        public string adimNo { get; set; }
+        public int? adimNo { get; set; }
 
         public int? uyeSayisi { get; set; }
 
@@ -72,6 +70,8 @@ namespace Community_Appeal_Web_Application.Models
         public DateTime? kurulusTarihi { get; set; }
 
         public bool? tuzukDegisikligi { get; set; }
+
+        public int? kullanıcıID { get; set; }
 
         public virtual Kullanici Kullanici { get; set; }
 

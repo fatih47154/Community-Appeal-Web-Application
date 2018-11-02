@@ -1,4 +1,4 @@
-namespace Community_Appeal_Web_Application.Models
+﻿namespace Community_Appeal_Web_Application.Models
 {
     using System;
     using System.Data.Entity;
@@ -31,8 +31,9 @@ namespace Community_Appeal_Web_Application.Models
                 .HasForeignKey(e => e.faliyetID);
 
             modelBuilder.Entity<Kullanici>()
-                .HasOptional(e => e.Basvuru)
-                .WithRequired(e => e.Kullanici);
+                .HasMany(e => e.Basvuru)
+                .WithOptional(e => e.Kullanici)
+                .HasForeignKey(e => e.kullanıcıID);
         }
     }
 }

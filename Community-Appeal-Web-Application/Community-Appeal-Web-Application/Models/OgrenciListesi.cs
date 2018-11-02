@@ -12,10 +12,7 @@ namespace Community_Appeal_Web_Application.Models
         public int ID { get; set; }
 
         [StringLength(100)]
-        public string adi { get; set; }
-
-        [StringLength(100)]
-        public string soyadi { get; set; }
+        public string adiSoyadi { get; set; }
 
         [StringLength(200)]
         public string fak { get; set; }

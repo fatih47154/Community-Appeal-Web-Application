@@ -9,7 +9,16 @@ namespace Community_Appeal_Web_Application.Models
     [Table("Kullanici")]
     public partial class Kullanici
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Kullanici()
+        {
+            Basvuru = new HashSet<Basvuru>();
+        }
+
         public int ID { get; set; }
+
+        [StringLength(50)]
+        public string adiSoyadi { get; set; }
 
         [StringLength(100)]
         public string ogrMail { get; set; }
@@ -23,6 +32,7 @@ namespace Community_Appeal_Web_Application.Models
         [StringLength(100)]
         public string tc { get; set; }
 
-        public virtual Basvuru Basvuru { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Basvuru> Basvuru { get; set; }
     }
 }
