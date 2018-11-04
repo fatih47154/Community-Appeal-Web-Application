@@ -16,7 +16,7 @@ namespace Community_Appeal_Web_Application
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Kullanici", action = "Login", id = UrlParameter.Optional }
             );
         }
     }

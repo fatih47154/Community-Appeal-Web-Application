@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Community_Appeal_Web_Application.App_Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,7 @@ namespace Community_Appeal_Web_Application
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            GlobalFilters.Filters.Add(new _SecurityFilter());
         }
     }
 }

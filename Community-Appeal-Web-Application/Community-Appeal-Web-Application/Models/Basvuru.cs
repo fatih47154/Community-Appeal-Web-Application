@@ -49,8 +49,8 @@ namespace Community_Appeal_Web_Application.Models
 
         public int? uyeSayisi { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime? akademikYıl { get; set; }
+        [StringLength(50)]
+        public string akademikYıl { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? toplantiTarihi { get; set; }

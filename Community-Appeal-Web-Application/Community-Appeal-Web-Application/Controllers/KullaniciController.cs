@@ -11,7 +11,7 @@ namespace Community_Appeal_Web_Application.Controllers
     {
         CommunityContext db = new CommunityContext();
         // GET: Kullanici
-        public ActionResult Index()
+        public ActionResult Login()
         {
             return View();
         }
@@ -26,7 +26,7 @@ namespace Community_Appeal_Web_Application.Controllers
                 return RedirectToAction("Index", "Home");
             }
             ViewData["Hata"] = "Girdiğiniz bilgiler ile kayıtlı bir kullanıcı bulunamadı.";
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
 
         [HttpGet]

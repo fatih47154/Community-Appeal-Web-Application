@@ -49,25 +49,66 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            if (b.adimNo < 3)
+            if (b.adimNo < 2)
             {
-                if (b.OgrenciListesi.Count!=0)
-                {
-                    ViewBag.Liste = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
-                    return View(b);
-                }
-                else
-                {
-                    return View(b);
-                }
+                ViewBag.Hata = "İlk önce 1.Formu Doldurmanız Gerekmektedir.";
+                return View();
             }
-            ViewBag.Hata = "İlk önce 1.Formu Doldurmanız Gerekmektedir.";
-            return View();
+            List<OgrenciListesi> ol = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.ol = ol;
+            return View(b);
         }
 
-        public ActionResult form3()
+        [HttpPost]
+        public ActionResult form2(Basvuru basvuru)
         {
-            return View();
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            if (b.OgrenciListesi.Count<=20)
+            {
+                List<OgrenciListesi> ol = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
+                ViewBag.ol = ol;
+                ViewBag.hata = "Bu formu kaydetmek için en az 20 kişi eklemelisiniz.";
+                return View(b);
+            }
+            else
+            {
+                b.akademikYıl = (DateTime.Now.Year - DateTime.Now.AddYears(+1).Year).ToString();
+                if (b.adimNo == 2)
+                {
+                    b.adimNo = 3;
+                }
+                List<OgrenciListesi> ol = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
+                ViewBag.ol = ol;
+                return View(b);
+            }
+
+           
+        }
+
+        public bool OgrenciSorgula(string ogNO)
+        {
+            return false;
+        }
+
+        [HttpPost]
+        public ActionResult OgrenciListesiEkle(OgrenciListesi ol)
+        {
+            if (OgrenciSorgula(ol.ogrNo)==true)
+            {
+                Kullanici k = (Kullanici)Session["Kullanici"];
+                Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+                ol.basvuruID = b.ID;
+                db.OgrenciListesi.Add(ol);
+                db.SaveChanges();
+                return Json(true);
+            }
+            else
+            {
+                return Json(false);
+            }
+
         }
 
 

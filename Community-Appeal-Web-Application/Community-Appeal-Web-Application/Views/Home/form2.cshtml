@@ -5,52 +5,65 @@
 
 @using Community_Appeal_Web_Application.Models
 
+
 @model Basvuru
 
 @{
     if (Model != null)
     {
-        <div class="row">
-            <div class="col-lg-12">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Inline form
-                    </header>
-                    <div class="panel-body">
-                        <form class="form-inline" role="form">
-                            <div class="form-group">
-                                <input style="width:160px;" type="text" class="form-control" id="exampleInputEmail2" placeholder="Adı Soyadı">
-                            </div>
-                            <div class="form-group">
-                                <input style="width:160px;" type="text" class="form-control" id="exampleInputPassword2" placeholder="Fak/Yüksekokul/MYO">
-                            </div>
-                            <div class="form-group">
-                                <input style="width:160px;" type="text" class="form-control" id="exampleInputPassword2" placeholder="TC Kimlik No">
-                            </div>
-                            <div class="form-group">
-                                <input style="width:160px;" type="text" class="form-control" id="exampleInputPassword2" placeholder="Öğrenci No">
-                            </div>
-                            <div class="form-group">
-                                <input style="width:160px;" type="text" class="form-control" id="exampleInputPassword2" placeholder="Cep Tel No">
-                            </div>
-                            <div class="form-group">
-                                <input style="width:160px;" type="text" class="form-control" id="exampleInputPassword2" placeholder="e-Posta">
-                            </div>
-                            <button style="float:right;" type="submit" class="btn btn-success"><i class="glyphicon-plus"></i> Ekle</button>
-                        </form>
+<div class="row">
 
+    <div class="col-lg-12">
+        @if (ViewBag.hata != null)
+        {
+
+            <div class="alert alert-danger">
+                <p>@ViewBag.hata</p>
+            </div>
+        }
+        <section class="panel">
+            <header class="panel-heading">
+                Form 2
+            </header>
+            <div class="panel-body">
+                <form class="form-inline" role="form" method="post" action="/Home/form2">
+                    <div class="form-group">
+                        <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="adiSoyadi" placeholder="Adı Soyadı" required>
                     </div>
-                </section>
+                    <div class="form-group">
+                        <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="fak" placeholder="Fak/Yüksekokul/MYO" required>
+                    </div>
+                    <div class="form-group">
+                        <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="tc" placeholder="TC Kimlik No" required>
+                    </div>
+                    <div class="form-group">
+                        <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="ogrNo" placeholder="Öğrenci No" required>
+                    </div>
+                    <div class="form-group">
+                        <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="tel" placeholder="Cep Tel No" required>
+                    </div>
+                    <div class="form-group">
+                        <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="mail" placeholder="e-Posta" required>
+                    </div>
+                    <a id="ekle" style="margin-right:5px;" class="btn btn-success"><i class="glyphicon-plus"></i> Ekle</a>
+                    <button type="submit" class="btn btn-danger">Kaydet</button>
+                </form>
+                <br />
+                <p>*Topluluğunuzda bulunacak olan 20 kişiyi ekledikten sonra "Kaydet" Buttonuna Basarak Form 3'e geçebilirsiniz.</p>
 
             </div>
-        </div>
-        
+        </section>
+
+    </div>
+</div>
 
         <div class="row">
+
+
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Form 1
+                        Form 2
                     </header>
                     <div class="panel-body">
                         <p>
@@ -60,10 +73,11 @@
                             <strong>DÜZCE ÜNİVERSİTESİ @Model.toplulukAdi TOPLULUĞU</strong>
                         </p>
                         <p align="center">
-                            <strong>201..-201.. AKADEMİK YILI ÜYE LİSTESİ</strong>
+                            <strong>@DateTime.Now.Year-@DateTime.Now.AddYears(+1).Year AKADEMİK YILI ÜYE LİSTESİ</strong>
                         </p>
                         <table border="1" cellspacing="0" cellpadding="0" width="988">
-                            <tbody>
+
+                            <tbody class="kisi">
                                 <tr>
                                     <td width="54" valign="top">
                                         <p align="center">
@@ -106,288 +120,33 @@
                                         </p>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            1
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            2
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            3
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            4
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            5
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            6
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            7
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            8
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            9
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            10
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            11
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            12
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            13
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            14
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            15
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            16
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            17
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            18
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            19
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p>
-                                            20
-                                        </p>
-                                    </td>
-                                    <td width="164" valign="top"></td>
-                                    <td width="158" valign="top"></td>
-                                    <td width="117" valign="top"></td>
-                                    <td width="119" valign="top"></td>
-                                    <td width="134" valign="top"></td>
-                                    <td width="143" valign="top"></td>
-                                    <td width="99" valign="top"></td>
-                                </tr>
+                                @{
+                                    int counter = 1;
+                                    foreach (OgrenciListesi item in ViewBag.ol)
+                                    {
+
+                                        <tr>
+                                            <td width="54" valign="top">
+                                                <p>
+                                                    @counter
+                                                </p>
+                                            </td>
+                                            <td  width="164" valign="top">@item.adiSoyadi/td>
+                                            <td  width="158" valign="top">@item.fak</td>
+                                            <td width="117" valign="top">@item.tc</td>
+                                            <td width="119" valign="top">@item.ogrNo</td>
+                                            <td width="134" valign="top">@item.tel</td>
+                                            <td width="143" valign="top">@item.mail</td>
+                                            <td width="99" valign="top"></td>
+                                        </tr>
+                                        counter = counter + 1;
+                                    }
+                                }
+
+
                             </tbody>
                         </table>
+                        <br />
                         <p>
                             Not:En az 20(yirmi) üye ile topluluk kurulacaktır.
                         </p>
@@ -405,3 +164,38 @@
     }
 }
 
+<script src="/Content/js/jquery.js"></script>
+<script src="/Content/js/jquery-1.8.3.min.js"></script>
+<script>
+
+
+
+
+    $('#ekle').click(function () {
+        var value1 = $('#adiSoyadi').val();
+        var value2 = $('#fak').val();
+        var value3 = $('#tc').val();
+        var value4 = $('#ogrNo').val();
+        var value5 = $('#tel').val();
+        var value6 = $('#mail').val();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            url: '/Home/OgrenciListesiEkle',
+            data: "{'adiSoyadi':'" + value1 + "', 'fak':'" + value2 + "', 'tc':'" + value3 + "', 'ogrNo':'" + value4 + "', 'tel':'" + value5 + "', 'mail':'" + value6 + "'}",
+            success: function (result) {
+                if (result === true) {
+                    $('.kisi').append(' <tr><td width="54" valign="top"><p>1</p></td><td  width="164" valign="top">' + value1 + '</td><td  width="158" valign="top">' + value2 + '</td><td width="117" valign="top">' + value3 + '</td> <td width="119" valign="top">' + value4 + '</td> <td width="134" valign="top">' + value5 + '</td> <td width="143" valign="top">' + value6+'</td> <td width="99" valign="top"></td></tr>');
+                }
+                else
+                {
+                    alert("Girdiğiniz bilgilere ait bir öğrenci bulunamamaktadır.");
+                }
+            },
+            Error: function (result) {
+                alert("Error");
+            }
+        });
+    });
+
+</script>
