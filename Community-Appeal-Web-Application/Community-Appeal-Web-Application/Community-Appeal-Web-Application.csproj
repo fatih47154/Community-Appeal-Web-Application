@@ -176,7 +176,7 @@
     <Content Include="Content\todo_list.html" />
     <Content Include="Content\widget.html" />
     <Content Include="Content\xchart.html" />
-    <Content Include="DB Script\ToplulukDB Script.sql" />
+    <Content Include="DB Script\db.sql" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
