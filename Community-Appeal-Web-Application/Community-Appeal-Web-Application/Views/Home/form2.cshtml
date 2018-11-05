@@ -125,20 +125,21 @@
                                     foreach (OgrenciListesi item in ViewBag.ol)
                                     {
 
-                                        <tr>
-                                            <td width="54" valign="top">
-                                                <p>
-                                                    @counter
-                                                </p>
-                                            </td>
-                                            <td  width="164" valign="top">@item.adiSoyadi/td>
-                                            <td  width="158" valign="top">@item.fak</td>
-                                            <td width="117" valign="top">@item.tc</td>
-                                            <td width="119" valign="top">@item.ogrNo</td>
-                                            <td width="134" valign="top">@item.tel</td>
-                                            <td width="143" valign="top">@item.mail</td>
-                                            <td width="99" valign="top"></td>
-                                        </tr>
+                                <tr>
+                                    <td width="54" valign="top">
+                                        <p>
+                                            @counter
+                                        </p>
+                                    </td>
+                                    <td width="164" valign="top">@item.adiSoyadi/td>
+                                    <td width="158" valign="top">@item.fak</td>
+                                    <td width="117" valign="top">@item.tc</td>
+                                    <td width="119" valign="top">@item.ogrNo</td>
+                                    <td width="134" valign="top">@item.tel</td>
+                                    <td width="143" valign="top">@item.mail</td>
+                                    <td width="99" valign="top"></td>
+                                    <td width="99" valign="top"><a data-id="@item.ID" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a></td>
+                                </tr>
                                         counter = counter + 1;
                                     }
                                 }
@@ -185,11 +186,13 @@
             data: "{'adiSoyadi':'" + value1 + "', 'fak':'" + value2 + "', 'tc':'" + value3 + "', 'ogrNo':'" + value4 + "', 'tel':'" + value5 + "', 'mail':'" + value6 + "'}",
             success: function (result) {
                 if (result === true) {
-                    $('.kisi').append(' <tr><td width="54" valign="top"><p>1</p></td><td  width="164" valign="top">' + value1 + '</td><td  width="158" valign="top">' + value2 + '</td><td width="117" valign="top">' + value3 + '</td> <td width="119" valign="top">' + value4 + '</td> <td width="134" valign="top">' + value5 + '</td> <td width="143" valign="top">' + value6+'</td> <td width="99" valign="top"></td></tr>');
+                    $('.kisi').append(' <tr><td width="54" valign="top"><p>1</p></td><td  width="164" valign="top">' + value1 + '</td><td  width="158" valign="top">' + value2 + '</td><td width="117" valign="top">' + value3 + '</td> <td width="119" valign="top">' + value4 + '</td> <td width="134" valign="top">' + value5 + '</td> <td width="143" valign="top">' + value6 + '</td> <td width="99" valign="top"></td></tr>');
                 }
-                else
-                {
-                    alert("Girdiğiniz bilgilere ait bir öğrenci bulunamamaktadır.");
+                else if (result == false) {
+                    alert("Girdiğiniz bilgilere ait bir öğrenci bulunmamaktadır.");
+                }
+                else {
+                    alert("Bu forma en fazla 20 kişi ekleyebilirsiniz.");
                 }
             },
             Error: function (result) {

@@ -89,25 +89,29 @@ namespace Community_Appeal_Web_Application.Controllers
 
         public bool OgrenciSorgula(string ogNO)
         {
-            return false;
+            return true;
         }
 
         [HttpPost]
         public ActionResult OgrenciListesiEkle(OgrenciListesi ol)
         {
-            if (OgrenciSorgula(ol.ogrNo)==true)
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            if (b.OgrenciListesi.Count != 20)
             {
-                Kullanici k = (Kullanici)Session["Kullanici"];
-                Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-                ol.basvuruID = b.ID;
-                db.OgrenciListesi.Add(ol);
-                db.SaveChanges();
-                return Json(true);
+                if (OgrenciSorgula(ol.ogrNo) == true)
+                {
+                    ol.basvuruID = b.ID;
+                    db.OgrenciListesi.Add(ol);
+                    db.SaveChanges();
+                    return Json(true);
+                }
+                else
+                {
+                    return Json(false);
+                }
             }
-            else
-            {
-                return Json(false);
-            }
+            return Json("hata");
 
         }
 
