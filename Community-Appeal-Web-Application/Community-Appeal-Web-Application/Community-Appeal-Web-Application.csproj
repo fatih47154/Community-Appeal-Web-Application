@@ -228,6 +228,7 @@
     <Content Include="Views\Kullanici\Kayit.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\form1.cshtml" />
+    <Content Include="Views\Home\form5.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

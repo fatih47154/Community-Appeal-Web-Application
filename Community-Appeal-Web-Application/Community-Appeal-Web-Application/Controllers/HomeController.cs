@@ -89,7 +89,7 @@ namespace Community_Appeal_Web_Application.Controllers
 
         public bool OgrenciSorgula(string ogNO)
         {
-            return false;
+            return true;
         }
 
         [HttpPost]
@@ -111,7 +111,65 @@ namespace Community_Appeal_Web_Application.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult form5()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            if (b.adimNo < 2)
+            {
+                ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
+                return View();
+            }
+            List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.dl = dl;
+            return View(b);
+        }
 
+        [HttpPost]
+        public ActionResult form5(Basvuru a)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            if (b.Danisman.Count < 2)
+            {
+                List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
+                ViewBag.dl = dl;
+                ViewBag.hata = "Bu formu kaydetmek için danışman sayısı 2 olmalıdır.";
+                return View(b);
+            }
+            else
+            {
+                if (b.adimNo == 4)
+                {
+                    b.adimNo = 5;
+                }
+                List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
+                ViewBag.dl = dl;
+                return View(b);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult danismanEkle(Danisman ol)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            int sayac = db.Danisman.Count();
+            if (sayac < 2)
+            {
+                ol.basvuruID = b.ID;
+                db.Danisman.Add(ol);
+                db.SaveChanges();
+                return Json(true);
+            }
+            else
+            {
+                return Json(false);
+            }
+
+        }
 
 
     }
