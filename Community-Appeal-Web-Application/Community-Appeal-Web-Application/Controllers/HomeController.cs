@@ -65,7 +65,7 @@ namespace Community_Appeal_Web_Application.Controllers
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
 
-            if (b.OgrenciListesi.Count<=20)
+            if (b.OgrenciListesi.Count<20)
             {
                 List<OgrenciListesi> ol = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
                 ViewBag.ol = ol;
@@ -78,6 +78,7 @@ namespace Community_Appeal_Web_Application.Controllers
                 if (b.adimNo == 2)
                 {
                     b.adimNo = 3;
+                    db.SaveChanges();
                 }
                 List<OgrenciListesi> ol = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
                 ViewBag.ol = ol;
@@ -120,7 +121,7 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            if (b.adimNo < 2)
+            if (b.adimNo < 3)
             {
                 ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
                 return View();
@@ -145,9 +146,10 @@ namespace Community_Appeal_Web_Application.Controllers
             }
             else
             {
-                if (b.adimNo == 4)
+                if (b.adimNo == 3)
                 {
-                    b.adimNo = 5;
+                    b.adimNo = 4;
+                    db.SaveChanges();
                 }
                 List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
                 ViewBag.dl = dl;
@@ -175,6 +177,22 @@ namespace Community_Appeal_Web_Application.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult form6()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            if (b.adimNo < 4)
+            {
+                ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
+                return View();
+            }
+            List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
+            Danisman dl1 = db.Danisman.FirstOrDefault(x => x.basvuruID == b.ID);
+            ViewBag.dl = dl;
+            ViewBag.dl1 = dl1;
+            return View(b);
+        }
 
     }
 }
