@@ -205,7 +205,6 @@
     <Compile Include="Models\FaliyetPlani.cs" />
     <Compile Include="Models\Kullanici.cs" />
     <Compile Include="Models\OgrenciListesi.cs" />
-    <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Models\YeniUye.cs" />
     <Compile Include="Models\YonetimKurulu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -228,6 +227,7 @@
     <Content Include="Views\Kullanici\Kayit.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\form1.cshtml" />
+    <Content Include="Views\Home\form3.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

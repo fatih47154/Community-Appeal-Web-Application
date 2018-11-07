@@ -115,6 +115,36 @@ namespace Community_Appeal_Web_Application.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult form3()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            if (b != null)
+            {
+                return View(b);
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult form3(Basvuru basvuru)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            
+            if (b.adimNo == 3)
+            {
+                b.adimNo = 4;
+            }
+
+            db.SaveChanges();
+            return View();
+
+        }
+
 
 
 

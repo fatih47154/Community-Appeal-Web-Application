@@ -15,7 +15,7 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             return View();
         }
-
+        
         public ActionResult GirisYap(Kullanici k)
         {
             Kullanici user = db.Kullanici.Where(x => x.ogrMail == k.ogrMail && x.sifre == k.sifre).FirstOrDefault();
