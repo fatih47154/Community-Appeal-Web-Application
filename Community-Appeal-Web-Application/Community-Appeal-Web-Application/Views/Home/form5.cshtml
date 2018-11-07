@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "form5";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@using Community_Appeal_Web_Application.Models
+
+
+@model Basvuru
+
+@{
+    if (Model != null)
+    {
+        <div class="row">
+            <div class="col-lg-4">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Form 6
+                    </header>
+                    <div class="panel-body">
+
+                        <form role="form" method="post" action="/Home/form5">
+                            <div class="form-group">
+                                <label>Ünvan</label>
+                                <input id="unvan" name="unvan" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Ad</label>
+                                <input id="adi" name="adi" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Soyad</label>
+                                <input id="soyadi" name="soyadi" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Okul</label>
+                                <input id="akademikBirim" name="akademikBirim" type="text" class="form-control">
+                            </div>
+
+                            <button type="submit" style="margin-right:5px;" class="btn btn-info">Kaydet</button>
+                            <a id="ekle" type="submit" style="margin-right:5px;" class="btn btn-success"><i class="glyphicon-plus"></i> Ekle</a>
+                            <a href="form6" class="btn btn-primary">Form 6</a>
+                        </form>
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-8">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Form 6
+                    </header>
+                    
+                    <div class="panel-body" style="padding: 30px">
+                        <p style="text-align: center; line-height: normal; tab-stops: 59.25pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">D&Uuml;ZCE &Uuml;NİVERSİTESİ</span></p>
+                        <p style="text-align: center; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">SAĞLIK K&Uuml;LT&Uuml;R VE SPOR DAİRE BAŞKANLIĞI&rsquo;NA</span></p>
+                        <p><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+                        <p style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 201..-201.. Akademik yılında kuruluşu onaylanan D&uuml;zce &Uuml;niversitesi <b>@Model.toplulukAdi</b> Topluluğu&rsquo;nun faaliyete başlayabilmesi i&ccedil;in, Genel Kurul Tutanağı (Ek-7) ile D&uuml;zce &Uuml;niversitesi &Ouml;ğrenci Toplulukları Y&ouml;nergesi&rsquo;nin 6.Maddesine istinaden iki akademik danışman adayının bilgileri aşağıda sunulmuştur.</span></p>
+                        <p style="text-align: justify; text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">Gereğini bilgilerinize arz ederim.</span></p>
+                        <p style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+                            
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Sıra No</th>
+                                <th>Ünvan</th>
+                                <th>Adı</th>
+                                <th>Soyadı</th>
+                                <th>Okul</th>
+                            </tr>
+                            </thead>
+                            <tbody class="kisi">
+                            @{
+                                int i = 0;
+                                foreach (Danisman item in ViewBag.dl)
+                                {
+                                    i++;
+                                    <tr>
+                                        <td>@i</td>
+                                        <td width="164" valign="top">@item.unvan</td>
+                                        <td width="158" valign="top">@item.adi</td>
+                                        <td width="117" valign="top">@item.soyadi</td>
+                                        <td width="119" valign="top">@item.akademikBirim</td>
+                                    </tr>
+                                }
+                            }
+                            </tbody>
+                        </table>
+                        <br/><br /><br />
+                        <p style="text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+                        <p style="text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+                        <div style="float: right;text-align: center">
+                            <p style="text-indent: 35.4pt; tab-stops: 313.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;"><b>@DateTime.Now.Date.ToShortDateString()</b> </span></p>
+                            <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Düzce Üniversitesi <b>@Model.toplulukAdi</b> Topluluğu</span></p>
+                            <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Topluluk Başkanı</span></p>
+                            <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;"><b>@Model.Kullanici.adiSoyadi</b> / İmza</span></p>
+                        </div>
+                        <br/><br/><br />
+                    </div>
+                    
+                </section>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+             <strong><p style="font-size:18px;"> @ViewBag.Hata</p></strong>
+        </div>
+    }
+}
+
+<script src="/Content/js/jquery.js"></script>
+<script src="/Content/js/jquery-1.8.3.min.js"></script>
+<script>
+
+    $('#ekle').click(function () {
+        var value1 = $('#unvan').val();
+        var value2 = $('#adi').val();
+        var value3 = $('#soyadi').val();
+        var value4 = $('#akademikBirim').val();
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            url: '/Home/danismanEkle',
+            data: "{'unvan':'" + value1 + "', 'adi':'" + value2 + "', 'soyadi':'" + value3 + "', 'akademikBirim':'" + value4 + "'}",
+            success: function (result) {
+                var i = 0;
+                if (result === true) {
+                    i++;
+                    $('.kisi').append(' <tr><td>'+i+'</td><td>' + value1 + '</td><td>' + value2 + '</td><td>' + value3 + '</td> <td>' + value4 + '</td>');
+                }
+                else
+                {
+                    alert("En Fazla 2 Danışman Girebilirsiniz.");
+                }
+            },
+            Error: function (result) {
+                alert("Error");
+            }
+        });
+    });
+
+</script>
+
