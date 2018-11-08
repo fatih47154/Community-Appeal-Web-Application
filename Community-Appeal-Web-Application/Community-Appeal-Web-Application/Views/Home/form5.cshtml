@@ -13,7 +13,7 @@
     if (Model != null)
     {
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
                         Form 6
@@ -45,12 +45,16 @@
                     </div>
                 </section>
             </div>
-            <div class="col-lg-8">
+            
+            
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
                         Form 6
                     </header>
-                    
+
                     <div class="panel-body" style="padding: 30px">
                         <p style="text-align: center; line-height: normal; tab-stops: 59.25pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">D&Uuml;ZCE &Uuml;NİVERSİTESİ</span></p>
                         <p style="text-align: center; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">SAĞLIK K&Uuml;LT&Uuml;R VE SPOR DAİRE BAŞKANLIĞI&rsquo;NA</span></p>
@@ -58,46 +62,47 @@
                         <p style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 201..-201.. Akademik yılında kuruluşu onaylanan D&uuml;zce &Uuml;niversitesi <b>@Model.toplulukAdi</b> Topluluğu&rsquo;nun faaliyete başlayabilmesi i&ccedil;in, Genel Kurul Tutanağı (Ek-7) ile D&uuml;zce &Uuml;niversitesi &Ouml;ğrenci Toplulukları Y&ouml;nergesi&rsquo;nin 6.Maddesine istinaden iki akademik danışman adayının bilgileri aşağıda sunulmuştur.</span></p>
                         <p style="text-align: justify; text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">Gereğini bilgilerinize arz ederim.</span></p>
                         <p style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-                            
-                        <table class="table">
+
+                        <table class="table" style="width: 70%; margin: auto; border: solid; border: solid; border-color:lightgrey;border-width: 2px">
                             <thead>
-                            <tr>
-                                <th>Sıra No</th>
-                                <th>Ünvan</th>
-                                <th>Adı</th>
-                                <th>Soyadı</th>
-                                <th>Okul</th>
-                            </tr>
+                                <tr>
+                                    <th>Sıra No</th>
+                                    <th>Ünvan</th>
+                                    <th>Adı</th>
+                                    <th>Soyadı</th>
+                                    <th>Okul</th>
+                                </tr>
                             </thead>
                             <tbody class="kisi">
-                            @{
-                                int i = 0;
-                                foreach (Danisman item in ViewBag.dl)
-                                {
-                                    i++;
-                                    <tr>
-                                        <td>@i</td>
-                                        <td width="164" valign="top">@item.unvan</td>
-                                        <td width="158" valign="top">@item.adi</td>
-                                        <td width="117" valign="top">@item.soyadi</td>
-                                        <td width="119" valign="top">@item.akademikBirim</td>
-                                    </tr>
+                                @{
+                                    int i = 0;
+                                    foreach (Danisman item in ViewBag.dl)
+                                    {
+                                        i++;
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>@item.unvan</td>
+                                            <td>@item.adi</td>
+                                            <td>@item.soyadi</td>
+                                            <td>@item.akademikBirim</td>
+                                        </tr>
+                                    }
                                 }
-                            }
                             </tbody>
                         </table>
-                        <br/><br /><br />
+                        <br /><br /><br />
                         <p style="text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
                         <p style="text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
                         <div style="float: right;text-align: center">
                             <p style="text-indent: 35.4pt; tab-stops: 313.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;"><b>@DateTime.Now.Date.ToShortDateString()</b> </span></p>
                             <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Düzce Üniversitesi <b>@Model.toplulukAdi</b> Topluluğu</span></p>
                             <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Topluluk Başkanı</span></p>
-                            <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;"><b>@Model.Kullanici.adiSoyadi</b> / İmza</span></p>
+                            <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">İmza</span></p><br/><br/>
+                            <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;"><b>@Model.Kullanici.adiSoyadi</b></span></p>
                         </div>
-                        <br/><br/><br />
+                        <br /><br /><br />
                     </div>
-                    
+
                 </section>
             </div>
         </div>
@@ -119,27 +124,33 @@
         var value2 = $('#adi').val();
         var value3 = $('#soyadi').val();
         var value4 = $('#akademikBirim').val();
+        
+        if (value1 === "" || value2 === "" || value3 === "" || value4 === "") {
+            alert("Tüm alanlar doldurulmalıdır.");
+        }
+        else {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                url: '/Home/danismanEkle',
+                data: "{'unvan':'" + value1 + "', 'adi':'" + value2 + "', 'soyadi':'" + value3 + "', 'akademikBirim':'" + value4 + "'}",
+                success: function (result) {
+                    var i = 0;
+                    if (result === true) {
+                        i++;
+                        $('.kisi').append(' <tr><td>' + i + '</td><td>' + value1 + '</td><td>' + value2 + '</td><td>' + value3 + '</td> <td>' + value4 + '</td>');
+                    }
+                    else {
+                        alert("En Fazla 2 Danışman Girebilirsiniz.");
+                    }
+                },
+                Error: function (result) {
+                    alert("Error");
+                }
+            });
+        }
 
-        $.ajax({
-            type: 'POST',
-            contentType: 'application/json; charset=utf-8',
-            url: '/Home/danismanEkle',
-            data: "{'unvan':'" + value1 + "', 'adi':'" + value2 + "', 'soyadi':'" + value3 + "', 'akademikBirim':'" + value4 + "'}",
-            success: function (result) {
-                var i = 0;
-                if (result === true) {
-                    i++;
-                    $('.kisi').append(' <tr><td>'+i+'</td><td>' + value1 + '</td><td>' + value2 + '</td><td>' + value3 + '</td> <td>' + value4 + '</td>');
-                }
-                else
-                {
-                    alert("En Fazla 2 Danışman Girebilirsiniz.");
-                }
-            },
-            Error: function (result) {
-                alert("Error");
-            }
-        });
+        
     });
 
 </script>

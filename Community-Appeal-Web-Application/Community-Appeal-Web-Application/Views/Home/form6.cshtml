@@ -11,21 +11,21 @@
     if (Model != null)
     {
         <div class="row">
-           <!-- <div class="col-lg-12">
+            <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
                         Form 6
                     </header>
                     <div class="panel-body">
 
-                        <form role="form" method="post" action="/Home/form5">
+                        <form role="form" method="post" action="/Home/form6">
                             <div class="form-group">
                                 <label>Danışman Seçiniz</label>
-                                <select class="form-control">
+                                <select class="form-control" id="list" name="ID">
                                     <option>Danışman Seçiniz...</option>
                                     @foreach (var item in Model.Danisman.ToList())
                                     {
-                                        <option>@item.adi<span> </span>@item.soyadi</option>
+                                        <option value="@item.ID">@item.adi<span> </span>@item.soyadi</option>
                                     }
                                 </select>
                             </div>
@@ -35,7 +35,7 @@
                         </form>
                     </div>
                 </section>
-            </div>-->
+            </div>
             
         </div>
         <div class="row">
@@ -60,7 +60,7 @@
                         <br/><br />
                         <div style="">
                             <p style="text-indent: 35.4pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', serif;">
-                                Düzce Üniversitesi <b>@Model.toplulukAdi</b> Topluluğu’nun olağan genel kurul toplantısı <b>@Model.toplantiTarihi.ToString().Substring(0,10)</b> tarihinde (mekan ismi yazılacak, örneğin; Sosyal tesisler vb.) saat <b>@Model.saat</b> ‘de gözetimim altında gerçekleştirilmiş olup, toplantı tutanakları ekte sunulmuştur.
+                                Düzce Üniversitesi <b>@Model.toplulukAdi</b> Topluluğu’nun olağan genel kurul toplantısı <b>@Model.toplantiTarihi.ToString().Substring(0,10)</b> tarihinde <b>@Model.mekan</b> 'de saat <b>@Model.saat</b> ‘de gözetimim altında gerçekleştirilmiş olup, toplantı tutanakları ekte sunulmuştur.
                                 <br/><br/><p style="text-indent: 35.4pt;font-size: 12.0pt; font-family: 'Times New Roman', serif;">Gereğini ve bilgilerinizi arz ederim.</p>
                             </span></p>
                         </div>
@@ -68,8 +68,17 @@
                         <div style="float: right; text-align: center;">
                             <p style=""><span style="font-size: 12.0pt; font-family: 'Times New Roman', serif;">
                                 Düzce Üniversitesi <b>@Model.toplulukAdi</b> Topluluğu Danışmanı<br/>
-                                <b>@ViewBag.dl1.unvan</b><span> / </span><b>@ViewBag.dl1.adi<span> / </span>@ViewBag.dl1.soyadi</b><br />
-                                İmza
+                                
+                                İmza<br/><br/>
+                                @if (ViewBag.danisman != null)
+                                {
+                                    <b>@ViewBag.danisman.unvan</b><span> / </span><b>@ViewBag.danisman.adi<span> / </span>@ViewBag.danisman.soyadi</b><br />
+                                }
+                                else
+                                {
+                                    <b>Ünvan</b><span> / </span><b>Ad<span> / </span>Soyad</b><br />
+                                }
+                                 
                             </span></p>
                         </div>
                         <br/><br/><br/><br/><br/>
@@ -99,3 +108,7 @@
 
 <script src="/Content/js/jquery.js"></script>
 <script src="/Content/js/jquery-1.8.3.min.js"></script>
+
+<script>
+
+</script>

@@ -121,6 +121,22 @@ namespace Community_Appeal_Web_Application.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult OgrenciListesiSil(int id)
+        {
+            OgrenciListesi ol = db.OgrenciListesi.Where(x => x.ID == id).FirstOrDefault();
+            if (ol == null)
+            {
+                return Json(false);
+            }
+            else
+            {
+                db.OgrenciListesi.Remove(ol);
+                db.SaveChanges();
+                return Json(true);
+            }
+        }
+
         [HttpGet]
         public ActionResult form5()
         {
@@ -246,6 +262,26 @@ namespace Community_Appeal_Web_Application.Controllers
             ViewBag.dl = dl;
             ViewBag.dl1 = dl1;
             return View(b);
+        }
+
+        [HttpPost]
+        public ActionResult form6(Danisman dan)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            Danisman danisman = db.Danisman.FirstOrDefault(x => x.ID == dan.ID);
+
+            ViewBag.danisman = danisman;
+
+            if (b.adimNo == 5)
+            {
+                b.adimNo = 6;
+                db.SaveChanges();
+            }
+
+            return View("form6",b);
+
         }
 
     }
