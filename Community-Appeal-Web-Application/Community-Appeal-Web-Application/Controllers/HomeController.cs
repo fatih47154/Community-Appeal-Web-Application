@@ -102,17 +102,22 @@ namespace Community_Appeal_Web_Application.Controllers
             {
                 if (OgrenciSorgula(ol.ogrNo) == true)
                 {
+                    OgrenciListesi ogrenciL = db.OgrenciListesi.Where(x => x.ogrNo == ol.ogrNo).FirstOrDefault();
+                    if(ogrenciL != null)
+                    {
+                        return Json("hata0");
+                    }
                     ol.basvuruID = b.ID;
                     db.OgrenciListesi.Add(ol);
                     db.SaveChanges();
-                    return Json(true);
+                    return Json("dogru");
                 }
                 else
                 {
-                    return Json(false);
+                    return Json("hata1");
                 }
             }
-            return Json("hata");
+            return Json("hata2");
 
         }
 
