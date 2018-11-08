@@ -162,33 +162,52 @@ namespace Community_Appeal_Web_Application.Controllers
             }
         }
 
+        public class basvuruAndYonetim
+        {
+            public Basvuru b { get; set; }  
+            public YonetimKurulu y1 { get; set; }
+        }
+
         [HttpGet]
         public ActionResult form3()
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
-            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
 
-            if (b != null)
+            basvuruAndYonetim n = new basvuruAndYonetim();
+            n.b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            n.y1 = db.YonetimKurulu.FirstOrDefault(x => x.basvuruID == n.b.ID);
+
+            if (n.b != null)
             {
-                return View(b);
+                return View(n);
             }
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult form3(Basvuru basvuru)
+        public ActionResult form3(Basvuru basvuru, YonetimKurulu baskan)
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
-            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
             
-            if (b.adimNo == 3)
+
+            basvuruAndYonetim n =new basvuruAndYonetim();
+            n.b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            n.y1 = db.YonetimKurulu.FirstOrDefault(x => x.basvuruID == n.b.ID);
+
+            if (n.b.adimNo == 3)
             {
-                b.adimNo = 4;
+                n.b.adimNo = 4;
             }
 
+            if (n.y1==null)
+            {
+                db.YonetimKurulu.Add(baskan);
+            }
+            
             db.SaveChanges();
-            return View();
+            n.y1 = db.YonetimKurulu.FirstOrDefault(x => x.basvuruID == n.b.ID);
+            return View(n);
 
         }
 

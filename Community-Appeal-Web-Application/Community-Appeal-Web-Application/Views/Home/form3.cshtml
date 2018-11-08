@@ -6,87 +6,106 @@
 
 @using Community_Appeal_Web_Application.Models
 
-@model Basvuru
+
+@model Community_Appeal_Web_Application.Controllers.HomeController.basvuruAndYonetim 
 
 
 @{
-    if (Model == null)
+    if (Model.y1 == null)
     {
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
                         Form 3
                     </header>
                     <div class="panel-body">
 
-                        <form role="form" method="post" action="/Home/form3">
-                            <text>* Bu Sayfadaki veriler önceden girilmiştir. Alttaki formda herhangi bir sorun yoksa 4. forma geçebilirsiniz.</text><br />
-                            <div style="float: right; text-align: center; padding-right: 60px;">
-                                <a href="/Home/form4" class="btn btn-primary">Form 4</a>
+                        @using (Html.BeginForm("form3", "Home", FormMethod.Post, new { enctype = "multipart/from-data" }))
+                        {
+                            <div class="form-group">
+
+                                @Html.LabelFor(x => x.y1.adi)
+                                @Html.TextBoxFor(x => x.y1.adi, new { Name = "adi", @class = "form-control", placeholder = "Ad giriniz" })
+
+                                @Html.LabelFor(x => x.y1.soyadi)
+                                @Html.TextBoxFor(x => x.y1.soyadi, new { Name = "soyadi", @class = "form-control", placeholder = "Soyad giriniz" })
+
+                                @Html.TextBoxFor(x => x.b.ID, new { Name = "basvuruID", @class = "hidden" })
                             </div>
-                        </form>
-                    </div>
-                </section>
-            </div>
-            <div class="col-lg-12">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Form 3
-                    </header>
-                    <div class="panel-body" style="padding: 80px">
-                        <div style="float: right; text-align: center;">
-                            <p><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';"></span></p>
-                            <p><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';"></span></p>
-                            <p><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">Ek-3</span></p>
-                            <p><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">@DateTime.Now.Date.ToShortDateString()</span></p>
 
-                        </div>
-                        <br /><br /><br /><br /><br /><br />
-
-                        <p style="text-align: center;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">D&Uuml;ZCE &Uuml;NİVERSİTESİ</span></p>
-                        <p style="text-align: center;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">SAĞLIK K&Uuml;LT&Uuml;R VE SPOR DAİRE BAŞKANLIĞINA</span></p>
-                        <p style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;</span></p>
-
-                        <div class="panel-body" style="padding: 60px">
-                            <p style="text-align: justify; text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&Uuml;niversitemiz b&uuml;nyesinde, D&uuml;zce &Uuml;niversitesi &Ouml;ğrenci Toplulukları Y&ouml;nergesi&rsquo;nin 9. Maddesine istinaden &ldquo;D&uuml;zce &Uuml;niversitesi &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Topluluğu&rdquo;nun kurulabilmesi i&ccedil;in gerekli evraklar ekte sunulmuştur.  </span></p>
+                            <text>* Alttaki formda herhangi bir sorun yoksa 4. forma geçebilirsiniz.</text>
                             <br />
-                            <p style="text-align: justify; text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">Gereğini bilgilerinize arz ederim.</span></p>
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Kaydet</button>
+                            </div>
+
+                        }
+                        <div style="float: right; text-align: center; padding-right: 60px;">
+                            <a href="/Home/form4" class="btn btn-primary">Form 4</a>
                         </div>
 
-                        <p style="text-align: justify; text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;</span></p>
-                        <p style="text-align: justify; text-indent: 35.4pt;">&nbsp;</p>
-                        <br /><br /><br />
-                        <div style="float: right; text-align: center;">
-                            <p style="margin-bottom: .0001pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">D&uuml;zce &Uuml;niversitesi &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Topluluğu </span></p>
-                            <p style="margin-bottom: 6.0pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Kurucu &Uuml;yeleri Adına</span></p>
-                            <p style="margin-bottom: 6.0pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Y&ouml;nt.Kur.Bşk.</span></p>
-                            <p style="margin-bottom: 6.0pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Adı Soyadı / İmza</span></p>
-                        </div>
-                        <p><strong><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;</span></strong></p>
-                        <p>&nbsp;</p>
-                        <br /><br /><br /><br /><br /><br /><br /><br /><br />
-                        <p><strong><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; EKLER:</span></strong></p>
-                        <ol>
-                            <li style="margin-left: 25.1pt; text-indent: -18.0pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp; &nbsp; ) Topluluk T&uuml;z&uuml;ğ&uuml; (Ek-1)</span></li>
-                            <li style="margin-left: 25.1pt; text-indent: -18.0pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp; &nbsp; ) Topluluk &Uuml;ye Listesi (Ek-2)</span></li>
-                            <li style="margin-left: 25.1pt; text-indent: -18.0pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp; &nbsp; ) Topluluk Faaliyet Planı (Ek-4)</span></li>
-                            <li style="text-indent: -18.0pt; line-height: normal; margin: 0cm 0cm 6.0pt 25.1pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">&nbsp; &nbsp; ) Kurucu &Uuml;yelerin &Ouml;ğrenci Belgesi </span></li>
-                        </ol>
-                        <p style="margin-bottom: 6.0pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">&nbsp;</span></p>
+                    </div>
+                </section>
+            </div>
 
-                        <br /><br /><br />
+        </div>
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Form 3
+                </header>
+                <div class="panel-body" style="padding: 80px">
+                    <div style="float: right; text-align: center;">
+                        <p><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';"></span></p>
+                        <p><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';"></span></p>
+                        <p><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">Ek-3</span></p>
+                        <p><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">@DateTime.Now.Date.ToShortDateString()</span></p>
+
+                    </div>
+                    <br /><br /><br /><br /><br /><br />
+
+                    <p style="text-align: center;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">D&Uuml;ZCE &Uuml;NİVERSİTESİ</span></p>
+                    <p style="text-align: center;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">SAĞLIK K&Uuml;LT&Uuml;R VE SPOR DAİRE BAŞKANLIĞINA</span></p>
+                    <p style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;</span></p>
+
+                    <div class="panel-body" style="padding: 60px">
+                        <p style="text-align: justify; text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&Uuml;niversitemiz b&uuml;nyesinde, D&uuml;zce &Uuml;niversitesi &Ouml;ğrenci Toplulukları Y&ouml;nergesi&rsquo;nin 9. Maddesine istinaden &ldquo;D&uuml;zce &Uuml;niversitesi <b> @Model.b.toplulukAdi </b> Topluluğu&rdquo;nun kurulabilmesi i&ccedil;in gerekli evraklar ekte sunulmuştur.  </span></p>
+                        <br />
+                        <p style="text-align: justify; text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">Gereğini bilgilerinize arz ederim.</span></p>
                     </div>
 
+                    <p style="text-align: justify; text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;</span></p>
+                    <p style="text-align: justify; text-indent: 35.4pt;">&nbsp;</p>
+                    <br /><br /><br />
+                    <div style="float: right; text-align: center;">
+                        <p style="margin-bottom: .0001pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">D&uuml;zce &Uuml;niversitesi <b> @Model.b.toplulukAdi </b> Topluluğu </span></p>
+                        <p style="margin-bottom: 6.0pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Kurucu &Uuml;yeleri Adına</span></p>
+                        <p style="margin-bottom: 6.0pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Y&ouml;nt.Kur.Bşk.</span></p>
+                        <p style="margin-bottom: 6.0pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Adı Soyadı / İmza</span></p><br />
+                        <p style="margin-bottom: 6.0pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';"></span></p>
+                    </div>
+                    <p><strong><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;</span></strong></p>
+                    <p>&nbsp;</p>
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    <p><strong><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; EKLER:</span></strong></p>
+                    <ol>
+                        <li style="margin-left: 25.1pt; text-indent: -18.0pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp; &nbsp; ) Topluluk T&uuml;z&uuml;ğ&uuml; (Ek-1)</span></li>
+                        <li style="margin-left: 25.1pt; text-indent: -18.0pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp; &nbsp; ) Topluluk &Uuml;ye Listesi (Ek-2)</span></li>
+                        <li style="margin-left: 25.1pt; text-indent: -18.0pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp; &nbsp; ) Topluluk Faaliyet Planı (Ek-4)</span></li>
+                        <li style="text-indent: -18.0pt; line-height: normal; margin: 0cm 0cm 6.0pt 25.1pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">&nbsp; &nbsp; ) Kurucu &Uuml;yelerin &Ouml;ğrenci Belgesi </span></li>
+                    </ol>
+                    <p style="margin-bottom: 6.0pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">&nbsp;</span></p>
 
-                </section>
+                    <br /><br /><br />
+                </div>
 
-            </div>
+
+            </section>
+
         </div>
-
-    }
-    else
-    {
+    }else{
         <div class="row">
             <div class="col-lg-12">
                 <section class="panel">
@@ -95,12 +114,31 @@
                     </header>
                     <div class="panel-body">
 
-                        <form role="form" method="post" action="/Home/form3">
-                            <text>* Bu Sayfadaki veriler önceden girilmiştir. Alttaki formda herhangi bir sorun yoksa 4. forma geçebilirsiniz.</text><br/>
+                        @using (Html.BeginForm("form3", "Home", FormMethod.Post, new {enctype = "multipart/from-data"}))
+                        {
+                            <div class="form-group">
+                                
+                                @Html.LabelFor(x => x.y1.adi)
+                                @Html.TextBoxFor(x => x.y1.adi, new {Name="adi", @class = "form-control", placeholder = "Ad giriniz"})
+                                
+                                @Html.LabelFor(x =>x.y1.soyadi)
+                                @Html.TextBoxFor(x => x.y1.soyadi, new { Name = "soyadi", @class = "form-control", placeholder = "Soyad giriniz" })
+                                
+                                @Html.TextBoxFor(x => x.b.ID,new {Name="basvuruID", @class="hidden"})
+                            </div>
+
+                            <text>* Alttaki formda herhangi bir sorun yoksa 4. forma geçebilirsiniz.</text>
+                            <br/>
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Kaydet</button>
+                            </div>
+
+                        }
                             <div style="float: right; text-align: center; padding-right: 60px;">
                                 <a href="/Home/form4" class="btn btn-primary">Form 4</a>
                             </div>
-                        </form>
+                        
                     </div>
                 </section>
             </div>
@@ -126,7 +164,7 @@
             <p style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;</span></p>
             
             <div class="panel-body" style="padding: 60px">
-                <p style="text-align: justify; text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&Uuml;niversitemiz b&uuml;nyesinde, D&uuml;zce &Uuml;niversitesi &Ouml;ğrenci Toplulukları Y&ouml;nergesi&rsquo;nin 9. Maddesine istinaden &ldquo;D&uuml;zce &Uuml;niversitesi <b> @Model.toplulukAdi </b> Topluluğu&rdquo;nun kurulabilmesi i&ccedil;in gerekli evraklar ekte sunulmuştur.  </span></p>
+                <p style="text-align: justify; text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&Uuml;niversitemiz b&uuml;nyesinde, D&uuml;zce &Uuml;niversitesi &Ouml;ğrenci Toplulukları Y&ouml;nergesi&rsquo;nin 9. Maddesine istinaden &ldquo;D&uuml;zce &Uuml;niversitesi <b> @Model.b.toplulukAdi </b> Topluluğu&rdquo;nun kurulabilmesi i&ccedil;in gerekli evraklar ekte sunulmuştur.  </span></p>
                 <br/>
                 <p style="text-align: justify; text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">Gereğini bilgilerinize arz ederim.</span></p>
             </div>
@@ -135,11 +173,12 @@
             <p style="text-align: justify; text-indent: 35.4pt;">&nbsp;</p>
             <br /><br /><br />
             <div style="float: right; text-align: center;">
-                <p style="margin-bottom: .0001pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">D&uuml;zce &Uuml;niversitesi <b> @Model.toplulukAdi </b> Topluluğu </span></p>
+                <p style="margin-bottom: .0001pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">D&uuml;zce &Uuml;niversitesi <b> @Model.b.toplulukAdi </b> Topluluğu </span></p>
                 <p style="margin-bottom: 6.0pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Kurucu &Uuml;yeleri Adına</span></p>
                 <p style="margin-bottom: 6.0pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Y&ouml;nt.Kur.Bşk.</span></p>
-                <p style="margin-bottom: 6.0pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Adı Soyadı / İmza</span></p>
-            </div>
+                <p style="margin-bottom: 6.0pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Adı Soyadı / İmza</span></p><br/>
+                <p style="margin-bottom: 6.0pt;  text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">@Model.y1.adi &nbsp; @Model.y1.soyadi</span></p>
+                </div>
             <p><strong><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;</span></strong></p>
             <p>&nbsp;</p>
             <br /><br /><br /><br /><br /><br /><br /><br /><br />
