@@ -245,5 +245,25 @@ namespace Community_Appeal_Web_Application.Controllers
             return View(b);
         }
 
+        [HttpPost]
+        public ActionResult form6(Danisman dan)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            Danisman danisman = db.Danisman.FirstOrDefault(x => x.ID == dan.ID);
+
+            ViewBag.danisman = danisman;
+
+            if (b.adimNo == 5)
+            {
+                b.adimNo = 6;
+                db.SaveChanges();
+            }
+
+            return View("form6",b);
+
+        }
+
     }
 }
