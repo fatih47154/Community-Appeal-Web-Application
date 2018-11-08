@@ -40,7 +40,7 @@
             <!--logo start-->
             <a href="/Content/index.html" class="logo">Flat<span>lab</span></a>
             <!--logo end-->
-            
+
             <div class="top-nav ">
                 <!--search & user info start-->
                 <ul class="nav pull-right top-menu">
@@ -116,9 +116,9 @@
         <!--main content start-->
         <section id="main-content">
             <section class="wrapper">
-                
+
                 @RenderBody()
-                
+
 
             </section>
         </section>
@@ -157,30 +157,33 @@
     <script src="/Content/js/sparkline-chart.js"></script>
     <script src="/Content/js/easy-pie-chart.js"></script>
     <script src="/Content/js/count.js"></script>
+    <!-- pdf scripts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
 
-<script>
 
-    //owl carousel
+    <script>
 
-    $(document).ready(function() {
-        $("#owl-demo").owlCarousel({
-            navigation : true,
-            slideSpeed : 300,
-            paginationSpeed : 400,
-            singleItem : true,
-            autoPlay:true
+        //owl carousel
 
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+                navigation: true,
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                singleItem: true,
+                autoPlay: true
+
+            });
         });
-    });
 
-    //custom select box
+        //custom select box
 
-    $(function(){
-        $('select.styled').customSelect();
-    });
+        $(function () {
+            $('select.styled').customSelect();
+        });
 
-</script>
-@RenderSection("script", false)
+    </script>
+    @RenderSection("script", false)
 
 </body>
 </html>

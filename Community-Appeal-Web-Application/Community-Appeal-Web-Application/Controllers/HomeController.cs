@@ -121,6 +121,22 @@ namespace Community_Appeal_Web_Application.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult OgrenciListesiSil(int id)
+        {
+            OgrenciListesi ol = db.OgrenciListesi.Where(x => x.ID == id).FirstOrDefault();
+            if (ol == null)
+            {
+                return Json(false);
+            }
+            else
+            {
+                db.OgrenciListesi.Remove(ol);
+                db.SaveChanges();
+                return Json(true);
+            }
+        }
+
         [HttpGet]
         public ActionResult form5()
         {
