@@ -227,6 +227,18 @@ namespace Community_Appeal_Web_Application.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult form4()
+        {
+            return View();
+        }
+
+        //[HttpPost]
+        //public ActionResult form4()
+        //{
+        //    return View();
+        //}
+
         [HttpPost]
         public ActionResult danismanEkle(Danisman ol)
         {

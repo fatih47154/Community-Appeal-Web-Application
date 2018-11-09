@@ -230,6 +230,7 @@
     <Content Include="Views\Home\form5.cshtml" />
     <Content Include="Views\Home\form6.cshtml" />
     <Content Include="Views\Home\form3.cshtml" />
+    <Content Include="Views\Home\form4.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
