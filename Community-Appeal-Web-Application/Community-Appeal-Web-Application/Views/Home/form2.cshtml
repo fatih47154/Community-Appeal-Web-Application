@@ -67,6 +67,8 @@
         </div>
 
         <div class="row">
+
+
             <p id="say" class="hidden">@Model.OgrenciListesi.Count</p>
 
             <div class="col-lg-12">
@@ -84,83 +86,87 @@
                         <p align="center">
                             <strong>@DateTime.Now.Year-@DateTime.Now.AddYears(+1).Year AKADEMİK YILI ÜYE LİSTESİ</strong>
                         </p>
-                        <table border="1" cellspacing="0" cellpadding="0" width="988">
+                        <div class="append">
 
-                            <tbody class="kisi">
-                                <tr>
-                                    <td width="54" valign="top">
-                                        <p align="center">
-                                            <strong>S. No</strong>
-                                        </p>
-                                    </td>
-                                    <td width="164">
-                                        <p align="center">
-                                            <strong>Adı Soyadı</strong>
-                                        </p>
-                                    </td>
-                                    <td width="158">
-                                        <p align="center">
-                                            <strong>Fak/Yüksekokul/MYO</strong>
-                                        </p>
-                                    </td>
-                                    <td width="117">
-                                        <p align="center">
-                                            <strong>TC Kimlik No</strong>
-                                        </p>
-                                    </td>
-                                    <td width="119" valign="top">
-                                        <p align="center">
-                                            <strong>Öğrenci No</strong>
-                                        </p>
-                                    </td>
-                                    <td width="134" valign="top">
-                                        <p align="center">
-                                            <strong>Cep Tel No</strong>
-                                        </p>
-                                    </td>
-                                    <td width="143">
-                                        <p align="center">
-                                            <strong>e-Posta</strong>
-                                        </p>
-                                    </td>
-                                    <td width="99">
-                                        <p align="center">
-                                            <strong>İmza</strong>
-                                        </p>
-                                    </td>
-                                    <td width="99">
-                                        <p align="center">
-                                            <strong>İşlemler</strong>
-                                        </p>
-                                    </td>
-                                </tr>
-                                @{
-                                    int counter = 1;
-                                    foreach (OgrenciListesi item in ViewBag.ol)
-                                    {
+                            <table border="1" cellspacing="0" cellpadding="0" width="988">
 
-                                        <tr id="@item.ID">
-                                            <td width="54" valign="top">
-                                                <p>
-                                                    @counter
-                                                </p>
-                                            </td>
-                                            <td width="164" valign="top">@item.adiSoyadi</td>
-                                            <td width="158" valign="top">@item.fak</td>
-                                            <td width="117" valign="top">@item.tc</td>
-                                            <td width="119" valign="top">@item.ogrNo</td>
-                                            <td width="134" valign="top">@item.tel</td>
-                                            <td width="143" valign="top">@item.mail</td>
-                                            <td width="99" valign="top"></td>
-                                            <td class="sil" style="text-align:center;" width="99" valign="top"><a class="btn btn-danger btn-xs itemDelete" data-id="@item.ID"> <i class="icon-trash"> Sil</i></a></td>
-                                        </tr>
-                                        counter = counter + 1;
+                                <tbody class="kisi">
+                                    <tr>
+                                        <td width="54" valign="top">
+                                            <p align="center">
+                                                <strong>S. No</strong>
+                                            </p>
+                                        </td>
+                                        <td width="164">
+                                            <p align="center">
+                                                <strong>Adı Soyadı</strong>
+                                            </p>
+                                        </td>
+                                        <td width="158">
+                                            <p align="center">
+                                                <strong>Fak/Yüksekokul/MYO</strong>
+                                            </p>
+                                        </td>
+                                        <td width="117">
+                                            <p align="center">
+                                                <strong>TC Kimlik No</strong>
+                                            </p>
+                                        </td>
+                                        <td width="119" valign="top">
+                                            <p align="center">
+                                                <strong>Öğrenci No</strong>
+                                            </p>
+                                        </td>
+                                        <td width="134" valign="top">
+                                            <p align="center">
+                                                <strong>Cep Tel No</strong>
+                                            </p>
+                                        </td>
+                                        <td width="143">
+                                            <p align="center">
+                                                <strong>e-Posta</strong>
+                                            </p>
+                                        </td>
+                                        <td width="99">
+                                            <p align="center">
+                                                <strong>İmza</strong>
+                                            </p>
+                                        </td>
+                                        <td width="99">
+                                            <p align="center">
+                                                <strong>İşlemler</strong>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    @{
+                                        int counter = 1;
+                                        foreach (OgrenciListesi item in ViewBag.ol)
+                                        {
+
+                                            <tr id="@item.ID">
+                                                <td width="54" valign="top">
+                                                    <p>
+                                                        @counter
+                                                    </p>
+                                                </td>
+                                                <td width="164" valign="top">@item.adiSoyadi</td>
+                                                <td width="158" valign="top">@item.fak</td>
+                                                <td width="117" valign="top">@item.tc</td>
+                                                <td width="119" valign="top">@item.ogrNo</td>
+                                                <td width="134" valign="top">@item.tel</td>
+                                                <td width="143" valign="top">@item.mail</td>
+                                                <td width="99" valign="top"></td>
+                                                <td class="sil" style="text-align:center;" width="99" valign="top"><a class="btn btn-danger btn-xs itemDelete" data-id="@item.ID"> <i class="icon-trash"> Sil</i></a></td>
+                                            </tr>
+                                            counter = counter + 1;
+                                        }
                                     }
-                                }
 
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
+
                         <br />
                         <p>
                             Not:En az 20(yirmi) üye ile topluluk kurulacaktır.
@@ -179,35 +185,13 @@
     }
 }
 
-
+<button class="js-button">tıkla</button>
+<div class="destination">
+</div>
 
 <script src="/Content/js/jquery.js"></script>
 <script src="/Content/js/jquery-1.8.3.min.js"></script>
 <script>
-
-
-    $('.itemDelete').click(function () {
-        var id = $(this).attr("data-id");
-        $.ajax({
-            url: '/Home/OgrenciListesiSil/' + id,
-            type: 'POST',
-            success: function (rs) {
-                if (rs === 3) {
-                    $('#' + id).remove();
-                }
-                else if (rs === 2)
-                {
-                    alert('Kendinizi Üye Listesinden Silemezsiniz.');
-                }
-                else {
-                    alert('Silme işlemi gerçekleşirken bir hata oluştu.');
-                }
-            },
-            error: function (rs) {
-                alert('Bir hata oluştu');
-            }
-        });
-    });
 
     $('#ekle').click(function () {
         var value1 = $('#adiSoyadi').val();
@@ -230,10 +214,7 @@
                 url: '/Home/OgrenciListesiEkle',
                 data: "{'adiSoyadi':'" + value1 + "', 'fak':'" + value2 + "', 'tc':'" + value3 + "', 'ogrNo':'" + value4 + "', 'tel':'" + value5 + "', 'mail':'" + value6 + "'}",
                 success: function (result) {
-                    if (result === "dogru") {
-                        $('.kisi').append(' <tr><td width="54" valign="top"><p>' + say + '</p></td><td  width="164" valign="top">' + value1 + '</td><td  width="158" valign="top">' + value2 + '</td><td width="117" valign="top">' + value3 + '</td> <td width="119" valign="top">' + value4 + '</td> <td width="134" valign="top">' + value5 + '</td> <td width="143" valign="top">' + value6 + '</td> <td width="99" valign="top"></td><td class="sil" style="text-align:center;" width="99" valign="top"><a class="btn btn-danger btn-xs itemDelete" data-id="3"> <i class="icon-trash"> Sil</i></a></td></tr>');
-                    }
-                    else if (result === "hata1") {
+                    if (result === "hata1") {
                         alert("Girdiğiniz bilgilere ait bir öğrenci bulunmamaktadır.");
                     }
                     else if (result === "hata2") {
@@ -243,7 +224,14 @@
                         alert("Bu Öğrenciyi daha önce eklediniz.");
                     }
                     else {
-                        alert("Bilinmeyen bir hata oluştu");
+                        $.ajax({
+                            url: '/Home/ogrenciListesiWidget',
+                            type: 'GET',
+                            cache: false,
+                            success: function (data) {
+                                $('.append').html(data);
+                            }
+                        });
                     }
                 },
                 Error: function (result) {

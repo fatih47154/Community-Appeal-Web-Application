@@ -105,7 +105,9 @@ namespace Community_Appeal_Web_Application.Controllers
                     ol.basvuruID = b.ID;
                     db.OgrenciListesi.Add(ol);
                     db.SaveChanges();
-                    return Json("dogru");
+                    OgrenciListesi o = db.OgrenciListesi.Where(x => x.ogrNo == ol.ogrNo).FirstOrDefault();
+                    int ogrno = o.ID;
+                    return Json(ogrno);
                 }
                 else
                 {
@@ -139,6 +141,15 @@ namespace Community_Appeal_Web_Application.Controllers
             }
         }
 
+        public PartialViewResult ogrenciListesiWidget()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            List<OgrenciListesi> ol = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.ol = ol;
+            return PartialView();
+        }
+
         public class basvuruAndYonetim
         {
             public Basvuru b { get; set; }
@@ -153,11 +164,11 @@ namespace Community_Appeal_Web_Application.Controllers
             basvuruAndYonetim n = new basvuruAndYonetim();
             n.b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
             n.y1 = db.YonetimKurulu.FirstOrDefault(x => x.basvuruID == n.b.ID);
-            if (n.b.adimNo < 3)
-            {
-                ViewBag.Hata = "İlk önce 2.Formu Doldurmanız Gerekmektedir.";
-                return View();
-            }
+            //if (n.b.adimNo < 3)
+            //{
+            //    ViewBag.Hata = "İlk önce 2.Formu Doldurmanız Gerekmektedir.";
+            //    return View();
+            //}
             if (n.b != null)
             {
                 return View(n);

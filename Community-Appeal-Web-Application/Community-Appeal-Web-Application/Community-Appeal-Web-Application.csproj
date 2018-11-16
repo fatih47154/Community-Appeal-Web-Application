@@ -233,6 +233,7 @@
     <Content Include="Views\Home\form6.cshtml" />
     <Content Include="Views\Home\form3.cshtml" />
     <Content Include="Views\Home\form4.cshtml" />
+    <Content Include="Views\Home\ogrenciListesiWidget.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
