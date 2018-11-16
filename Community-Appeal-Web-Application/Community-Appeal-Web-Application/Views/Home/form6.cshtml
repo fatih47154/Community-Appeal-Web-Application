@@ -67,19 +67,20 @@
                         <br /><br /><br /><br /><br />
                         <div style="float: right; text-align: center;">
                             <p style=""><span style="font-size: 12.0pt; font-family: 'Times New Roman', serif;">
-                                Düzce Üniversitesi <b>@Model.toplulukAdi</b> Topluluğu Danışmanı<br/>
-                                
-                                İmza<br/><br/>
-                                @if (ViewBag.danisman != null)
-                                {
-                                    <b>@ViewBag.danisman.unvan</b><span> / </span><b>@ViewBag.danisman.adi<span> / </span>@ViewBag.danisman.soyadi</b><br />
-                                }
-                                else
-                                {
-                                    <b>Ünvan</b><span> / </span><b>Ad<span> / </span>Soyad</b><br />
-                                }
-                                 
-                            </span></p>
+    Düzce Üniversitesi <b>@Model.toplulukAdi</b> Topluluğu Danışmanı<br />
+
+    İmza<br /><br />
+    @if (ViewBag.danisman != null)
+    {
+        <b>Ünvan</b><span> / </span><b>Ad<span> / </span>Soyad</b><br />
+        <b>@ViewBag.danisman.unvan</b><span> / </span><b>@ViewBag.danisman.adi<span> / </span>@ViewBag.danisman.soyadi</b><br />
+    }
+    else
+    {
+        <b>Ünvan</b><span> / </span><b>Ad<span> / </span>Soyad</b><br />
+    }
+
+</span></p>
                         </div>
                         <br/><br/><br/><br/><br/>
                         <div style="float: left;">

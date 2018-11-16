@@ -37,15 +37,25 @@
 
         <form class="form-signin" method="post" action="/Kullanici/Kayit">
             <h2 class="form-signin-heading">Kayıt Ol</h2>
-            <div class="login-wrap">
-                <input name="adiSoyadi" type="text" class="form-control" placeholder="Adı ve Soyadı" autofocus>
-                <input name="ogrMail" type="text" class="form-control" placeholder="Öğrenci Mail" autofocus>
-                <input name="ogrNo" type="text" class="form-control" placeholder="Öğrenci Numarası" autofocus>
-                <input name="tc" type="text" class="form-control" placeholder="Öğrenci T.C. Kimlik Numarası" autofocus>
-                <input name="sifre" type="password" class="form-control" placeholder="Şifre">
-                <button class="btn btn-lg btn-login btn-block" type="submit">Kayıt Ol</button>
-                <a class="btn btn-success btn-block" style="color:white;" href="/Kullanici/Login">Giriş Yap</a>
-            </div>
+            @if (ViewBag.Hata != null)
+            {
+                <div class="alert-danger" style="padding:5px; margin:5px;border-radius:5px;text-align:center;">
+                    <b>@ViewBag.Hata</b>
+                </div>
+            }
+                <div class="login-wrap">
+                    <input name="adiSoyadi" type="text" class="form-control" placeholder="Adı ve Soyadı" autofocus required>
+                    <input style="margin-bottom:15px;font-size:12px;" name="ogrMail" type="email" class="form-control" placeholder="Öğrenci Mail" autofocus required>
+                    <input name="tel" type="text" class="form-control" placeholder="Telefon Numarası" autofocus required>
+                    <input name="fak" type="text" class="form-control" placeholder="Bağlı olduğunuz Fakülte" autofocus required>
+                    <input onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="ogrNo" type="text" class="form-control" placeholder="Öğrenci Numarası" autofocus required>
+                    <input onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="tc" type="text" class="form-control" placeholder="Öğrenci T.C. Kimlik Numarası" autofocus required maxlength="11">
+                    <input name="sifre" type="password" class="form-control" placeholder="Şifre" required>
+                    <button class="btn btn-lg btn-login btn-block" type="submit">Kayıt Ol</button>
+                    <a class="btn btn-success btn-block" style="color:white;" href="/Kullanici/Login">Giriş Yap</a>
+                    <a href="/Kullanici/SifremiUnuttum" style="margin-left:30%;margin-top:10px;">Şifremi unuttum</a>
+                </div>
+
 
         </form>
 

@@ -180,7 +180,6 @@
 }
 
 
-<button id="cmd">generate PDF</button>
 
 <script src="/Content/js/jquery.js"></script>
 <script src="/Content/js/jquery-1.8.3.min.js"></script>
@@ -193,15 +192,19 @@
             url: '/Home/OgrenciListesiSil/' + id,
             type: 'POST',
             success: function (rs) {
-                if (rs === true) {
+                if (rs === 3) {
                     $('#' + id).remove();
+                }
+                else if (rs === 2)
+                {
+                    alert('Kendinizi Üye Listesinden Silemezsiniz.');
                 }
                 else {
                     alert('Silme işlemi gerçekleşirken bir hata oluştu.');
                 }
             },
             error: function (rs) {
-                alert('Bir hata oluştu' + id);
+                alert('Bir hata oluştu');
             }
         });
     });
@@ -228,7 +231,7 @@
                 data: "{'adiSoyadi':'" + value1 + "', 'fak':'" + value2 + "', 'tc':'" + value3 + "', 'ogrNo':'" + value4 + "', 'tel':'" + value5 + "', 'mail':'" + value6 + "'}",
                 success: function (result) {
                     if (result === "dogru") {
-                        $('.kisi').append(' <tr><td width="54" valign="top"><p>' + say + '</p></td><td  width="164" valign="top">' + value1 + '</td><td  width="158" valign="top">' + value2 + '</td><td width="117" valign="top">' + value3 + '</td> <td width="119" valign="top">' + value4 + '</td> <td width="134" valign="top">' + value5 + '</td> <td width="143" valign="top">' + value6 + '</td> <td width="99" valign="top"></td></tr>');
+                        $('.kisi').append(' <tr><td width="54" valign="top"><p>' + say + '</p></td><td  width="164" valign="top">' + value1 + '</td><td  width="158" valign="top">' + value2 + '</td><td width="117" valign="top">' + value3 + '</td> <td width="119" valign="top">' + value4 + '</td> <td width="134" valign="top">' + value5 + '</td> <td width="143" valign="top">' + value6 + '</td> <td width="99" valign="top"></td><td class="sil" style="text-align:center;" width="99" valign="top"><a class="btn btn-danger btn-xs itemDelete" data-id="3"> <i class="icon-trash"> Sil</i></a></td></tr>');
                     }
                     else if (result === "hata1") {
                         alert("Girdiğiniz bilgilere ait bir öğrenci bulunmamaktadır.");

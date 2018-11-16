@@ -190,6 +190,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Classes\Functions.cs" />
     <Compile Include="App_Classes\_SecurityFilter.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Models\FaliyetPlani.cs" />
     <Compile Include="Models\Kullanici.cs" />
     <Compile Include="Models\OgrenciListesi.cs" />
+    <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Models\YeniUye.cs" />
     <Compile Include="Models\YonetimKurulu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
