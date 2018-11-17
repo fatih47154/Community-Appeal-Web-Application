@@ -28,7 +28,10 @@
                     <div class="panel-body">
                         <form class="form-inline" role="form" method="post" action="/Home/form2">
                             <div class="form-group">
-                                <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="adiSoyadi" placeholder="Adı Soyadı">
+                                <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="adi" placeholder="Adı">
+                            </div>
+                            <div class="form-group">
+                                <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="soyadi" placeholder="Soyadı">
                             </div>
                             <div class="form-group">
                                 <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="fak" placeholder="Fak/Yüksekokul/MYO">
@@ -149,7 +152,7 @@
                                                         @counter
                                                     </p>
                                                 </td>
-                                                <td width="164" valign="top">@item.adiSoyadi</td>
+                                                <td width="164" valign="top">@item.adi @item.soyadi</td>
                                                 <td width="158" valign="top">@item.fak</td>
                                                 <td width="117" valign="top">@item.tc</td>
                                                 <td width="119" valign="top">@item.ogrNo</td>
@@ -214,7 +217,8 @@
     });
 
     $('#ekle').click(function () {
-        var value1 = $('#adiSoyadi').val();
+        var value1 = $('#adi').val();
+        var value7 = $('#soyadi').val();
         var value2 = $('#fak').val();
         var value3 = $('#tc').val();
         var value4 = $('#ogrNo').val();
@@ -224,7 +228,7 @@
         var say = parseInt($('#say').text()) + 1;
 
 
-        if (value1 === "" || value2 === "" || value3 === "" || value4 === "" || value5 === "" || value6 === "") {
+        if (value1 === "" || value2 === "" || value3 === "" || value4 === "" || value5 === "" || value6 === "" || value7 ="") {
             alert("Tüm alanlar doldurulmalıdır.");
         }
         else {
@@ -232,7 +236,7 @@
                 type: 'POST',
                 contentType: 'application/json; charset=utf-8',
                 url: '/Home/OgrenciListesiEkle',
-                data: "{'adiSoyadi':'" + value1 + "', 'fak':'" + value2 + "', 'tc':'" + value3 + "', 'ogrNo':'" + value4 + "', 'tel':'" + value5 + "', 'mail':'" + value6 + "'}",
+                data: "{'adi':'" + value1 + "'soyadi':'" + value7 + "', 'fak':'" + value2 + "', 'tc':'" + value3 + "', 'ogrNo':'" + value4 + "', 'tel':'" + value5 + "', 'mail':'" + value6 + "'}",
                 success: function (result) {
                     if (result === "hata1") {
                         alert("Girdiğiniz bilgilere ait bir öğrenci bulunmamaktadır.");
