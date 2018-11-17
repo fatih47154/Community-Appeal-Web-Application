@@ -31,6 +31,13 @@ namespace Community_Appeal_Web_Application.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult CikisYap()
+        {
+            Session.Abandon();
+            return RedirectToAction("Login");
+
+        }
+
         [HttpGet]
         public ActionResult Index()
         {

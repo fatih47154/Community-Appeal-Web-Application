@@ -92,6 +92,7 @@ namespace Community_Appeal_Web_Application.Controllers
         [HttpPost]
         public ActionResult OgrenciListesiEkle(OgrenciListesi ol)
         {
+            
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
             if (b.OgrenciListesi.Count != 20)
