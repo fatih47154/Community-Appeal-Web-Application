@@ -71,7 +71,7 @@ namespace Community_Appeal_Web_Application.Controllers
             }
             else
             {
-                b.akademikYıl = DateTime.Now.Year.ToString() + " -" + DateTime.Now.AddYears(+1).Year.ToString();
+                b.akademikYıl = DateTime.Now.Year.ToString() + " - " + DateTime.Now.AddYears(+1).Year.ToString();
                 if (b.adimNo == 2)
                 {
                     b.adimNo = 3;
