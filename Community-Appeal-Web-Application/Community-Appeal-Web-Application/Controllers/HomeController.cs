@@ -189,7 +189,7 @@ namespace Community_Appeal_Web_Application.Controllers
         public ActionResult form3(Basvuru basvuru, YonetimKurulu baskan,string ID)
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
-            //OgrenciListesi ogr = db.OgrenciListesi.Where(x => x.ID == ID).FirstOrDefault();
+            OgrenciListesi ogr = db.OgrenciListesi.Where(x => x.ID == ID).FirstOrDefault();
             basvuruAndYonetim n = new basvuruAndYonetim();
             
             n.b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
@@ -204,8 +204,8 @@ namespace Community_Appeal_Web_Application.Controllers
 
             if (n.y1 == null)
             {
-                //Regex rx = new Regex(@"\s");
-                //n.y1.adi =  ;
+                n.y1.adi = ogr.adi;
+                n.y1.soyadi = ogr.soyadi;
             }
 
             db.SaveChanges();
