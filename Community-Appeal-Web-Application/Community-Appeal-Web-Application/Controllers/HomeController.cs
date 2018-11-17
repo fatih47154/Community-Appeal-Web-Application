@@ -141,6 +141,9 @@ namespace Community_Appeal_Web_Application.Controllers
             }
         }
 
+
+     
+
         public PartialViewResult ogrenciListesiWidget()
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
@@ -305,6 +308,11 @@ namespace Community_Appeal_Web_Application.Controllers
 
             return View("form6", b);
 
+        }
+
+        public ActionResult basvuruTamamla()
+        {
+            return View();
         }
 
     }
