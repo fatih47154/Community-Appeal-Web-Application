@@ -1,7 +1,7 @@
 ﻿@using Community_Appeal_Web_Application.Models
 
 @{
-    Admin user = (Admin)Session["Kullanici"];
+    Admin user = (Admin)Session["Admin"];
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -46,8 +46,8 @@
                 <ul class="nav pull-right top-menu">
 
                     <!-- user login dropdown start-->
-                    <a href="#" class="btn btn-default">@*@user.adi @user.soyadi*@</a>
-                    <a href="/Kullanici/CikisYap" class="btn btn-danger">Çıkış Yap <i class="icon-arrow-right"></i></a>
+                    <a href="#" class="btn btn-default">@user.adi @user.soyadi</a>
+                    <a href="/Admin/CikisYap" class="btn btn-danger">Çıkış Yap <i class="icon-arrow-right"></i></a>
                     <!-- user login dropdown end -->
                 </ul>
                 <!--search & user info end-->
