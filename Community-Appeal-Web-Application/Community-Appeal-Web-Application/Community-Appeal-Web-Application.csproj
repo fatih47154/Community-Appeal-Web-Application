@@ -246,6 +246,7 @@
     <Content Include="Views\Home\basvuruTamamla.cshtml" />
     <Content Include="Views\Print\Form1.cshtml" />
     <Content Include="Views\Print\Form2.cshtml" />
+    <Content Include="Views\Home\danismanListesiWidget.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
