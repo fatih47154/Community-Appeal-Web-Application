@@ -181,6 +181,7 @@
     <Content Include="Content\xchart.html" />
     <Content Include="DB Script\db.sql" />
     <Content Include="DB Script\FakirlereScript.sql" />
+    <Content Include="DB Script\ScriptSon.sql" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Rotativa\help-wkhtmltoimage.txt" />
