@@ -186,7 +186,7 @@ namespace Community_Appeal_Web_Application.Controllers
         }
 
         [HttpPost]
-        public ActionResult form3(Basvuru basvuru, YonetimKurulu baskan,string ID)
+        public ActionResult form3(Basvuru basvuru, YonetimKurulu baskan,int ID)
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             OgrenciListesi ogr = db.OgrenciListesi.Where(x => x.ID == ID).FirstOrDefault();
