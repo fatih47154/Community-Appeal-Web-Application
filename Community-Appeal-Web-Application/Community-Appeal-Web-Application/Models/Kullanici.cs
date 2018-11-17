@@ -17,8 +17,11 @@ namespace Community_Appeal_Web_Application.Models
 
         public int ID { get; set; }
 
-        [StringLength(50)]
-        public string adiSoyadi { get; set; }
+        [StringLength(100)]
+        public string adi { get; set; }
+
+        [StringLength(100)]
+        public string soyadi { get; set; }
 
         [StringLength(100)]
         public string ogrMail { get; set; }

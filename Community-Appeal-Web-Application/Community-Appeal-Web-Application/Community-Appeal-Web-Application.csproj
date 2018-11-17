@@ -180,6 +180,8 @@
     <Content Include="Content\widget.html" />
     <Content Include="Content\xchart.html" />
     <Content Include="DB Script\db.sql" />
+    <Content Include="DB Script\FakirlereScript.sql" />
+    <Content Include="DB Script\ScriptSon.sql" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Rotativa\help-wkhtmltoimage.txt" />
@@ -201,6 +203,7 @@
     <Compile Include="App_Classes\Functions.cs" />
     <Compile Include="App_Classes\_SecurityFilter.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\PrintController.cs" />
@@ -215,7 +218,6 @@
     <Compile Include="Models\FaliyetPlani.cs" />
     <Compile Include="Models\Kullanici.cs" />
     <Compile Include="Models\OgrenciListesi.cs" />
-    <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Models\YeniUye.cs" />
     <Compile Include="Models\YonetimKurulu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -228,7 +230,6 @@
     </Content>
     <Content Include="Views\Shared\_LayoutPage.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -246,6 +247,11 @@
     <Content Include="Views\Home\basvuruTamamla.cshtml" />
     <Content Include="Views\Print\Form1.cshtml" />
     <Content Include="Views\Print\Form2.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Listesi.cshtml" />
+    <Content Include="Views\Admin\Ekle.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Home\danismanListesiWidget.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

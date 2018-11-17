@@ -1,7 +1,9 @@
 ﻿
 @{
+    ViewBag.Title = "Login";
     Layout = null;
 }
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,19 +36,18 @@
 
     <div class="container">
 
-        <form class="form-signin" method="post" action="/Kullanici/GirisYap">
-            <h2 class="form-signin-heading">Düzce Üniversitesi Öğrenci Topluluğu Başvuru Sistemi</h2>
+        <form class="form-signin" method="post" action="/Admin/Login">
+            <h2 class="form-signin-heading">Düzce Üniversitesi Öğrenci Topluluğu Başvuru Sistemi Admin Girişi</h2>
             <div class="login-wrap">
                 @if (ViewBag.Hata != null)
                 {
-                    <div class="alert-danger" style="padding:5px; margin:5px;border-radius:5px;text-align:center;">
+                    <div class="alert-danger" style="padding:5px; border-radius:5px;text-align:center;">
                         <b>@ViewBag.Hata</b>
                     </div>
                 }
-                <input name="ogrMail" type="text" class="form-control" placeholder="Öğrenci Mail" autofocus required>
+                <input name="eMail" type="text" class="form-control" placeholder="Mail" autofocus required>
                 <input name="sifre" type="password" class="form-control" placeholder="Şifre" required>
                 <button type="submit" class="btn btn-success btn-lg btn-block">Giriş Yap</button>
-                <a class="btn btn-danger btn-block" style="color:white;" href="/Kullanici/Kayit">Kayıt Ol</a>
             </div>
 
         </form>
@@ -60,3 +61,4 @@
 
 </body>
 </html>
+

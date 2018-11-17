@@ -3,6 +3,7 @@ using Community_Appeal_Web_Application.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -164,6 +165,10 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
 
+
+            var ogr = db.OgrenciListesi.ToList();
+            ViewBag.Ogreciler = new SelectList(ogr, "ID" , "adiSoyadi" );
+
             basvuruAndYonetim n = new basvuruAndYonetim();
             n.b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
             n.y1 = db.YonetimKurulu.FirstOrDefault(x => x.basvuruID == n.b.ID);
@@ -181,14 +186,16 @@ namespace Community_Appeal_Web_Application.Controllers
         }
 
         [HttpPost]
-        public ActionResult form3(Basvuru basvuru, YonetimKurulu baskan)
+        public ActionResult form3(Basvuru basvuru, YonetimKurulu baskan,int ID)
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
-
-
+            OgrenciListesi ogr = db.OgrenciListesi.Where(x => x.ID == ID).FirstOrDefault();
             basvuruAndYonetim n = new basvuruAndYonetim();
+            
             n.b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
             n.y1 = db.YonetimKurulu.FirstOrDefault(x => x.basvuruID == n.b.ID);
+
+            
 
             if (n.b.adimNo == 3)
             {
@@ -197,7 +204,8 @@ namespace Community_Appeal_Web_Application.Controllers
 
             if (n.y1 == null)
             {
-                db.YonetimKurulu.Add(baskan);
+                n.y1.adi = ogr.adi;
+                n.y1.soyadi = ogr.soyadi;
             }
 
             db.SaveChanges();

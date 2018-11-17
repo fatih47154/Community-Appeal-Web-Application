@@ -53,14 +53,16 @@ namespace Community_Appeal_Web_Application.Controllers
                 return View();
             }
 
-            k.adiSoyadi = Functions.IlkHarfleriBuyut(k.adiSoyadi);
+            k.adi= Functions.IlkHarfleriBuyut(k.adi);
+            k.soyadi = Functions.IlkHarfleriBuyut(k.soyadi);
 
             Basvuru b = new Basvuru();
             b.kullanıcıID = k.ID;
             b.adimNo = 1;
 
             OgrenciListesi ol = new OgrenciListesi();
-            ol.adiSoyadi = k.adiSoyadi;
+            ol.adi = k.adi;
+            ol.soyadi = k.soyadi;
             ol.tc = k.tc;
             ol.ogrNo = k.ogrNo;
             ol.tel = tel;
