@@ -191,6 +191,28 @@
 <script src="/Content/js/jquery-1.8.3.min.js"></script>
 <script>
 
+    $('.itemDelete').click(function () {
+        var id = $(this).attr("data-id");
+        $.ajax({
+            url: '/Home/OgrenciListesiSil/' + id,
+            type: 'POST',
+            success: function (rs) {
+                if (rs === 3) {
+                    $('#' + id).remove();
+                }
+                else if (rs === 2) {
+                    alert('Kendinizi Üye Listesinden Silemezsiniz.');
+                }
+                else {
+                    alert('Silme işlemi gerçekleşirken bir hata oluştu.');
+                }
+            },
+            error: function (rs) {
+                alert('Bir hata oluştu');
+            }
+        });
+    });
+
     $('#ekle').click(function () {
         var value1 = $('#adiSoyadi').val();
         var value2 = $('#fak').val();
