@@ -352,6 +352,23 @@ namespace Community_Appeal_Web_Application.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult form7()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            if (b.adimNo < 1)
+            {
+                ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
+                return View();
+            }
+            List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
+            Danisman dl1 = db.Danisman.FirstOrDefault(x => x.basvuruID == b.ID);
+            ViewBag.dl = dl;
+            ViewBag.dl1 = dl1;
+            return View(b);
+        }
+
         public ActionResult basvuruTamamla()
         {
             return View();
