@@ -92,6 +92,7 @@ namespace Community_Appeal_Web_Application.Controllers
         [HttpPost]
         public ActionResult OgrenciListesiEkle(OgrenciListesi ol)
         {
+            
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
             if (b.OgrenciListesi.Count != 20)
@@ -247,18 +248,20 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            if (b.adimNo < 3)
+            if (b.adimNo < 2)
             {
                 ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
                 return View();
             }
             List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
+            List<OgrenciListesi> ol = db.OgrenciListesi.ToList();
             ViewBag.dl = dl;
+            ViewBag.ol = ol;
             return View(b);
         }
 
         [HttpPost]
-        public ActionResult form5(Basvuru a)
+        public ActionResult form5(int ID)
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
@@ -266,20 +269,52 @@ namespace Community_Appeal_Web_Application.Controllers
             if (b.Danisman.Count < 2)
             {
                 List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
+                List<OgrenciListesi> ol = db.OgrenciListesi.ToList();
+                ViewBag.ol = ol;
                 ViewBag.dl = dl;
-                ViewBag.hata = "Bu formu kaydetmek için danışman sayısı 2 olmalıdır.";
+                TempData["a"] = "Bu formu kaydetmek için danışman sayısı 2 olmalıdır.";
                 return View(b);
             }
             else
             {
-                if (b.adimNo == 3)
+                if (b.adimNo == 4)
                 {
-                    b.adimNo = 4;
+                    b.adimNo = 5;
                     db.SaveChanges();
                 }
                 List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
+                List<OgrenciListesi> ol = db.OgrenciListesi.ToList();
                 ViewBag.dl = dl;
+                ViewBag.ol = ol;
                 return View(b);
+            }
+        }
+
+        public PartialViewResult danismanListesiWidget()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.dl = dl;
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult danismanListesiSil(int id)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            Danisman dl = db.Danisman.Where(x => x.ID == id).FirstOrDefault();
+            if (dl == null)
+            {
+                return Json(1);
+            }
+            else
+            {
+                db.Danisman.Remove(dl);
+                db.SaveChanges();
+                return Json(3);
             }
         }
 
@@ -338,6 +373,23 @@ namespace Community_Appeal_Web_Application.Controllers
 
             return View("form6", b);
 
+        }
+
+        [HttpGet]
+        public ActionResult form7()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            if (b.adimNo < 1)
+            {
+                ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
+                return View();
+            }
+            List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
+            Danisman dl1 = db.Danisman.FirstOrDefault(x => x.basvuruID == b.ID);
+            ViewBag.dl = dl;
+            ViewBag.dl1 = dl1;
+            return View(b);
         }
 
         public ActionResult basvuruTamamla()

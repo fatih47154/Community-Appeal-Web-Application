@@ -17,7 +17,7 @@
                 @if (ViewBag.hata != null)
                 {
 
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger alert-dismissable">
                         <p>@ViewBag.hata</p>
                     </div>
                 }
@@ -26,30 +26,31 @@
                         Form 2
                     </header>
                     <div class="panel-body">
-                        <form class="form-inline" role="form" method="post" action="/Home/form2">
+                        <form class="form" role="form" method="post" action="/Home/form2">
                             <div class="form-group">
-                                <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="adi" placeholder="Adı">
+                                <input style="margin-right:5px;" type="text" class="form-control" id="adi" placeholder="Adı">
                             </div>
                             <div class="form-group">
-                                <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="soyadi" placeholder="Soyadı">
+                                <input style="margin-right:5px;" type="text" class="form-control" id="soyadi" placeholder="Soyadı">
                             </div>
                             <div class="form-group">
-                                <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="fak" placeholder="Fak/Yüksekokul/MYO">
+                                <input style="margin-right:5px;" type="text" class="form-control" id="fak" placeholder="Fak/Yüksekokul/MYO">
                             </div>
                             <div class="form-group">
-                                <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="tc" placeholder="TC Kimlik No">
+                                <input style="margin-right:5px;" type="text" class="form-control" id="tc" placeholder="TC Kimlik No">
                             </div>
                             <div class="form-group">
-                                <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="ogrNo" placeholder="Öğrenci No">
+                                <input style="margin-right:5px;" type="text" class="form-control" id="ogrNo" placeholder="Öğrenci No">
                             </div>
                             <div class="form-group">
-                                <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="tel" placeholder="Cep Tel No">
+                                <input style="margin-right:5px;" type="text" class="form-control" id="tel" placeholder="Cep Tel No">
                             </div>
                             <div class="form-group">
-                                <input style="width:150px;margin-right:5px;" type="text" class="form-control" id="mail" placeholder="e-Posta">
+                                <input style="margin-right:5px;" type="text" class="form-control" id="mail" placeholder="e-Posta">
                             </div>
-                            <a id="ekle" style="margin-right:5px;" class="btn btn-success"><i class="glyphicon-plus"></i> Ekle</a>
-                            <button type="submit" class="btn btn-danger">Kaydet</button>
+                            <button style="float:right;margin-right:5px;" type="submit" class="btn btn-danger">Kaydet</button>
+                            <a id="ekle" style="margin-right:5px;float:right;" class="btn btn-success"><i class="glyphicon-plus"></i> Ekle</a>
+
 
                         </form>
                         <br />
@@ -91,7 +92,7 @@
                         </p>
                         <div class="append">
 
-                            <table border="1" cellspacing="0" cellpadding="0" width="988">
+                            <table border="1" cellspacing="0" cellpadding="0" width="100%">
 
                                 <tbody class="kisi">
                                     <tr>
@@ -227,16 +228,17 @@
 
         var say = parseInt($('#say').text()) + 1;
 
-
-        if (value1 === "" || value2 === "" || value3 === "" || value4 === "" || value5 === "" || value6 === "" || value7 ==="") {
+        
+        if (value1 === "" || value2 === "" || value3 === "" || value4 === "" || value5 === "" || value6 === "" || value7 === "" ) {
             alert("Tüm alanlar doldurulmalıdır.");
         }
         else {
+            var data0 = { adi: value1, soyadi: value7, fak: value2, tc: value3, ogrNo: value4, tel: value5, mail: value6 };
+            alert("sdsd");
             $.ajax({
-                type: 'POST',
-                contentType: 'application/json; charset=utf-8',
+                type: 'POST',         
                 url: '/Home/OgrenciListesiEkle',
-                data: "{'adi':'" + value1 + "'soyadi':'" + value7 + "', 'fak':'" + value2 + "', 'tc':'" + value3 + "', 'ogrNo':'" + value4 + "', 'tel':'" + value5 + "', 'mail':'" + value6 + "'}",
+                data: data0,
                 success: function (result) {
                     if (result === "hata1") {
                         alert("Girdiğiniz bilgilere ait bir öğrenci bulunmamaktadır.");
