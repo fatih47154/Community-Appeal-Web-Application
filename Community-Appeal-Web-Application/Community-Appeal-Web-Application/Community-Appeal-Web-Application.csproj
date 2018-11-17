@@ -252,6 +252,7 @@
     <Content Include="Views\Admin\Listesi.cshtml" />
     <Content Include="Views\Admin\Ekle.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Home\danismanListesiWidget.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

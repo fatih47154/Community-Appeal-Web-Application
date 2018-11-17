@@ -31,7 +31,12 @@
                             </div>
 
                             <button type="submit" style="margin-right: 5px;" class="btn btn-info">Kaydet</button>
-                            <a href="#" class="btn btn-primary">Form 7</a>
+                            @{
+                                if (Model.adimNo == 6)
+                                {
+                                    <a href="#" class="btn btn-primary">Form 7</a>
+                                }
+                            }
                         </form>
                     </div>
                 </section>
