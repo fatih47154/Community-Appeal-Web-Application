@@ -253,6 +253,11 @@
     <Content Include="Views\Admin\Ekle.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Home\danismanListesiWidget.cshtml" />
+    <Content Include="Views\Admin\Basvurular.cshtml" />
+    <Content Include="Views\Print\Form1_admin.cshtml" />
+    <Content Include="Views\Print\Form2_admin.cshtml" />
+    <Content Include="Views\Admin\KayitliKullanicilar.cshtml" />
+    <Content Include="Views\Admin\Duzenle.cshtml" />
     <Content Include="Views\Home\form7.cshtml" />
     <Content Include="Views\Home\uyeListesiWidget.cshtml" />
     <None Include="Web.Debug.config">
