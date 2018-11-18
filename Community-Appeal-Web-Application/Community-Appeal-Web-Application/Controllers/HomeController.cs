@@ -355,6 +355,7 @@ namespace Community_Appeal_Web_Application.Controllers
 
         public ActionResult basvuruTamamla()
         {
+
             return View();
         }
 
