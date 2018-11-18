@@ -25,6 +25,8 @@ namespace Community_Appeal_Web_Application.Models
 
         public int? basvuruID { get; set; }
 
+        public bool? aktif { get; set; }
+
         public virtual Basvuru Basvuru { get; set; }
     }
 }
