@@ -57,11 +57,69 @@ namespace Community_Appeal_Web_Application.Controllers
         }
 
         [HttpPost]
+        public ActionResult Sil(int id)
+        {
+            Admin admin = db.Admin.Where(x => x.ID == id).FirstOrDefault();
+            Admin admin2 = (Admin)Session["Admin"]; 
+            if (admin!=null)
+            {
+                if (admin.ID== admin2.ID)
+                {
+                    return Json(2);
+                }
+                db.Admin.Remove(admin);
+                db.SaveChanges();
+                return Json(1);
+            }
+            return Json(0);
+        }
+
+        [HttpGet]
+        public ActionResult Duzenle(int id)
+        {
+            Admin admin = db.Admin.Where(x => x.ID == id).FirstOrDefault();
+            if (admin==null)
+            {
+                return RedirectToAction("Listesi");
+            }
+            return View(admin);
+        }
+
+        [HttpPost]
+        public ActionResult Duzenle(Admin admin)
+        {
+            Admin ad = db.Admin.Where(x => x.ID == admin.ID).SingleOrDefault();
+            if (ad !=null)
+            {
+                ad.adi = admin.adi;
+                ad.soyadi = admin.soyadi;
+                ad.eMail = admin.eMail;
+                ad.sifre = admin.sifre;
+                db.SaveChanges();
+                return RedirectToAction("Listesi");
+            }
+            return RedirectToAction("Listesi");
+        }
+
+        [HttpPost]
         public ActionResult Ekle(Admin admin)
         {
             db.Admin.Add(admin);
             db.SaveChanges();
             return RedirectToAction("Listesi");
         }
+
+        [HttpGet]
+        public ActionResult Basvurular()
+        {
+            return View(db.Basvuru.Where(x=>x.adimNo>=6).ToList());
+        }
+
+        
+      public ActionResult KayitliKullanicilar()
+        {
+            return View(db.Kullanici.ToList());
+        }
+
     }
 }

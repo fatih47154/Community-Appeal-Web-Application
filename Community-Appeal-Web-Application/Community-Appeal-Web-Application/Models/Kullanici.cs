@@ -13,6 +13,7 @@ namespace Community_Appeal_Web_Application.Models
         public Kullanici()
         {
             Basvuru = new HashSet<Basvuru>();
+            Guncelle = new HashSet<Guncelle>();
         }
 
         public int ID { get; set; }
@@ -37,5 +38,8 @@ namespace Community_Appeal_Web_Application.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Basvuru> Basvuru { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Guncelle> Guncelle { get; set; }
     }
 }

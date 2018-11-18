@@ -51,7 +51,7 @@
                                     @foreach (var item in ViewBag.ol)
                                     {
                                         <option value="@item.ID">
-                                            @item.adiSoyadi
+                                            @item.adi @item.soyadi
                                         </option>
                                     }
                                 </select>
@@ -60,7 +60,7 @@
                             <button type="submit" id="button" style="margin-right:5px;" class="btn btn-info disabled">Kaydet</button>
                             <a id="ekle" type="submit" style="margin-right:5px;" class="btn btn-success"><i class="glyphicon-plus"></i> Ekle</a>
                             @{
-                                if (Model.adimNo == 5)
+                                if (Model.adimNo >= 5)
                                 {
                                     <a href="form6" class="btn btn-primary">Form 6</a>
                                 }
@@ -102,7 +102,15 @@
                             <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Düzce Üniversitesi <b>@Model.toplulukAdi</b> Topluluğu</span></p>
                             <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Topluluk Başkanı</span></p>
                             <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">İmza</span></p><br/><br/>
-                            <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;"><b>@Model.Kullanici.adiSoyadi</b></span></p>
+                            @if (Model.baskanAdi == null && Model.baskanSoyadi == null)
+                            {
+                                <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;"><b>Topluluk Başkanı</b></span></p>
+                            }
+                            else
+                            {
+                                <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Topluluk Başkanı</span></p>
+                                <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;"><b>@Model.baskanAdi @Model.baskanSoyadi</b></span></p>
+                            }
                         </div>
                         <br /><br /><br />
                     </div>
@@ -183,7 +191,6 @@
 </script>
 
 <script>
-
 
     $('.itemDelete').click(function () {
         var id = $(this).attr("data-id");

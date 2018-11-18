@@ -204,6 +204,7 @@
     <Compile Include="App_Classes\_SecurityFilter.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\GuncelleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\PrintController.cs" />
@@ -216,6 +217,13 @@
     <Compile Include="Models\Danisman.cs" />
     <Compile Include="Models\DenetimKurulu.cs" />
     <Compile Include="Models\FaliyetPlani.cs" />
+    <Compile Include="Models\GDanisman.cs" />
+    <Compile Include="Models\GDenetimKurulu.cs" />
+    <Compile Include="Models\GFaliyetPlani.cs" />
+    <Compile Include="Models\GOgrenciListesi.cs" />
+    <Compile Include="Models\Guncelle.cs" />
+    <Compile Include="Models\GYeniUye.cs" />
+    <Compile Include="Models\GYonetimKurulu.cs" />
     <Compile Include="Models\Kullanici.cs" />
     <Compile Include="Models\OgrenciListesi.cs" />
     <Compile Include="Models\YeniUye.cs" />
@@ -252,7 +260,14 @@
     <Content Include="Views\Admin\Ekle.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Home\danismanListesiWidget.cshtml" />
+    <Content Include="Views\Admin\Basvurular.cshtml" />
+    <Content Include="Views\Print\Form1_admin.cshtml" />
+    <Content Include="Views\Print\Form2_admin.cshtml" />
+    <Content Include="Views\Admin\KayitliKullanicilar.cshtml" />
+    <Content Include="Views\Admin\Duzenle.cshtml" />
     <Content Include="Views\Home\form7.cshtml" />
+    <Content Include="Views\Guncelle\form1.cshtml" />
+    <Content Include="Views\Home\uyeListesiWidget.cshtml" />
     <Content Include="Views\Home\form4.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
