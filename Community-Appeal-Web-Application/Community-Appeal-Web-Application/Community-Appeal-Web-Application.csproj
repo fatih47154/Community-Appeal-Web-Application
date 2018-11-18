@@ -242,7 +242,6 @@
     <Content Include="Views\Home\form5.cshtml" />
     <Content Include="Views\Home\form6.cshtml" />
     <Content Include="Views\Home\form3.cshtml" />
-    <Content Include="Views\Home\form4.cshtml" />
     <Content Include="Views\Home\ogrenciListesiWidget.cshtml" />
     <Content Include="Views\Home\basvuruTamamla.cshtml" />
     <Content Include="Views\Print\Form1.cshtml" />
@@ -254,6 +253,7 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Home\danismanListesiWidget.cshtml" />
     <Content Include="Views\Home\form7.cshtml" />
+    <Content Include="Views\Home\form4.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
