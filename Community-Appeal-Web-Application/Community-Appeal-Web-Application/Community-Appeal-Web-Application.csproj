@@ -258,6 +258,7 @@
     <Content Include="Views\Print\Form2_admin.cshtml" />
     <Content Include="Views\Admin\KayitliKullanicilar.cshtml" />
     <Content Include="Views\Admin\Duzenle.cshtml" />
+    <Content Include="Views\Home\form7.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

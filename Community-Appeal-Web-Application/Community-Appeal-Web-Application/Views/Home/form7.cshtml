@@ -1,0 +1,178 @@
+﻿
+@{
+    ViewBag.Title = "form7";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@using Community_Appeal_Web_Application.Models
+
+@model Basvuru
+
+@{
+    if (Model != null)
+    {
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Form 7
+                    </header>
+                    <div class="panel-body">
+
+                        <form role="form" method="post" action="/Home/form6">
+                            <div class="form-group">
+                                <label>Açılış Yapan Kişi</label>
+                                <select class="form-control" id="list" name="ID">
+                                    <option>Açılış Yapan Kişiyi Seçiniz...</option>
+                                    @foreach (var item in Model.Danisman.ToList())
+                                    {
+                                        <option value="@item.ID">@item.adi<span> </span>@item.soyadi</option>
+                                    }
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Marşçı</label>
+                                <select class="form-control" id="list" name="ID">
+                                    <option>Marşçı Seçiniz...</option>
+                                    @foreach (var item in Model.Danisman.ToList())
+                                    {
+                                        <option value="@item.ID">@item.adi<span> </span>@item.soyadi</option>
+                                    }
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Divan Başkanı</label>
+                                <select class="form-control" id="list" name="ID">
+                                    <option>Divan Başkanı Seçiniz...</option>
+                                    @foreach (var item in Model.Danisman.ToList())
+                                    {
+                                        <option value="@item.ID">@item.adi<span> </span>@item.soyadi</option>
+                                    }
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Başkan Yardımcısı</label>
+                                <select class="form-control" id="list" name="ID">
+                                    <option>Başkan Yardımcısı Seçiniz...</option>
+                                    @foreach (var item in Model.Danisman.ToList())
+                                    {
+                                        <option value="@item.ID">@item.adi<span> </span>@item.soyadi</option>
+                                    }
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Yazman</label>
+                                <select class="form-control" id="list" name="ID">
+                                    <option>Yazman Başkanı Seçiniz...</option>
+                                    @foreach (var item in Model.Danisman.ToList())
+                                    {
+                                        <option value="@item.ID">@item.adi<span> </span>@item.soyadi</option>
+                                    }
+                                </select>
+                            </div>
+                            
+                            
+
+                            <button type="submit" style="margin-right: 5px;" class="btn btn-info">Kaydet</button>
+                            @{
+                                if (Model.adimNo == 6)
+                                {
+                                    <a href="#" class="btn btn-primary">Form 7</a>
+                                }
+                            }
+                        </form>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Form 7
+                    </header>
+                    <section class="panel-body" style="padding-left: 90px; padding-right: 90px">
+                        <div style="float: right;">
+                            <p style="text-indent: 35.4pt;"><span style="font-size: 12.0pt;font-family: 'Times New Roman', serif;">Ek-7</span></p>
+                        </div>
+                        <br /><br />
+                        <br /><br />
+                        <div style="text-align: center;">
+                            <p style="">
+                                <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif;">
+                                    DÜZCE ÜNİVERSİTESİ <b>@Model.toplulukAdi TOPLULUĞU</b><br/>
+                                    OLAĞAN/OLAĞANÜSTÜ GENEL KURUL TUTANAĞI<br/>
+                                    <b>@DateTime.Now.ToShortDateString()</b>
+</span>
+                            </p>
+                        </div>
+                        <br />
+                        <div style="">
+                            <p style="text-indent: 35.4pt;">
+                                <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif;text-align: justify">
+                                    Düzce Üniversitesi <b>@Model.toplulukAdi</b> Topluluğu <b>@Model.toplantiTarihi.ToString().Substring(0, 10)</b> Tarihinde saat <b>@Model.saat</b>'de <b>@Model.mekan</b>'de,
+                                    <b>@Model.toplantiNo</b>'ıncı (birinci, ikinci, üçüncü vb.) olağan genel kurul toplantısı gerçekleştirilmiştir.
+                                    <br /><br />
+                                    Gündemin birinci maddesi gereği, genel kurul toplantısı <b>@Model.OgrenciListesi.Count()</b> üye ile ………………………………………… (kişi ismi yazılacak) tarafından açıldı.
+                                </span>
+                            </p>
+                            
+                            <p style="text-indent: 35.4pt;">
+                                <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+                                    Açılış ve yoklama gerçekleştikten sonra ……………………………..….. (kişi ismi yazılacak) katılanları saygı duruşunda bulunmaya ve İstiklal Marşı’nı söylemeye davet etti.
+                                    <br /><br />
+                                    Gündemin ikinci maddesi gereği, toplantıyı yönetmek üzere Divan Kurulu oluşturuldu. Divan Başkanlığı’na …………………………….… (kişi ismi yazılacak), Başkan Yardımcılığına …..…………………….…… (kişi ismi yazılacak), Yazman üyeliğine ………………………….…… (kişi ismi yazılacak) seçildi.
+                                </span>
+                            </p>
+                            
+                            <p style="text-indent: 35.4pt;">
+                                <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+                                    Gündemin üçüncü maddesi gereği, …………………………… Akademik yılında gerçekleştirilecek etkinlikler belirlenmiştir. (Burada gerçekleştirilecek etkinlikler anlatılacaktır.)
+                                </span>
+                            </p>
+                            
+                            <p style="text-indent: 35.4pt;">
+                                <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+                                    Gündemin dördüncü maddesi gereği, bütçe önerisi görüşüldü. (Burada gerçekleştirilecek etkinlikler için bütçeden bahsedilecek.)
+                                </span>
+                            </p>
+                            
+                            <p style="text-indent: 35.4pt;">
+                                <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+                                    Gündemin beşinci maddesi gereği, Divan Başkanı ………………………………. (kişi ismi yazılacak) yönetim kurulunun ibrazının gerektiğini belirtti.
+                                </span>
+                            </p>
+                            
+                            <p style="text-indent: 35.4pt;">
+                                <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+                                    Gündemin altıncı maddesi gereği, yönetim kurulunun, denetleme kurulunun, (topluluk tüzüğünde belirtilen başka kurul varsa burada yazılacak) seçimine Divan Başkanı …………………………… (kişi ismi yazılacak) başkanlığında geçildi.
+                                </span>
+                            </p>
+                            
+                            <p style="text-indent: 35.4pt;">
+                                <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+                                    Yönetim Kurulu için gerekli koşulları ve görevlerini Divan Başkanı ……………………….... (kişi ismi yazılacak) üyelere anlattıktan sonra Yönetim Kurulu’na üye olmak isteyen kişiler kendilerini tanıttı. Yönetim Kurulu üyesi olmak isteyen kişiler aşağıdadır:
+                                </span>
+                            </p>
+
+                        </div>
+                        <br /><br /><br /><br /><br />                   
+
+                    </section>
+                </section>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            <strong><p style="font-size:18px;"> @ViewBag.Hata</p></strong>
+        </div>
+    }
+}
+
