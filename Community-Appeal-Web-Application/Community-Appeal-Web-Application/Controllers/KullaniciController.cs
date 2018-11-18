@@ -60,6 +60,20 @@ namespace Community_Appeal_Web_Application.Controllers
             b.kullanıcıID = k.ID;
             b.adimNo = 1;
 
+            Guncelle g = new Guncelle();
+            g.kullanıcıID = k.ID;
+            g.adimNo = 1;
+
+            GOgrenciListesi gol = new GOgrenciListesi();
+            gol.adi = k.adi;
+            gol.soyadi = k.soyadi;
+            gol.tc = k.tc;
+            gol.ogrNo = k.ogrNo;
+            gol.tel = tel;
+            gol.GuncelleID = g.ID;
+            gol.mail = k.ogrMail;
+            gol.fak = fak;
+
             OgrenciListesi ol = new OgrenciListesi();
             ol.adi = k.adi;
             ol.soyadi = k.soyadi;
@@ -70,9 +84,12 @@ namespace Community_Appeal_Web_Application.Controllers
             ol.mail = k.ogrMail;
             ol.fak = fak;
 
-            db.OgrenciListesi.Add(ol);
-            db.Basvuru.Add(b);
+
             db.Kullanici.Add(k);
+            db.Guncelle.Add(g);
+            db.GOgrenciListesi.Add(gol);         
+            db.Basvuru.Add(b);
+            db.OgrenciListesi.Add(ol);
             db.SaveChanges();
             return RedirectToAction("GirisYap", "Kullanici", k);
         }
