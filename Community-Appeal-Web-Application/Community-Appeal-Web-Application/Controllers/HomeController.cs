@@ -241,6 +241,21 @@ namespace Community_Appeal_Web_Application.Controllers
         [HttpGet]
         public ActionResult form4()
         {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            ViewBag.ft = db.FaliyetPlani.Where(x => x.faliyetID == b.ID).FirstOrDefault();
+
+            if (b != null)
+            {
+                return View(b);
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult form4(int ID)
+        {
             return View();
         }
 
