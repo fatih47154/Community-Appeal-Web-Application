@@ -600,6 +600,47 @@ namespace Community_Appeal_Web_Application.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult form7DenetimKuruluKaydet(int baskanId)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            DenetimKurulu baskan = db.DenetimKurulu.FirstOrDefault(x => x.unvan == "Denetim Kurulu Başkanı");
+            OgrenciListesi dBaskan = db.OgrenciListesi.FirstOrDefault(x => x.ID == baskanId);
+            if (db.DenetimKurulu.FirstOrDefault(x => x.ogrNo == dBaskan.ogrNo && x.unvan != "Başkan Yardımcısı") == null)
+            {
+                if (baskan == null)
+                {
+                    baskan = new YonetimKurulu();
+                    baskan.basvuruID = b.ID;
+                    baskan.adi = dBaskan.adi;
+                    baskan.soyadi = dBaskan.soyadi;
+                    baskan.unvan = "Başkan Yardımcısı";
+                    baskan.ogrNo = dBaskan.ogrNo;
+                    db.DenetimKurulu.Add(baskan);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    baskan.basvuruID = b.ID;
+                    baskan.adi = dBaskan.adi;
+                    baskan.soyadi = dBaskan.soyadi;
+                    baskan.unvan = "Başkan Yardımcısı";
+                    baskan.ogrNo = dBaskan.ogrNo;
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                TempData["YönetimHata"] = "Denetim Kurulu Başkanı Olarak Seçtiğiniz Üyeyi Daha Önce Yönetim Kurulunda Kullandınız.";
+            }
+
+            return View("form7", b);
+
+
+        }
+
         public ActionResult basvuruTamamla()
         {
 
