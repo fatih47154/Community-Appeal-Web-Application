@@ -17,6 +17,13 @@
         public virtual DbSet<Danisman> Danisman { get; set; }
         public virtual DbSet<DenetimKurulu> DenetimKurulu { get; set; }
         public virtual DbSet<FaliyetPlani> FaliyetPlani { get; set; }
+        public virtual DbSet<GDanisman> GDanisman { get; set; }
+        public virtual DbSet<GDenetimKurulu> GDenetimKurulu { get; set; }
+        public virtual DbSet<GFaliyetPlani> GFaliyetPlani { get; set; }
+        public virtual DbSet<GOgrenciListesi> GOgrenciListesi { get; set; }
+        public virtual DbSet<Guncelle> Guncelle { get; set; }
+        public virtual DbSet<GYeniUye> GYeniUye { get; set; }
+        public virtual DbSet<GYonetimKurulu> GYonetimKurulu { get; set; }
         public virtual DbSet<Kullanici> Kullanici { get; set; }
         public virtual DbSet<OgrenciListesi> OgrenciListesi { get; set; }
         public virtual DbSet<YeniUye> YeniUye { get; set; }
@@ -29,8 +36,18 @@
                 .WithOptional(e => e.Basvuru)
                 .HasForeignKey(e => e.faliyetID);
 
+            modelBuilder.Entity<Guncelle>()
+                .HasMany(e => e.GFaliyetPlani)
+                .WithOptional(e => e.Guncelle)
+                .HasForeignKey(e => e.faliyetID);
+
             modelBuilder.Entity<Kullanici>()
                 .HasMany(e => e.Basvuru)
+                .WithOptional(e => e.Kullanici)
+                .HasForeignKey(e => e.kullanıcıID);
+
+            modelBuilder.Entity<Kullanici>()
+                .HasMany(e => e.Guncelle)
                 .WithOptional(e => e.Kullanici)
                 .HasForeignKey(e => e.kullanıcıID);
         }
