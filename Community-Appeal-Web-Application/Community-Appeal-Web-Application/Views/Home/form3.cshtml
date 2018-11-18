@@ -1,4 +1,5 @@
-﻿
+﻿@model Basvuru
+
 @{
     ViewBag.Title = "form3";
    
@@ -7,7 +8,7 @@
 @using Community_Appeal_Web_Application.Models
 
 
-@model Basvuru
+
 
 
 @{
@@ -31,8 +32,14 @@
                         @using (Html.BeginForm("form3", "Home", FormMethod.Post))
                         {
                             <div class="form-group">
-                                @Html.DropDownList("ID", (SelectList) ViewBag.Ogreciler, "Seçiniz..", new {@clas = "form-control"})
-
+                                <label>Yönetim Kurulu Başkanı</label>
+                                <select onload="show_selected()" onchange="show_selected()" class="form-control" id="ID" name="ID" required>
+                                    <option value="default">Yönetim Kurulu Başkanı Seçiniz..</option>
+                                    @foreach (var item in ViewBag.Ogreciler)
+                                    {
+                                        <option value="@item.ID"> @item.adi @item.soyadi</option>
+                                    }
+                                </select>
                                 @Html.TextBoxFor(x => x.ID, new {Name = "basvuruID", @class = "hidden"})
                             </div>
 
@@ -126,10 +133,20 @@
                         @using (Html.BeginForm("form3", "Home", FormMethod.Post))
                         {
                             <div class="form-group">
+                                
+                                <label>Yönetim Kurulu Başkanı</label>
+                                <select onload="show_selected()" onchange="show_selected()" class="form-control" id="ID" name="ID" required>
+                                    <option value="default">Yönetim Kurulu Başkanı Seçiniz..</option>
+                                    
 
-                                @Html.DropDownList("ID", (SelectList)ViewBag.Ogreciler, "Seçiniz..", new { @clas = "form-control" })
+                                    @foreach (var item in ViewBag.Ogreciler)
+                                    {
+                                        <option value="@item.ID"> @item.adi @item.soyadi</option>
+                                    }
 
-                                @Html.TextBoxFor(x => x.ID, new {Name = "basvuruID", @class = "hidden"})
+                                </select>
+
+                                @Html.TextBoxFor(x => x.ID, new {Name = "basvuruID" , @class = "hidden"})
                             </div>
 
                             <text>* Alttaki formda herhangi bir sorun yoksa 4. forma geçebilirsiniz.</text>
@@ -183,7 +200,7 @@
                         <p style="margin-bottom: 6.0pt; text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Kurucu &Uuml;yeleri Adına</span></p>
                         <p style="margin-bottom: 6.0pt; text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Y&ouml;nt.Kur.Bşk.</span></p>
                         <p style="margin-bottom: 6.0pt; text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Adı Soyadı / İmza</span></p><br/>
-                        <p style="margin-bottom: 6.0pt; text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';"></span> </p>
+                        <p style="margin-bottom: 6.0pt; text-indent: 35.45pt; line-height: normal;"><span style="font-size: 15.0pt; font-family: 'Times New Roman', 'serif';"></span><b>@ViewBag.YonetimKurulu.adi @ViewBag.YonetimKurulu.soyadi</b></p>
                     </div>
                     <p><strong><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;</span></strong></p>
                     <p>&nbsp;</p>

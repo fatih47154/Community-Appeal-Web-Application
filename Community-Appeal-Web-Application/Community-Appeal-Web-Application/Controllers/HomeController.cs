@@ -161,15 +161,19 @@ namespace Community_Appeal_Web_Application.Controllers
         //    public YonetimKurulu y1 { get; set; }
         //}
 
+        
+
+        public void Drop()
+        {
+            var ogr = db.OgrenciListesi.ToList();
+            ViewBag.Ogreciler = ogr;
+        }
+
         [HttpGet]
         public ActionResult form3()
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
-
-
-            var ogr = db.OgrenciListesi.ToList();
-            ViewBag.Ogreciler = new SelectList(ogr, "ID" , "adi","soyadi");
-
+            Drop();
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
             ViewBag.y1 = db.YonetimKurulu.FirstOrDefault(x => x.basvuruID == b.ID);
 
@@ -182,7 +186,6 @@ namespace Community_Appeal_Web_Application.Controllers
             {
                 return View(b);
             }
-
             return View();
         }
 
@@ -201,8 +204,8 @@ namespace Community_Appeal_Web_Application.Controllers
             {
                 YonetimKurulu y2=new YonetimKurulu();
                 y2.basvuruID = b.ID;
-                y2.adi = ogr.adi;
-                y2.soyadi = ogr.soyadi;
+                y2.adi = Functions.IlkHarfleriBuyut(ogr.adi);
+                y2.soyadi = Functions.IlkHarfleriBuyut(ogr.soyadi);
                 y2.unvan = "Yönetim Kurulu Başkanı";
                 y1 = y2;
 
@@ -210,28 +213,26 @@ namespace Community_Appeal_Web_Application.Controllers
                 {
                     b.adimNo = 4;
                 }
-
                 db.YonetimKurulu.Add(y1);
                 db.SaveChanges();
                 ViewBag.YonetimKurulu = y1;
+                Drop();
                 return View(b);
             }
             else
             {
-                
-                
                 y1.basvuruID = b.ID;
-                y1.adi = ogr.adi;
-                y1.soyadi = ogr.soyadi;
-                y1.unvan = "Yönetim Kurulu Başkanı2";
+                y1.adi = Functions.IlkHarfleriBuyut(ogr.adi);
+                y1.soyadi = Functions.IlkHarfleriBuyut(ogr.soyadi);
+                y1.unvan = "Yönetim Kurulu Başkanı";
 
                 if (b.adimNo == 3)
                 {
                     b.adimNo = 4;
                 }
-
                 db.SaveChanges();
                 ViewBag.YonetimKurulu = y1;
+                Drop();
                 return View(b);
             }
 
