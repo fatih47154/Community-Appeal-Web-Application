@@ -143,8 +143,7 @@ namespace Community_Appeal_Web_Application.Controllers
             }
         }
 
-
-     
+        
 
         public PartialViewResult ogrenciListesiWidget()
         {
@@ -161,7 +160,28 @@ namespace Community_Appeal_Web_Application.Controllers
         //    public YonetimKurulu y1 { get; set; }
         //}
 
-        
+
+
+        [HttpPost]
+        public ActionResult FaliyetEkle(FaliyetPlani fp)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            FaliyetPlani f = db.FaliyetPlani.Where(x => x.faliyetID == b.ID).FirstOrDefault();
+            if (f != null)
+            {
+                return Json("hata0");
+            }
+
+            fp.faliyetID = b.ID;
+            db.FaliyetPlani.Add(fp);
+            db.SaveChanges();
+            ViewBag.ft = db.FaliyetPlani.Where(x => x.faliyetID == b.ID).FirstOrDefault();
+
+            return Json("hata2");
+        }
+
+
 
         public void Drop()
         {
