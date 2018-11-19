@@ -12,7 +12,30 @@
     <tbody class="kisi">
         @{
             int i = 0;
-            foreach (YonetimKurulu item in ViewBag.yk)
+            foreach (YonetimKurulu item in ViewBag.yk1)
+            {
+                i++;
+                if (i == 1)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.adi</td>
+                        <td>@item.soyadi</td>
+                        <td></td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.adi</td>
+                        <td>@item.soyadi</td>
+                        <td class="sil"><a href="/Home/uyeListesiSil/@item.ID" class="btn btn-danger btn-xs itemDelete"><i class="icon-trash"> Sil</i></a></td>
+                    </tr>  
+                }
+               
+            }
+            foreach (DenetimKurulu item in ViewBag.dk)
             {
                 i++;
                 <tr>

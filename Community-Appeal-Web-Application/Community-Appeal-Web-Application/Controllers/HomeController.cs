@@ -425,10 +425,16 @@ namespace Community_Appeal_Web_Application.Controllers
                 return View();
             }
 
-            var yk1 = db.YonetimKurulu.Where(x => x.basvuruID == b.ID).OrderBy(x => x.unvan).ToList();
+            var BaskanYar = db.YonetimKurulu.FirstOrDefault(x => x.unvan == "Başkan Yardımcısı");
+            ViewBag.BaskanYar = BaskanYar;
+
+            var Yazman = db.YonetimKurulu.FirstOrDefault(x => x.unvan == "Yazman");
+            ViewBag.Yazman = Yazman;
+
+            var yk1 = db.YonetimKurulu.Where(x => x.basvuruID == b.ID).ToList();
             ViewBag.yk1 = yk1;
 
-            var dk = db.DenetimKurulu.Where(x => x.basvuruID == b.ID).OrderBy(x => x.unvan).ToList();
+            var dk = db.DenetimKurulu.Where(x => x.basvuruID == b.ID).ToList();
             ViewBag.dk = dk;
             return View(b);
         }
@@ -439,8 +445,17 @@ namespace Community_Appeal_Web_Application.Controllers
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
 
-            var yk1 = db.YonetimKurulu.Where(x => x.basvuruID == b.ID).OrderBy(x => x.unvan).ToList();
+            var yk1 = db.YonetimKurulu.Where(x => x.basvuruID == b.ID).ToList();
             ViewBag.yk1 = yk1;
+
+            var dk = db.DenetimKurulu.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.dk = dk;
+
+            var BaskanYar = db.YonetimKurulu.FirstOrDefault(x => x.unvan == "Başkan Yardımcısı");
+            ViewBag.BaskanYar = BaskanYar;
+
+            var Yazman = db.YonetimKurulu.FirstOrDefault(x => x.unvan == "Yazman");
+            ViewBag.Yazman = Yazman;
 
             b.marscı = basvuru.marscı;
             b.uyeSayisi = basvuru.uyeSayisi;
@@ -452,7 +467,8 @@ namespace Community_Appeal_Web_Application.Controllers
              
             YonetimKurulu baskanYar = db.YonetimKurulu.FirstOrDefault(x => x.unvan == "Başkan Yardımcısı");
             OgrenciListesi baskanYard = db.OgrenciListesi.FirstOrDefault(x => x.ID == baskanYarId);
-            if (db.YonetimKurulu.FirstOrDefault(x => x.ogrNo == baskanYard.ogrNo && x.unvan !="Başkan Yardımcısı") == null)
+            if (db.YonetimKurulu.FirstOrDefault(x => x.ogrNo == baskanYard.ogrNo && x.unvan !="Başkan Yardımcısı") == null
+                && db.DenetimKurulu.FirstOrDefault(x => x.ogrNo == baskanYard.ogrNo) == null)
             {
                 if (baskanYar == null)
                 {
@@ -482,7 +498,8 @@ namespace Community_Appeal_Web_Application.Controllers
 
             YonetimKurulu yazman = db.YonetimKurulu.FirstOrDefault(x => x.unvan == "Yazman");
             OgrenciListesi yazman1 = db.OgrenciListesi.FirstOrDefault(x => x.ID == yazmanId);
-            if (db.YonetimKurulu.FirstOrDefault(x => x.ogrNo == yazman1.ogrNo && x.unvan != "Yazman") == null)
+            if (db.YonetimKurulu.FirstOrDefault(x => x.ogrNo == yazman1.ogrNo && x.unvan != "Yazman") == null
+                && db.DenetimKurulu.FirstOrDefault(x => x.ogrNo == yazman1.ogrNo) == null)
             {
                 if (yazman == null)
                 {
@@ -512,7 +529,8 @@ namespace Community_Appeal_Web_Application.Controllers
 
             YonetimKurulu sekreter = db.YonetimKurulu.FirstOrDefault(x => x.unvan == "Sekreter");
             OgrenciListesi sekreter1 = db.OgrenciListesi.FirstOrDefault(x => x.ID == sekreterId);
-            if (db.YonetimKurulu.FirstOrDefault(x => x.ogrNo == sekreter1.ogrNo && x.unvan != "Sekreter") == null)
+            if (db.YonetimKurulu.FirstOrDefault(x => x.ogrNo == sekreter1.ogrNo && x.unvan != "Sekreter") == null
+                && db.DenetimKurulu.FirstOrDefault(x => x.ogrNo == sekreter1.ogrNo) == null)
             {
                 if (sekreter == null)
                 {
@@ -549,11 +567,23 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            var yk1 = db.YonetimKurulu.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.yk1 = yk1;
+
+            var BaskanYar = db.YonetimKurulu.FirstOrDefault(x => x.unvan == "Başkan Yardımcısı");
+            ViewBag.BaskanYar = BaskanYar;
+
+            var Yazman = db.YonetimKurulu.FirstOrDefault(x => x.unvan == "Yazman");
+            ViewBag.Yazman = Yazman;
+
+            var dk = db.DenetimKurulu.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.dk = dk;
             int sayac = db.YonetimKurulu.Where(x => x.unvan == "Üye").Count();
             if (sayac < 3)
             {
                 var ogrenci = db.OgrenciListesi.FirstOrDefault(x => x.ID == id);
-                if (db.YonetimKurulu.FirstOrDefault(x => x.ogrNo == ogrenci.ogrNo) == null)
+                if (db.YonetimKurulu.FirstOrDefault(x => x.ogrNo == ogrenci.ogrNo) == null
+                    && db.DenetimKurulu.FirstOrDefault(x => x.ogrNo == ogrenci.ogrNo) == null)
                 {
                     YonetimKurulu uye = new YonetimKurulu();
                     uye.basvuruID = b.ID;
@@ -570,12 +600,12 @@ namespace Community_Appeal_Web_Application.Controllers
                     TempData["YönetimHata"] = "Kaydetmek İstediğiniz Üye Yönetim Kurulu Tablosunda Bulunmaktadır.";
                 }
                 
-                return RedirectToAction("form7",b);
+                return View("form7",b);
             }
             else
             {
                 TempData["YönetimHata"] = "Yönetim Kurulunda En Fazla 3 Üye Bulunabilir.";
-                return RedirectToAction("form7",b);      
+                return View("form7",b);      
             }
 
         }
@@ -584,8 +614,14 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            List<YonetimKurulu> yk = db.YonetimKurulu.Where(x => x.unvan == "Üye").OrderBy(x => x.unvan).ToList();
+            List<YonetimKurulu> yk = db.YonetimKurulu.Where(x => x.unvan == "Üye").ToList();
             ViewBag.yk = yk;
+
+            var yk1 = db.YonetimKurulu.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.yk1 = yk1;
+
+            var dk = db.DenetimKurulu.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.dk = dk;
             return PartialView();
         }
 
@@ -604,20 +640,32 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            var yk1 = db.YonetimKurulu.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.yk1 = yk1;
+
+            var BaskanYar = db.YonetimKurulu.FirstOrDefault(x => x.unvan == "Başkan Yardımcısı");
+            ViewBag.BaskanYar = BaskanYar;
+
+            var Yazman = db.YonetimKurulu.FirstOrDefault(x => x.unvan == "Yazman");
+            ViewBag.Yazman = Yazman;
+
+            var dk = db.DenetimKurulu.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.dk = dk;
             int sayac = db.DenetimKurulu.Where(x => x.unvan == "Üye").Count();
             if (sayac < 2)
             {
                 var ogrenci = db.OgrenciListesi.FirstOrDefault(x => x.ID == id);
-                if (db.YonetimKurulu.FirstOrDefault(x => x.ogrNo == ogrenci.ogrNo) == null)
+                if (db.YonetimKurulu.FirstOrDefault(x => x.ogrNo == ogrenci.ogrNo) == null
+                    && db.DenetimKurulu.FirstOrDefault(x => x.ogrNo == ogrenci.ogrNo) == null)
                 {
-                    YonetimKurulu uye = new YonetimKurulu();
+                    DenetimKurulu uye = new DenetimKurulu();
                     uye.basvuruID = b.ID;
                     uye.unvan = "Üye";
                     uye.adi = ogrenci.adi;
                     uye.soyadi = ogrenci.soyadi;
                     uye.ogrNo = ogrenci.ogrNo;
 
-                    db.YonetimKurulu.Add(uye);
+                    db.DenetimKurulu.Add(uye);
                     db.SaveChanges();
                 }
                 else
@@ -625,12 +673,12 @@ namespace Community_Appeal_Web_Application.Controllers
                     TempData["YönetimHata"] = "Kaydetmek İstediğiniz Üye Yönetim Kurulu Tablosunda Bulunmaktadır.";
                 }
 
-                return RedirectToAction("form7", b);
+                return View("form7", b);
             }
             else
             {
-                TempData["YönetimHata"] = "Yönetim Kurulunda En Fazla 3 Üye Bulunabilir.";
-                return RedirectToAction("form7", b);
+                TempData["YönetimHata"] = "Yönetim Kurulunda En Fazla 2 Üye Bulunabilir.";
+                return View("form7", b);
             }
 
         }
@@ -641,17 +689,30 @@ namespace Community_Appeal_Web_Application.Controllers
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
 
+            var yk1 = db.YonetimKurulu.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.yk1 = yk1;
+
+            var dk = db.DenetimKurulu.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.dk = dk;
+
+            var BaskanYar = db.YonetimKurulu.FirstOrDefault(x => x.unvan == "Başkan Yardımcısı");
+            ViewBag.BaskanYar = BaskanYar;
+
+            var Yazman = db.YonetimKurulu.FirstOrDefault(x => x.unvan == "Yazman");
+            ViewBag.Yazman = Yazman;
+
             DenetimKurulu baskan = db.DenetimKurulu.FirstOrDefault(x => x.unvan == "Denetim Kurulu Başkanı");
             OgrenciListesi dBaskan = db.OgrenciListesi.FirstOrDefault(x => x.ID == baskanId);
-            if (db.DenetimKurulu.FirstOrDefault(x => x.ogrNo == dBaskan.ogrNo && x.unvan != "Başkan Yardımcısı") == null)
+            if (db.DenetimKurulu.FirstOrDefault(x => x.ogrNo == dBaskan.ogrNo && x.unvan != "Denetim Kurulu Başkanı") == null
+                && db.YonetimKurulu.FirstOrDefault(x => x.ogrNo == dBaskan.ogrNo) == null)
             {
                 if (baskan == null)
                 {
-                    baskan = new YonetimKurulu();
+                    baskan = new DenetimKurulu();
                     baskan.basvuruID = b.ID;
                     baskan.adi = dBaskan.adi;
                     baskan.soyadi = dBaskan.soyadi;
-                    baskan.unvan = "Başkan Yardımcısı";
+                    baskan.unvan = "Denetim Kurulu Başkanı";
                     baskan.ogrNo = dBaskan.ogrNo;
                     db.DenetimKurulu.Add(baskan);
                     db.SaveChanges();
@@ -661,7 +722,7 @@ namespace Community_Appeal_Web_Application.Controllers
                     baskan.basvuruID = b.ID;
                     baskan.adi = dBaskan.adi;
                     baskan.soyadi = dBaskan.soyadi;
-                    baskan.unvan = "Başkan Yardımcısı";
+                    baskan.unvan = "Denetim Kurulu Başkanı";
                     baskan.ogrNo = dBaskan.ogrNo;
                     db.SaveChanges();
                 }
@@ -674,6 +735,17 @@ namespace Community_Appeal_Web_Application.Controllers
             return View("form7", b);
 
 
+        }
+
+        public ActionResult dUyeListesiSil(int id)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            DenetimKurulu ul = db.DenetimKurulu.Where(x => x.ID == id).FirstOrDefault();
+            db.DenetimKurulu.Remove(ul);
+            db.SaveChanges();
+            return RedirectToAction("form7", b);
         }
 
         public ActionResult basvuruTamamla()
