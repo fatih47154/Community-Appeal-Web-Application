@@ -6,7 +6,7 @@
 @using Community_Appeal_Web_Application.Models
 
 
-@model Basvuru
+@model Guncelle
 
 @{
     if (Model != null)
@@ -73,7 +73,7 @@
         <div class="row">
 
 
-            <p id="say" class="hidden">@Model.OgrenciListesi.Count</p>
+            <p id="say" class="hidden">@Model.GOgrenciListesi.Count</p>
 
             <div class="col-lg-12">
                 <section class="panel">
@@ -144,7 +144,7 @@
                                     </tr>
                                     @{
                                         int counter = 1;
-                                        foreach (OgrenciListesi item in ViewBag.ol)
+                                        foreach (GOgrenciListesi item in ViewBag.ol)
                                         {
 
                                             <tr id="@item.ID">
@@ -198,7 +198,7 @@
     $('.itemDelete').click(function () {
         var id = $(this).attr("data-id");
         $.ajax({
-            url: '/Home/OgrenciListesiSil/' + id,
+            url: '/Guncelle/OgrenciListesiSil/' + id,
             type: 'POST',
             success: function (rs) {
                 if (rs === 3) {
@@ -228,15 +228,15 @@
 
         var say = parseInt($('#say').text()) + 1;
 
-        
+
         if (value1 === "" || value2 === "" || value3 === "" || value4 === "" || value5 === "" || value6 === "" || value7 === "" ) {
             alert("Tüm alanlar doldurulmalıdır.");
         }
         else {
             var data0 = { adi: value1, soyadi: value7, fak: value2, tc: value3, ogrNo: value4, tel: value5, mail: value6 };
             $.ajax({
-                type: 'POST',         
-                url: '/Home/OgrenciListesiEkle',
+                type: 'POST',
+                url: '/Guncelle/OgrenciListesiEkle',
                 data: data0,
                 success: function (result) {
                     if (result === "hata1") {
@@ -250,7 +250,7 @@
                     }
                     else {
                         $.ajax({
-                            url: '/Home/ogrenciListesiWidget',
+                            url: '/Guncelle/ogrenciListesiWidget',
                             type: 'GET',
                             cache: false,
                             success: function (data) {

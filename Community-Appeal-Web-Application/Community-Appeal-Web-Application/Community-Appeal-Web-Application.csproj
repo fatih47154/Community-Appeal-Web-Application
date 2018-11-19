@@ -157,6 +157,7 @@
     <Content Include="Content\grids.html" />
     <Content Include="Content\horizontal_menu.html" />
     <Content Include="Content\image_cropping.html" />
+    <Content Include="Content\img\duLogo.png" />
     <Content Include="Content\inbox.html" />
     <Content Include="Content\index.html" />
     <Content Include="Content\inline_editor.html" />
@@ -201,6 +202,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Classes\Functions.cs" />
+    <Compile Include="App_Classes\GuncelleForm1.cs" />
     <Compile Include="App_Classes\_SecurityFilter.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -226,6 +228,7 @@
     <Compile Include="Models\GYonetimKurulu.cs" />
     <Compile Include="Models\Kullanici.cs" />
     <Compile Include="Models\OgrenciListesi.cs" />
+    <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Models\YeniUye.cs" />
     <Compile Include="Models\YonetimKurulu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -269,6 +272,9 @@
     <Content Include="Views\Home\form7.cshtml" />
     <Content Include="Views\Guncelle\form1.cshtml" />
     <Content Include="Views\Home\uyeListesiWidget.cshtml" />
+    <Content Include="Views\Guncelle\form2.cshtml" />
+    <Content Include="Views\Guncelle\ogrenciListesiWidget.cshtml" />
+    <Content Include="Views\Kullanici\SifremiUnuttum.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -281,7 +287,6 @@
     <Folder Include="Content\assets\" />
     <Folder Include="Content\css\" />
     <Folder Include="Content\fonts\" />
-    <Folder Include="Content\img\" />
     <Folder Include="Content\js\" />
   </ItemGroup>
   <PropertyGroup>

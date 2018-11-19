@@ -13,19 +13,24 @@ namespace Community_Appeal_Web_Application.App_Classes
             string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
             string actionName = filterContext.ActionDescriptor.ActionName;
 
-            //if (HttpContext.Current.Session["Kullanici"] == null && controllerName != "Kullanici" && actionName != "Login")
-            //{
-          
-            //    filterContext.Result = new RedirectResult("/Kullanici/Login");
-            //}
-            //else if(HttpContext.Current.Session["Kullanici"] == null && controllerName == "Home" && actionName != "Login")
-            //{
-            //    filterContext.Result = new RedirectResult("/Kullanici/Login");
-            //}
-            //else  if (HttpContext.Current.Session["Admin"] == null && controllerName == "Admin" && actionName != "Login")
-            //{
-            //    filterContext.Result = new RedirectResult("/Admin/Login");
-            //}
+            if (HttpContext.Current.Session["Kullanici"] == null && controllerName != "Kullanici" && actionName != "Login")
+            {
+                if (controllerName=="Admin")
+                {
+                    if (HttpContext.Current.Session["Admin"] == null)
+                    {
+                        filterContext.Result = new RedirectResult("/Admin/Login");
+                    }
+                }
+                else
+                {
+                    if (actionName != "SifremiUnuttum")
+                    {
+                        filterContext.Result = new RedirectResult("/Kullanici/Login");
+                    }
+                }
+            }
+
             base.OnActionExecuting(filterContext);
         }
     }

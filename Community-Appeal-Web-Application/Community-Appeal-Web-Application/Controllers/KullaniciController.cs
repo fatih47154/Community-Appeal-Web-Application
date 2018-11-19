@@ -36,6 +36,33 @@ namespace Community_Appeal_Web_Application.Controllers
             return RedirectToAction("Login");
         }
 
+        public ActionResult SifremiUnuttum()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SifremiUnuttum( string mail)
+        {
+            Kullanici k = db.Kullanici.Where(x => x.ogrMail == mail).FirstOrDefault();
+            if (k==null)
+            {
+                ViewBag.Hata = "Bu mail adresi ile bir kullanıcı Bulunamadı.";
+                return View();
+            }
+            bool Durum = Functions.SifreYenile(mail);
+            if (Durum==true)
+            {
+                ViewBag.Basarili = "Yeni şifreniz mail adresinize gönderilmiştir.";
+                return View();
+            }
+            else
+            {
+                ViewBag.Basarisiz = "Yeni şifreniz gönderilemedi. Lütfen daha sonra tekrar deneyiniz.";
+                return View();
+            }
+        }
+
         [HttpGet]
         public ActionResult Kayit()
         {

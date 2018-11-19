@@ -84,10 +84,7 @@ namespace Community_Appeal_Web_Application.Controllers
             }
         }
 
-        public bool OgrenciSorgula(string ogNO)
-        {
-            return true;
-        }
+      
 
         [HttpPost]
         public ActionResult OgrenciListesiEkle(OgrenciListesi ol)
@@ -97,7 +94,7 @@ namespace Community_Appeal_Web_Application.Controllers
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
             if (b.OgrenciListesi.Count != 20)
             {
-                if (OgrenciSorgula(ol.ogrNo) == true)
+                if (Functions.OgrenciSorgula(ol.ogrNo) == true)
                 {
                     OgrenciListesi ogrenciL = db.OgrenciListesi.Where(x => x.ogrNo == ol.ogrNo && x.basvuruID == b.ID).FirstOrDefault();
                     if (ogrenciL != null)

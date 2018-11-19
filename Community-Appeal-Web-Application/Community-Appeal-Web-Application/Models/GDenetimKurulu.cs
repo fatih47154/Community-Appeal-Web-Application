@@ -22,6 +22,9 @@ namespace Community_Appeal_Web_Application.Models
 
         public int? GuncelleID { get; set; }
 
+        [StringLength(50)]
+        public string ogrNo { get; set; }
+
         public virtual Guncelle Guncelle { get; set; }
     }
 }
