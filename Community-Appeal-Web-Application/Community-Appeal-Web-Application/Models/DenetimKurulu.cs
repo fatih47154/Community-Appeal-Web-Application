@@ -26,5 +26,6 @@ namespace Community_Appeal_Web_Application.Models
         public string ogrNo { get; set; }
 
         public virtual Basvuru Basvuru { get; set; }
+        public string ogrNo { get; internal set; }
     }
 }

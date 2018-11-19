@@ -125,11 +125,11 @@
                         Denetim Kurulu
                     </header>
                     <div class="panel-body">
-                        <form role="form" method="post" action="/Home/form6">
+                        <form role="form" method="post" action="/Home/form7DenetimKuruluKaydet">
                             
                             <div class="form-group">
                                 <label>Denetim Kurulu Başkanı</label>
-                                <select class="form-control" id="list" name="ID">
+                                <select class="form-control" id="list" name="baskanId">
                                     <option>Denetim Kurulu Başkanını Seçiniz...</option>
                                     @foreach (var item in Model.OgrenciListesi.ToList())
                                     {
@@ -140,7 +140,7 @@
                             
                             <div class="form-group">
                                 <label>Denetim Kuruluna Üye Ekle</label>
-                                <select class="form-control" id="list">
+                                <select onchange="myFunction1()" class="form-control" id="ogrenci1">
                                     <option>Üye Seçiniz...</option>
                                     @foreach (var item in Model.OgrenciListesi.ToList())
                                     {
@@ -149,7 +149,7 @@
                                 </select>
                             </div>
                             <button type="submit" style="margin-right: 5px;" class="btn btn-info">Denetim Kurulunu Kaydet</button>
-                            <a id="ekle" class="btn btn-success"><i class="glyphicon-plus"></i> Üye Ekle</a>
+                            <a href="#" id="ekle1" class="btn btn-success" style="margin-right: 5px;"><i class="glyphicon-plus"></i> Üye Ekle</a>
                             @{
                                 if (Model.adimNo == 6)
                                 {
@@ -195,25 +195,89 @@
                                     <b>@Model.toplantiNo</b>'ıncı (birinci, ikinci, üçüncü vb.) olağan
                                     genel kurul toplantısı gerçekleştirilmiştir.
                                     <br /><br />
-                                    Gündemin birinci maddesi gereği, genel kurul toplantısı <b>@Model.OgrenciListesi.Count()</b>
-                                    üye ile ………………………………………… (kişi ismi yazılacak) tarafından açıldı.
+                                    Gündemin birinci maddesi gereği, genel kurul toplantısı @{
+                                                                                                if (Model.uyeSayisi == null)
+                                                                                                {
+                                                                                                    <span>……</span>
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    <b>@Model.uyeSayisi</b>
+                                                                                                }
+                                                                                            }
+                                    üye ile @{
+                                                if (Model.marscı == null)
+                                                {
+                                                    <span>…………………………………………</span>
+                                                }
+                                                else
+                                                {
+                                                    <b>@Model.marscı</b>
+                                                }
+                                            }
+                                   (kişi ismi yazılacak) tarafından açıldı.
                                 </span>
                             </p>
                             
                             <p style="text-indent: 35.4pt;">
                                 <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
-                                    Açılış ve yoklama gerçekleştikten sonra ……………………………..….. (kişi ismi yazılacak) katılanları
+                                    Açılış ve yoklama gerçekleştikten sonra @{
+                                                                                if (Model.marscı == null)
+                                                                                {
+                                                                                    <span>…………………………………………</span>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <b>@Model.marscı</b>
+                                                                                }
+                                                                            } (kişi ismi yazılacak) katılanları
                                     saygı duruşunda bulunmaya ve İstiklal Marşı’nı söylemeye davet etti.
                                     <br /><br />
                                     Gündemin ikinci maddesi gereği, toplantıyı yönetmek üzere Divan Kurulu oluşturuldu.
-                                    Divan Başkanlığı’na …………………………….… (kişi ismi yazılacak), Başkan Yardımcılığına …..…………………….……
-                                    (kişi ismi yazılacak), Yazman üyeliğine ………………………….…… (kişi ismi yazılacak) seçildi.
+                                    Divan Başkanlığı’na @{
+                                                            if (Model.divanBaskanAdi == null)
+                                                            {
+                                                                <span>…………………………………………</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <b>@Model.divanBaskanAdi<span> </span>@Model.divanBaskanSoyadi</b>
+                                                            }
+                                                        } (kişi ismi yazılacak), Başkan Yardımcılığına @{
+                                                                                                           if (ViewBag.BaskanYar == null)
+                                                                                                           {
+                                                                                                               <span>…………………………………………</span>
+                                                                                                           }
+                                                                                                           else
+                                                                                                           {
+                                                                                                               <b>@ViewBag.BaskanYar.adi<span> </span>@ViewBag.BaskanYar.soyadi</b>
+                                                                                                           }
+                                                                                                       }
+                                    (kişi ismi yazılacak), Yazman üyeliğine @{
+                                                                                if (ViewBag.Yazman == null)
+                                                                                {
+                                                                                    <span>…………………………………………</span>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <b>@ViewBag.Yazman.adi<span> </span>@ViewBag.Yazman.soyadi</b>
+                                                                                }
+                                                                            } (kişi ismi yazılacak) seçildi.
                                 </span>
                             </p>
                             
                             <p style="text-indent: 35.4pt;">
                                 <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
-                                    Gündemin üçüncü maddesi gereği, …………………………… Akademik yılında gerçekleştirilecek etkinlikler
+                                    Gündemin üçüncü maddesi gereği, @{
+                                                                        if (Model.akademikYıl == null)
+                                                                        {
+                                                                            <span>…………………………………………</span>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <b>@Model.akademikYıl</b>
+                                                                        }
+                                                                    } Akademik yılında gerçekleştirilecek etkinlikler
                                     belirlenmiştir. (Burada gerçekleştirilecek etkinlikler anlatılacaktır.)
                                 </span>
                             </p>
@@ -227,7 +291,16 @@
                             
                             <p style="text-indent: 35.4pt;">
                                 <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
-                                    Gündemin beşinci maddesi gereği, Divan Başkanı ………………………………. (kişi ismi yazılacak)
+                                    Gündemin beşinci maddesi gereği, Divan Başkanı @{
+                                                                                       if (Model.divanBaskanAdi == null)
+                                                                                       {
+                                                                                           <span>…………………………………………</span>
+                                                                                       }
+                                                                                       else
+                                                                                       {
+                                                                                           <b>@Model.divanBaskanAdi<span> </span>@Model.divanBaskanSoyadi</b>
+                                                                                       }
+                                                                                   } (kişi ismi yazılacak)
                                     yönetim kurulunun ibrazının gerektiğini belirtti.
                                 </span>
                             </p>
@@ -236,13 +309,31 @@
                                 <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
                                     Gündemin altıncı maddesi gereği, yönetim kurulunun, denetleme kurulunun,
                                     (topluluk tüzüğünde belirtilen başka kurul varsa burada yazılacak) seçimine 
-                                    Divan Başkanı …………………………… (kişi ismi yazılacak) başkanlığında geçildi.
+                                    Divan Başkanı @{
+                                                      if (Model.divanBaskanAdi == null)
+                                                      {
+                                                          <span>…………………………………………</span>
+                                                      }
+                                                      else
+                                                      {
+                                                          <b>@Model.divanBaskanAdi<span> </span>@Model.divanBaskanSoyadi</b>
+                                                      }
+                                                  } (kişi ismi yazılacak) başkanlığında geçildi.
                                 </span>
                             </p>
                             
                             <p style="text-indent: 35.4pt;">
                                 <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
-                                    Yönetim Kurulu için gerekli koşulları ve görevlerini Divan Başkanı ……………………….... (kişi ismi yazılacak)
+                                    Yönetim Kurulu için gerekli koşulları ve görevlerini Divan Başkanı @{
+                                                                                                           if (Model.divanBaskanAdi == null)
+                                                                                                           {
+                                                                                                               <span>…………………………………………</span>
+                                                                                                           }
+                                                                                                           else
+                                                                                                           {
+                                                                                                               <b>@Model.divanBaskanAdi<span> </span>@Model.divanBaskanSoyadi</b>
+                                                                                                           }
+                                                                                                       } (kişi ismi yazılacak)
                                     üyelere anlattıktan sonra Yönetim Kurulu’na üye olmak isteyen kişiler kendilerini tanıttı.
                                     Yönetim Kurulu üyesi olmak isteyen kişiler aşağıdadır:
                                 </span>
@@ -256,8 +347,26 @@
                             
                             <p style="text-indent: 35.4pt;">
                                 <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
-                                    Divan Başkanı …….. (kişi ismi yazılacak) yönetim kurulu üyesi olmak isteyen üyelere Yönetim Kurulu’nun
-                                    ………………….. (topluluk tüzüğünde belirtilen yönetim kurulu üyelerinin neler olduğu ve kaç kişiden oluştuğu
+                                    Divan Başkanı @{
+                                                      if (Model.divanBaskanAdi == null)
+                                                      {
+                                                          <span>…………………………………………</span>
+                                                      }
+                                                      else
+                                                      {
+                                                          <b>@Model.divanBaskanAdi<span> </span>@Model.divanBaskanSoyadi</b>
+                                                      }
+                                                  } (kişi ismi yazılacak) yönetim kurulu üyesi olmak isteyen üyelere Yönetim Kurulu’nun
+                                    @{
+                                        if (Model.YonetimKurulu == null)
+                                        {
+                                            <span>………………………</span>
+                                        }
+                                        else
+                                        {
+                                            <b>@Model.YonetimKurulu.Count()</b>
+                                        }
+                                    } (topluluk tüzüğünde belirtilen yönetim kurulu üyelerinin neler olduğu ve kaç kişiden oluştuğu
                                     yazılacak) oluştuğunu söyledikten sonra üyelere söz vererek talep ettikleri kurul üyeliğini sordu.
                                     Buna göre Yönetim Kurulu şu kişilerden oluşmuştur; (Burada kurul üyeliklerine kimlerin seçildiği
                                     yazılacak)  
@@ -275,23 +384,28 @@
                                 </thead>
                                 <tbody class="kisi">
                                 @{
-                                    int i = 1;
-                                    <tr>
-                                        <td>@i</td>
-                                        <td>Başkan</td>
-                                        <td>@Model.baskanAdi @Model.baskanSoyadi</td>
-                                        <td></td>
-                                    </tr>
-
+                                    int i = 0;
                                     foreach (var item in ViewBag.yk1)
                                     {
                                         i++;
-                                        <tr>
-                                            <td>@i</td>
-                                            <td>@item.unvan</td>
-                                            <td>@item.adi @item.soyadi</td>
-                                            <td class="sil"><a href="/Home/uyeListesiSil/@item.ID" class="btn btn-danger btn-xs itemDelete"> <i class="icon-trash"> Sil</i></a></td>
-                                        </tr>
+                                        if (i == 1)
+                                        {
+                                            <tr>
+                                                <td>@i</td>
+                                                <td>@item.unvan</td>
+                                                <td>@item.adi @item.soyadi</td>
+                                                <td></td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td>@i</td>
+                                                <td>@item.unvan</td>
+                                                <td>@item.adi @item.soyadi</td>
+                                                <td class="sil"><a href="/Home/uyeListesiSil/@item.ID" class="btn btn-danger btn-xs itemDelete"> <i class="icon-trash"> Sil</i></a></td>
+                                            </tr>
+                                        }
                                     }
                                 }
                                 </tbody>
@@ -323,16 +437,84 @@
                                 {
                                     a++;
                                     <tr>
-                                        <td>@i</td>
+                                        <td>@a</td>
                                         <td>@item.unvan</td>
                                         <td>@item.adi @item.soyadi</td>
-                                        <td class="sil"><a href="#" class="btn btn-danger btn-xs itemDelete"> <i class="icon-trash"> Sil</i></a></td>
+                                        <td class="sil"><a href="/Home/dUyeListesiSil/@item.ID" class="btn btn-danger btn-xs itemDelete"><i class="icon-trash"> Sil</i></a></td>
                                     </tr>
                                 }
                             }
                             </tbody>
                         </table>
+                        <br/>
+                        <p style="text-indent: 35.4pt;">
+                            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+                                Divan Başkanı @{
+                                                  if (Model.divanBaskanAdi == null)
+                                                  {
+                                                      <span>…………………………………………</span>
+                                                  }
+                                                  else
+                                                  {
+                                                      <b>@Model.divanBaskanAdi<span> </span>@Model.divanBaskanSoyadi</b>
+                                                  }
+                                              } (kişi ismi yazılacak) Yönetim Kurulu ve Denetleme Kurulu üyelerinin seçimlerinin bittiğini
+                                ve seçimlerle ilgili konuşmak isteyen olup olmadığını toplantıya katılan üyelere sordu. 
+                                (Topluluk tüzüğünde belirtilen başka Kurul varsa onların üye seçimi de yapılacak ve burada yazılacak)
+                            </span>
+                        </p>
+                        
+                        <p style="text-indent: 35.4pt;">
+                            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+                                Divan Başkanı @{
+                                                  if (Model.divanBaskanAdi == null)
+                                                  {
+                                                      <span>…………………………………………</span>
+                                                  }
+                                                  else
+                                                  {
+                                                      <b>@Model.divanBaskanAdi<span> </span>@Model.divanBaskanSoyadi</b>
+                                                  }
+                                              } (kişi ismi yazılacak) gündemin yedinci maddesi gereği sözü konuşmak isteyen üyelere verdi.
+                                (Söz almak isteyen çıkmazsa kapanışa geçileceği söylendi.)
+                            </span>
+                        </p>
+                        
+                        <p style="text-indent: 35.4pt;">
+                            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+                                Divan Başkanı @{
+                                                  if (Model.divanBaskanAdi == null)
+                                                  {
+                                                      <span>…………………………………………</span>
+                                                  }
+                                                  else
+                                                  {
+                                                      <b>@Model.divanBaskanAdi<span> </span>@Model.divanBaskanSoyadi</b>
+                                                  }
+                                              } (kişi ismi yazılacak) gündemin sekizinci maddesi gereği kapanışa geçti ve toplantıyı bitirdi.
+                            </span>
+                        </p>
+                        <br/><br/>
+                        <div style="float: right">
+                            <p style="text-indent: 35.4pt; text-align: center">
+                                <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+                                    Düzce Üniversitesi @{
+                                                           if (Model.toplulukAdi == null)
+                                                           {
+                                                               <span>…………………………………………</span>
+                                                           }
+                                                           else
+                                                           {
+                                                               <b>@Model.toplulukAdi</b>
+                                                           }
+                                                       } Topluluğu Yön.Kur.Bşk<br />
+                                    Unvan Ad Soyad/İmza
+                                    
 
+                                </span>
+                            </p>
+                        </div>
+                        <br/><br/>
                     </section>
                 </section>
             </div>
@@ -353,6 +535,12 @@
         var selector = document.getElementById('ogrenci');
         var valuea = selector[selector.selectedIndex].value;
         document.getElementById('ekle').href = "/Home/yonetimKuruluUyeEkle/" + valuea;
+    }
+
+    function myFunction1() {
+        var selector = document.getElementById('ogrenci1');
+        var valuea = selector[selector.selectedIndex].value;
+        document.getElementById('ekle1').href = "/Home/denetimKuruluUyeEkle/" + valuea;
     }
 
 </script>
