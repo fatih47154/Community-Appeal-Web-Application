@@ -9,12 +9,12 @@
     </thead>
     <tbody class="kisi">
     @{
-        int a = 1;
+        int c = 0;
         foreach (var item in ViewBag.dk)
         {
-            a++;
+            c++;
             <tr>
-                <td>@a</td>
+                <td>@c</td>
                 <td>@item.unvan</td>
                 <td>@item.adi @item.soyadi</td>
                 <td class="sil"><a href="/Home/dUyeListesiSil/@item.ID" class="btn btn-danger btn-xs itemDelete"><i class="icon-trash"> Sil</i></a></td>
