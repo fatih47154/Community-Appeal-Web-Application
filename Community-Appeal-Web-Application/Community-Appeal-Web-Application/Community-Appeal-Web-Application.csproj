@@ -226,7 +226,6 @@
     <Compile Include="Models\GYonetimKurulu.cs" />
     <Compile Include="Models\Kullanici.cs" />
     <Compile Include="Models\OgrenciListesi.cs" />
-    <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Models\YeniUye.cs" />
     <Compile Include="Models\YonetimKurulu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -276,6 +275,8 @@
     <Content Include="Views\Home\yKuruluListesiWidget.cshtml" />
     <Content Include="Views\Home\dKuruluListesiWidget.cshtml" />
     <Content Include="Views\Home\form8.cshtml" />
+    <Content Include="Views\Guncelle\form3.cshtml" />
+    <Content Include="Views\Guncelle\faaliyetPlaniWidget.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

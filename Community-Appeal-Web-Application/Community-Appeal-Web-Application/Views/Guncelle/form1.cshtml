@@ -4,6 +4,7 @@
 }
 
 @using Community_Appeal_Web_Application.Models
+@using System.Web.Mvc;
 
 @model Guncelle
 
@@ -229,7 +230,7 @@ else
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Topluluk 1. Danışman Akademik Birim</label>
-                                <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim1" value="@Model.GDanisman.Where(x=>x.aktif==true).FirstOrDefault().akademikBirim">
+                                <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim1" value="@Model.GDanisman.Where(x => x.aktif == true).FirstOrDefault().akademikBirim">
                             </div>
                         </div>
                         <div class="col-lg-4">

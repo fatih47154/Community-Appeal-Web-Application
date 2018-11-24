@@ -12,8 +12,8 @@ namespace Community_Appeal_Web_Application.Controllers
     {
         CommunityContext db = new CommunityContext();
 
-            [HttpGet]
-            public ActionResult form1()
+        [HttpGet]
+        public ActionResult form1()
              {
 
             Kullanici k = (Kullanici)Session["Kullanici"];
@@ -54,12 +54,14 @@ namespace Community_Appeal_Web_Application.Controllers
                 d1.soyadi = guncelle.soyadi1;
                 d1.unvan = guncelle.unvan1;
                 d1.akademikBirim = guncelle.akademikBirim1;
+                d1.GuncelleID = g.ID;
 
 
                 d2.adi = guncelle.adi2;
                 d2.soyadi = guncelle.soyadi2;
                 d2.unvan = guncelle.unvan2;
                 d2.akademikBirim = guncelle.akademikBirim2;
+                d2.GuncelleID = g.ID;
                 g.adimNo = 2;
             }
             else
@@ -178,8 +180,87 @@ namespace Community_Appeal_Web_Application.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult form3()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            return View(g);
+        }
+
+        public PartialViewResult faaliyetPlaniWidget()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Guncelle g = db.Guncelle.
+Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            List<GFaliyetPlani> fp = db.GFaliyetPlani.Where(x => x.faliyetID == g.ID).ToList();
+            ViewBag.fp = fp;
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult faaliyetPlaniEkle(GFaliyetPlani fp)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            if (g.GFaliyetPlani.Count != 5)
+            {
+                fp.faliyetID = g.ID;
+                db.GFaliyetPlani.Add(fp);
+                db.SaveChanges();
+                return Json(true);
+            }
+            else
+            {
+                return Json(false); // 5 faaliyetten fazla eklenemez.
+            }
+
+        }
+
+        public ActionResult faaliyetSil(int id)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
 
 
+            GFaliyetPlani ol = db.GFaliyetPlani.Where(x => x.ID == id).FirstOrDefault();
+            if (ol == null)
+            {
+                return Json(false);
+            }
+            else
+            {
+                db.GFaliyetPlani.Remove(ol);
+                db.SaveChanges();
+                return Json(true);
+            }
+        }
 
+        [HttpPost]
+        public ActionResult form3(Guncelle gun)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            g.toplantiNo = gun.toplantiNo;
+            g.toplantiTarihi = gun.toplantiTarihi;
+            g.saat = gun.saat;
+            g.mekan = gun.mekan;
+
+            if (g.adimNo==2)
+            {
+                g.adimNo = 3;
+            }
+
+            if (g.GFaliyetPlani.Count<5)
+            {
+                ViewBag.Hata = "En az 5 faaliyet eklemeniz gerekmektedir.";
+                return View(g);
+            }
+
+            db.SaveChanges();
+            return View(g);
+        }
     }
 }
