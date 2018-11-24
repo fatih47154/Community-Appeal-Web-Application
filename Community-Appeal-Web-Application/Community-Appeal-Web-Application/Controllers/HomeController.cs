@@ -310,7 +310,7 @@ namespace Community_Appeal_Web_Application.Controllers
             }
             else
             {
-                if (b.adimNo == 4)
+                if (b.adimNo <= 3)
                 {
                     b.adimNo = 5;
                     OgrenciListesi baskan = db.OgrenciListesi.FirstOrDefault(x => x.ID == ID);
