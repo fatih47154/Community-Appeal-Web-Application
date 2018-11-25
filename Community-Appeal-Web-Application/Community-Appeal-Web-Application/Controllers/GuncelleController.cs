@@ -11,7 +11,6 @@ namespace Community_Appeal_Web_Application.Controllers
     public class GuncelleController : Controller
     {
         CommunityContext db = new CommunityContext();
-        Guncelle ga = new Guncelle();
 
         // form1
         [HttpGet]
@@ -19,14 +18,9 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle g = new Guncelle();
-            if (ga==null)
-            {
+
               g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            }
-            else
-            {
-                g = ga;
-            }
+
 
             return View(g);
         }
