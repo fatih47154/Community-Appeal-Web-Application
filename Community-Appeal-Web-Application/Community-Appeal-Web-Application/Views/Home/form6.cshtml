@@ -1,6 +1,9 @@
 ﻿
 @{
-
+    if (Session["Admin"] != null)
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
 }
 
 @using Community_Appeal_Web_Application.Models

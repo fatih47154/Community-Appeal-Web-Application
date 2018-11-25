@@ -19,6 +19,7 @@ namespace Community_Appeal_Web_Application.Controllers
             return View();
         }
 
+        //form1
         [HttpGet]
         public ActionResult form1()
         {
@@ -42,6 +43,7 @@ namespace Community_Appeal_Web_Application.Controllers
             return View(basvuru);
         }
 
+        //form2
         [HttpGet]
         public ActionResult form2()
         {
@@ -82,9 +84,7 @@ namespace Community_Appeal_Web_Application.Controllers
                 ViewBag.ol = ol;
                 return View(b);
             }
-        }
-
-      
+        }     
 
         [HttpPost]
         public ActionResult OgrenciListesiEkle(OgrenciListesi ol)
@@ -138,9 +138,7 @@ namespace Community_Appeal_Web_Application.Controllers
                 db.SaveChanges();
                 return Json(3);
             }
-        }
-
-        
+        }      
 
         public PartialViewResult ogrenciListesiWidget()
         {
@@ -151,14 +149,8 @@ namespace Community_Appeal_Web_Application.Controllers
             return PartialView();
         }
 
-        //public class basvuruAndYonetim
-        //{
-        //    public Basvuru b { get; set; }
-        //    public YonetimKurulu y1 { get; set; }
-        //}
 
-
-
+        //form3
         [HttpPost]
         public ActionResult FaliyetEkle(FaliyetPlani fp)
         {
@@ -174,11 +166,8 @@ namespace Community_Appeal_Web_Application.Controllers
             db.FaliyetPlani.Add(fp);
             db.SaveChanges();
             ViewBag.ft = db.FaliyetPlani.Where(x => x.faliyetID == b.ID).FirstOrDefault();
-
             return Json("hata2");
         }
-
-
 
         public void Drop()
         {
@@ -255,6 +244,8 @@ namespace Community_Appeal_Web_Application.Controllers
 
         }
 
+
+        //form4
         [HttpGet]
         public ActionResult form4()
         {
@@ -276,6 +267,7 @@ namespace Community_Appeal_Web_Application.Controllers
             return View();
         }
 
+        //form5
         [HttpGet]
         public ActionResult form5()
         {
@@ -374,6 +366,7 @@ namespace Community_Appeal_Web_Application.Controllers
 
         }
 
+        //form6
         [HttpGet]
         public ActionResult form6()
         {
@@ -420,6 +413,8 @@ namespace Community_Appeal_Web_Application.Controllers
 
         }
 
+
+        //form7
         [HttpGet]
         public ActionResult form7()
         {
@@ -869,6 +864,7 @@ namespace Community_Appeal_Web_Application.Controllers
             return View(b);
         }
 
+        //Basvuru Tamamla
         public ActionResult basvuruTamamla()
         {
 

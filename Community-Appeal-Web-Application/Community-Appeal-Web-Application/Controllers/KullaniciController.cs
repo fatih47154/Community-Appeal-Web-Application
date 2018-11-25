@@ -11,6 +11,56 @@ namespace Community_Appeal_Web_Application.Controllers
     public class KullaniciController : Controller
     {
         CommunityContext db = new CommunityContext();
+
+        [HttpGet]
+        public ActionResult GuncelleAdmin(int ID)
+        {
+            if (Session["Kullanici"] !=null)
+            {
+                TempData["Errorum"] = "İlk önce açık olan güncellemeyi veya başvuruyu kapatmanız gerekir.";
+                return RedirectToAction("Index", "Admin");
+            }
+            Kullanici user = db.Kullanici.Where(x => x.ID == ID).FirstOrDefault();
+            Session["Kullanici"] = user;
+            BasvuruVeGuncelle.guncelleStatus = true;
+            TempData["Guncelle"] = "Gitmek istediğiniz güncelleme formları sol menüde açılmıştır.";
+            return RedirectToAction("Index", "Admin");
+        }
+
+        [HttpGet]
+        public ActionResult BasvuruAdmin(int ID)
+        {
+            if (Session["Kullanici"] != null)
+            {
+                TempData["Errorum"] = "İlk önce açık olan güncellemeyi veya başvuruyu kapatmanız gerekir.";
+                return RedirectToAction("Index", "Admin");
+            }
+            Kullanici user = db.Kullanici.Where(x => x.ID == ID).FirstOrDefault();
+            Session["Kullanici"] = user;
+            BasvuruVeGuncelle.basvuruStatus = true;
+            TempData["Basvuru"] = "Gitmek istediğiniz başvuru formları sol menüde açılmıştır.";
+            return RedirectToAction("Index", "Admin");
+        }
+
+        [HttpGet]
+        public ActionResult GuncelleAdminCikis()
+        {
+            Session["Kullanici"] = null;
+            BasvuruVeGuncelle.guncelleStatus = false;
+            TempData["Guncelle"] = "Güncelleme Kapatılmıştır.";
+            return RedirectToAction("Index", "Admin");
+        }
+
+        [HttpGet]
+        public ActionResult BasvuruAdminCikis()
+        {
+            Session["Kullanici"] = null;
+            BasvuruVeGuncelle.basvuruStatus = false;
+            TempData["Basvuru"] = "Başvuru Kapatılmıştır.";
+            return RedirectToAction("Index", "Admin");
+        }
+
+
         // GET: Kullanici
         public ActionResult Login()
         {

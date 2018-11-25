@@ -115,8 +115,14 @@ namespace Community_Appeal_Web_Application.Controllers
             return View(db.Basvuru.Where(x=>x.adimNo>=6).ToList());
         }
 
-        
-      public ActionResult KayitliKullanicilar()
+        [HttpGet]
+        public ActionResult Guncellemeler()
+        {
+            return View(db.Guncelle.Where(x => x.adimNo >= 6).ToList());
+        }
+
+
+        public ActionResult KayitliKullanicilar()
         {
             return View(db.Kullanici.ToList());
         }

@@ -11,15 +11,25 @@ namespace Community_Appeal_Web_Application.Controllers
     public class GuncelleController : Controller
     {
         CommunityContext db = new CommunityContext();
+        Guncelle ga = new Guncelle();
 
+        // form1
         [HttpGet]
         public ActionResult form1()
-             {
-
+        {
             Kullanici k = (Kullanici)Session["Kullanici"];
-            Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            Guncelle g = new Guncelle();
+            if (ga==null)
+            {
+              g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            }
+            else
+            {
+                g = ga;
+            }
+
             return View(g);
-             }
+        }
 
         [HttpPost]
         public ActionResult form1(GuncelleForm1 guncelle)
@@ -101,15 +111,15 @@ namespace Community_Appeal_Web_Application.Controllers
         }
 
 
+        // form2 
         public PartialViewResult ogrenciListesiWidget()
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            List<GOgrenciListesi> ol = db.GOgrenciListesi.Where(x => x.GuncelleID== g.ID).ToList();
+            List<GOgrenciListesi> ol = db.GOgrenciListesi.Where(x => x.GuncelleID == g.ID).ToList();
             ViewBag.ol = ol;
             return PartialView();
         }
-
 
         [HttpGet]
         public ActionResult form2()
@@ -180,6 +190,7 @@ namespace Community_Appeal_Web_Application.Controllers
             }
         }
 
+        // form3 
         [HttpGet]
         public ActionResult form3()
         {
@@ -248,12 +259,12 @@ Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
             g.saat = gun.saat;
             g.mekan = gun.mekan;
 
-            if (g.adimNo==2)
+            if (g.adimNo == 2)
             {
                 g.adimNo = 3;
             }
 
-            if (g.GFaliyetPlani.Count<5)
+            if (g.GFaliyetPlani.Count < 5)
             {
                 ViewBag.Hata = "En az 5 faaliyet eklemeniz gerekmektedir.";
                 return View(g);
@@ -262,5 +273,17 @@ Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
             db.SaveChanges();
             return View(g);
         }
+
+        //form4
+        [HttpGet]
+        public ActionResult form4()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            List<GDanisman> DL = db.GDanisman.Where(x => x.GuncelleID == g.ID).ToList();
+            ViewBag.DL = DL;
+            return View(g);
+        }
+
     }
 }

@@ -1,7 +1,14 @@
 ﻿
 @{
     ViewBag.Title = "form5";
-    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    if (Session["Admin"] != null)
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    }
 }
 
 @using Community_Appeal_Web_Application.Models

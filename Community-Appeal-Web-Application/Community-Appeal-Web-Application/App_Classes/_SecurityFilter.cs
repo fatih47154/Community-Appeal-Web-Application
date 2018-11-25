@@ -24,7 +24,7 @@ namespace Community_Appeal_Web_Application.App_Classes
                 }
                 else
                 {
-                    if (actionName != "SifremiUnuttum")
+                    if (actionName != "SifremiUnuttum" || actionName != "GuncelleAdmin")
                     {
                         filterContext.Result = new RedirectResult("/Kullanici/Login");
                     }

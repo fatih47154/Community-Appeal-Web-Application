@@ -2,14 +2,18 @@
 
 @{
     ViewBag.Title = "form4";
+    if (Session["Admin"] != null)
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
 }
 
 @using Community_Appeal_Web_Application.Models
 
 @{
-        if (true)
-        {
-            
+    if (true)
+    {
+
             <div class="row">
                 <div class="col-lg-12">
                     <section class="panel">

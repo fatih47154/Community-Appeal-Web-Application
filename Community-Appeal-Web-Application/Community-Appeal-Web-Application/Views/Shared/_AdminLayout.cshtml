@@ -3,6 +3,9 @@
 @{
     Admin user = (Admin)Session["Admin"];
 }
+
+@using Community_Appeal_Web_Application.App_Classes
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +16,7 @@
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="shortcut icon" href="/Content/img/favicon.png">
 
-    <title>FlatLab - Flat & Responsive Bootstrap Admin Template</title>
+    <title>Düzce Üniversitesi</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/Content/css/bootstrap.min.css" rel="stylesheet">
@@ -35,17 +38,35 @@
         <!--header start-->
         <header class="header white-bg">
             <div class="sidebar-toggle-box">
-                <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
+                <div  data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
+            </div>
+            <div class="sidebar-toggle-box" style="margin-top:10px;">
+
+                <img src="~/Content/img/duLogo.png" width="40px" />
             </div>
             <!--logo start-->
-            <a href="/Content/index.html" class="logo">ABC<span>LOGO</span></a>
+
             <!--logo end-->
 
             <div class="top-nav ">
                 <!--search & user info start-->
-                <ul class="nav pull-right top-menu">
+                <ul class="nav pull-right top-menu" style="margin-top:5px;">
 
                     <!-- user login dropdown start-->
+
+                    @{
+                        if (BasvuruVeGuncelle.guncelleStatus == true)
+                        {
+
+                            <a href="/Kullanici/GuncelleAdminCikis" class="btn btn-warning">Açık Güncellemeyi Kapat <i class="icon-power-off (alias)"></i></a>
+                        }
+                        if (BasvuruVeGuncelle.basvuruStatus == true)
+                        {
+
+
+                            <a href="/Kullanici/BasvuruAdminCikis" class="btn btn-warning">Açık Başvuruyu Kapat <i class="icon-power-off (alias)"></i></a>
+                        }
+                    }
                     <a href="#" class="btn btn-default">@user.adi @user.soyadi</a>
                     <a href="/Admin/CikisYap" class="btn btn-danger">Çıkış Yap <i class="icon-arrow-right"></i></a>
                     <!-- user login dropdown end -->
@@ -83,7 +104,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/Admin/gunceller">
+                        <a href="/Admin/Guncellemeler">
                             <i class=" icon-exchange"></i>
                             <span> Güncelleme Listesi</span>
                         </a>
@@ -94,7 +115,50 @@
                             <i class=" icon-user"></i>
                             <span>Kayıtlı Kullanıcılar </span>
                         </a>
-                    </li>                   
+                    </li>
+
+                    @{
+                        if (BasvuruVeGuncelle.guncelleStatus == true)
+                        {
+                            <li class="sub-menu">
+                                <a href="/Content/javascript:;">
+                                    <i class="icon-book"></i>
+                                    <span>Güncelleme</span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a href="/Guncelle/form1">Form 1</a></li>
+                                    <li><a href="/Guncelle/form2">Form 2</a></li>
+                                    <li><a href="/Guncelle/form3">Form 3</a></li>
+                                    <li><a href="/Guncelle/form4">Form 4</a></li>
+                                    <li><a href="/Guncelle/form5">Form 5</a></li>
+                                    <li><a href="/Guncelle/form6">Form 6</a></li>
+                                    <li><a href="/Guncelle/form7">Form 7</a></li>
+                                </ul>
+                            </li>
+                        }
+                        if (BasvuruVeGuncelle.basvuruStatus == true)
+                        {
+
+                            <li class="sub-menu">
+                                <a href="/javascript:;">
+                                    <i class="icon-laptop"></i>
+                                    <span>Başvuru</span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a href="/Home/form1">Form 1</a></li>
+                                    <li><a href="/Home/form2">Form 2</a></li>
+                                    <li><a href="/Home/form3">Form 3</a></li>
+                                    <li><a href="/Home/form4">Form 4</a></li>
+                                    <li><a href="/Home/form5">Form 5</a></li>
+                                    <li><a href="/Home/form6">Form 6</a></li>
+                                    <li><a href="/Home/form7">Form 7</a></li>
+                                    <li><a href="/Home/form8">Form 8</a></li>
+                                    <li><a href="/Home/basvuruTamamla">Başvuru Tamamlama</a></li>
+                                </ul>
+                            </li>
+                        }
+                    }
+
                     <!--multi level menu end-->
 
                 </ul>

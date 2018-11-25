@@ -1,6 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "basvuruTamamla";
+    if (Session["Admin"] != null)
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
 }
 
 
