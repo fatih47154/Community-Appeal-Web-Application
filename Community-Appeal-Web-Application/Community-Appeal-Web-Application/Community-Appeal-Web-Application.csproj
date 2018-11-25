@@ -284,6 +284,15 @@
     <Content Include="Views\Kullanici\BasvuruAdmin.cshtml" />
     <Content Include="Views\Kullanici\GuncelleAdminCikis.cshtml" />
     <Content Include="Views\Kullanici\BasvuruAdminCikis.cshtml" />
+    <Content Include="Views\Print\GForm1.cshtml" />
+    <Content Include="Views\Print\GForm1_admin.cshtml" />
+    <Content Include="Views\Print\GForm2.cshtml" />
+    <Content Include="Views\Print\GForm2_admin.cshtml" />
+    <Content Include="Views\Print\GForm3.cshtml" />
+    <Content Include="Views\Print\GForm3_admin.cshtml" />
+    <Content Include="Views\Print\GForm4.cshtml" />
+    <Content Include="Views\Print\GForm4_admin.cshtml" />
+    <Content Include="Views\Guncelle\guncellemeTamamla.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

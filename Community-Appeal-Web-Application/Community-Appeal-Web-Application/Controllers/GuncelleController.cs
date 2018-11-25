@@ -202,8 +202,7 @@ namespace Community_Appeal_Web_Application.Controllers
         public PartialViewResult faaliyetPlaniWidget()
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
-            Guncelle g = db.Guncelle.
-Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
             List<GFaliyetPlani> fp = db.GFaliyetPlani.Where(x => x.faliyetID == g.ID).ToList();
             ViewBag.fp = fp;
             return PartialView();
@@ -285,5 +284,23 @@ Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
             return View(g);
         }
 
+        [HttpPost]
+        public ActionResult form4(Guncelle Gun)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            if (g.adimNo==3)
+            {
+                g.adimNo = 4;
+            }
+            db.SaveChanges();
+            return View(g);
+        }
+
+        // Güncelleme Tamamlama
+        public ActionResult guncellemeTamamla()
+        {
+            return View();
+        }
     }
 }
