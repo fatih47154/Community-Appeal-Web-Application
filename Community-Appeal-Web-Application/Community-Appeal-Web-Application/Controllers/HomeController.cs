@@ -169,76 +169,88 @@ namespace Community_Appeal_Web_Application.Controllers
             return Json("hata2");
         }
 
-        public void Drop()
-        {
-            var ogr = db.OgrenciListesi.ToList();
-            ViewBag.Ogreciler = ogr;
-        }
+
 
         [HttpGet]
         public ActionResult form3()
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
-            Drop();
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            ViewBag.y1 = db.YonetimKurulu.FirstOrDefault(x => x.basvuruID == b.ID);
 
-            //if (b.adimNo < 3)
-            //{
-            //    ViewBag.Hata = "İlk önce 2.Formu Doldurmanız Gerekmektedir.";
-            //    return View();
-            //}
-            if (b != null)
+            var ogr = db.OgrenciListesi.Where(x=>x.basvuruID==b.ID).ToList();
+            ViewBag.Ogreciler = ogr;
+
+            YonetimKurulu baskan = db.YonetimKurulu.Where(x => x.Baskan == true && x.basvuruID==b.ID).FirstOrDefault();
+
+            if (b.adimNo>3)
             {
+                ViewBag.baskan = baskan;
                 return View(b);
             }
-            return View();
+            return View(b);
         }
 
         [HttpPost]
-        public ActionResult form3(Basvuru basvuru, YonetimKurulu baskan,int ID)
+        public ActionResult form3(int ID)
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            var ogrnci = db.OgrenciListesi.ToList();
+            ViewBag.Ogreciler = ogrnci;
 
             OgrenciListesi ogr = db.OgrenciListesi.Where(x => x.ID == ID).FirstOrDefault();
 
-            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            YonetimKurulu baskanEski = db.YonetimKurulu.Where(x => x.Baskan==true && x.basvuruID==b.ID).FirstOrDefault();
 
-            
-            YonetimKurulu y1 = db.YonetimKurulu.Where(x=> x.basvuruID==b.ID).FirstOrDefault();
-            if (y1==null)
+            YonetimKurulu baskan = new YonetimKurulu();
+
+            if (baskanEski == null)
             {
                 YonetimKurulu y2=new YonetimKurulu();
                 y2.basvuruID = b.ID;
                 y2.adi = Functions.IlkHarfleriBuyut(ogr.adi);
                 y2.soyadi = Functions.IlkHarfleriBuyut(ogr.soyadi);
                 y2.unvan = "Yönetim Kurulu Başkanı";
-                y1 = y2;
-
+                y2.eMail = ogr.mail;
+                y2.tc = ogr.tc;
+                y2.gsm = ogr.tel;
+                y2.ogrNo = ogr.ogrNo;
+                y2.Baskan = true;
+                
                 if (b.adimNo == 3)
                 {
                     b.adimNo = 4;
                 }
-                db.YonetimKurulu.Add(y1);
+                db.YonetimKurulu.Add(y2);
                 db.SaveChanges();
-                ViewBag.YonetimKurulu = y1;
-                Drop();
+                baskan = db.YonetimKurulu.Where(x => x.Baskan == true && x.basvuruID == b.ID).FirstOrDefault();
+                ViewBag.baskan = baskan;
                 return View(b);
             }
             else
             {
-                y1.basvuruID = b.ID;
-                y1.adi = Functions.IlkHarfleriBuyut(ogr.adi);
-                y1.soyadi = Functions.IlkHarfleriBuyut(ogr.soyadi);
-                y1.unvan = "Yönetim Kurulu Başkanı";
-
-                if (b.adimNo == 3)
-                {
-                    b.adimNo = 4;
-                }
+                db.YonetimKurulu.Remove(baskanEski);
                 db.SaveChanges();
-                ViewBag.YonetimKurulu = y1;
-                Drop();
+                
+                YonetimKurulu y2 = new YonetimKurulu();
+                y2.basvuruID = b.ID;
+                y2.adi = Functions.IlkHarfleriBuyut(ogr.adi);
+                y2.soyadi = Functions.IlkHarfleriBuyut(ogr.soyadi);
+                y2.unvan = "Yönetim Kurulu Başkanı";
+                y2.eMail = ogr.mail;
+                y2.tc = ogr.tc;
+                y2.gsm = ogr.tel;
+                y2.ogrNo = ogr.ogrNo;
+                y2.Baskan = true;
+                if (b.adimNo == 3)
+                    {
+                        b.adimNo = 4;
+                    }
+                db.YonetimKurulu.Add(y2);
+                db.SaveChanges();
+
+                baskan = db.YonetimKurulu.Where(x => x.Baskan == true && x.basvuruID == b.ID).FirstOrDefault();
+                ViewBag.baskan = baskan;
                 return View(b);
             }
 
@@ -279,7 +291,7 @@ namespace Community_Appeal_Web_Application.Controllers
                 return View();
             }
             List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
-            List<OgrenciListesi> ol = db.OgrenciListesi.ToList();
+            List<OgrenciListesi> ol = db.OgrenciListesi.Where(x=>x.basvuruID==b.ID).ToList();
             ViewBag.dl = dl;
             ViewBag.ol = ol;
             return View(b);

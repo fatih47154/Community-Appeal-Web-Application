@@ -7,57 +7,43 @@
         Layout = "~/Views/Shared/_AdminLayout.cshtml";
     }
 
+
+
 }
 
 @using Community_Appeal_Web_Application.Models
 
-
-
+@{ 
+    YonetimKurulu baskan = (YonetimKurulu)ViewBag.baskan;
+}
 
 
 @{
-    if (ViewBag.YonetimKurulu == null)
+    if (Model.adimNo == 3)
     {
         <div class="row">
             <div class="col-lg-12">
-                @if (ViewBag.Hata != null)
-                {
-
-                    <div class="alert alert-danger">
-                        <p>@ViewBag.Hata</p>
-                    </div>
-                }
                 <section class="panel">
                     <header class="panel-heading">
                         Form 3
                     </header>
                     <div class="panel-body">
 
-                        @using (Html.BeginForm("form3", "Home", FormMethod.Post))
-                        {
+                        <form method="post" action="/Home/form3">
                             <div class="form-group">
                                 <label>Yönetim Kurulu Başkanı</label>
-                                <select onload="show_selected()" onchange="show_selected()" class="form-control" id="ID" name="ID" required>
+                                <select class="form-control" name="ID" required>
                                     <option value="default">Yönetim Kurulu Başkanı Seçiniz..</option>
                                     @foreach (var item in ViewBag.Ogreciler)
                                     {
                                         <option value="@item.ID"> @item.adi @item.soyadi</option>
                                     }
                                 </select>
-                                @Html.TextBoxFor(x => x.ID, new {Name = "basvuruID", @class = "hidden"})
                             </div>
-
-                            <text>* Alttaki formda herhangi bir sorun yoksa 4. forma geçebilirsiniz.</text>
+                            <button style="float:right;margin-left:5px;" type="submit" class="btn btn-info">Kaydet</button>
+                        </form>                           
+                            <p>* Alttaki formda herhangi bir sorun yoksa 4. forma geçebilirsiniz.</p>
                             <br/>
-
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Kaydet</button>
-                            </div>
-
-                        }
-                        <div style="float: right; text-align: center; padding-right: 60px;">
-                            <a href="/Home/form4" class="btn btn-primary">Form 4</a>
-                        </div>
 
                     </div>
                 </section>
@@ -121,50 +107,36 @@
     }else{
         <div class="row">
             <div class="col-lg-12">
-                @if (ViewBag.Hata != null)
-                {
-
-                    <div class="alert alert-danger">
-                        <p>@ViewBag.Hata</p>
-                    </div>
-                }
                 <section class="panel">
                     <header class="panel-heading">
                         Form 3
                     </header>
                     <div class="panel-body">
-
-                        @using (Html.BeginForm("form3", "Home", FormMethod.Post))
-                        {
+                        <form role="form" method="post" action="/Home/form3">
                             <div class="form-group">
-                                
                                 <label>Yönetim Kurulu Başkanı</label>
-                                <select onload="show_selected()" onchange="show_selected()" class="form-control" id="ID" name="ID" required>
+                                <select class="form-control" name="ID" required>
                                     <option value="default">Yönetim Kurulu Başkanı Seçiniz..</option>
-                                    
-
-                                    @foreach (var item in ViewBag.Ogreciler)
+                                    @foreach (OgrenciListesi item in ViewBag.Ogreciler)
                                     {
-                                        <option value="@item.ID"> @item.adi @item.soyadi</option>
+                                        if (item.ogrNo == baskan.ogrNo)
+                                        {
+                                            <option selected value="@item.ID"> @item.adi @item.soyadi</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.ID"> @item.adi @item.soyadi</option>
+                                        }
                                     }
-
                                 </select>
-
-                                @Html.TextBoxFor(x => x.ID, new {Name = "basvuruID" , @class = "hidden"})
                             </div>
+                            <text>* İstenilen Bilgileri girdikten sonra Aşağıdaki formda herhangi bir sorun yoksa 4. forma geçebilirsiniz.</text><br />
 
-                            <text>* Alttaki formda herhangi bir sorun yoksa 4. forma geçebilirsiniz.</text>
-                            <br/>
+                            <button style="float:right;margin-left:5px;" type="submit" class="btn btn-info">Kaydet</button>
+                        </form>
 
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Kaydet</button>
-                            </div>
-
-                        }
-                        <div style="float: right; text-align: center; padding-right: 60px;">
-                            <a href="/Home/form4" class="btn btn-primary">Form 4</a>
-                        </div>
-
+                        <a style="float:right;margin-left:5px;"  href="/Home/form4" class="btn btn-info">Form 4</a>
+                        <br />
                     </div>
                 </section>
             </div>
@@ -204,7 +176,7 @@
                         <p style="margin-bottom: 6.0pt; text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Kurucu &Uuml;yeleri Adına</span></p>
                         <p style="margin-bottom: 6.0pt; text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Y&ouml;nt.Kur.Bşk.</span></p>
                         <p style="margin-bottom: 6.0pt; text-indent: 35.45pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">Adı Soyadı / İmza</span></p><br/>
-                        <p style="margin-bottom: 6.0pt; text-indent: 35.45pt; line-height: normal;"><span style="font-size: 15.0pt; font-family: 'Times New Roman', 'serif';"></span><b>@ViewBag.YonetimKurulu.adi @ViewBag.YonetimKurulu.soyadi</b></p>
+                        <p style="margin-bottom: 6.0pt; text-indent: 35.45pt; line-height: normal;"><span style="font-size: 15.0pt; font-family: 'Times New Roman', 'serif';"></span><b>@baskan.adi @baskan.soyadi</b></p>
                     </div>
                     <p><strong><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;</span></strong></p>
                     <p>&nbsp;</p>
