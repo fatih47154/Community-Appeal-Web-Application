@@ -149,28 +149,8 @@ namespace Community_Appeal_Web_Application.Controllers
             return PartialView();
         }
 
-
+        
         //form3
-        [HttpPost]
-        public ActionResult FaliyetEkle(FaliyetPlani fp)
-        {
-            Kullanici k = (Kullanici)Session["Kullanici"];
-            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            FaliyetPlani f = db.FaliyetPlani.Where(x => x.faliyetID == b.ID).FirstOrDefault();
-            if (f != null)
-            {
-                return Json("hata0");
-            }
-
-            fp.faliyetID = b.ID;
-            db.FaliyetPlani.Add(fp);
-            db.SaveChanges();
-            ViewBag.ft = db.FaliyetPlani.Where(x => x.faliyetID == b.ID).FirstOrDefault();
-            return Json("hata2");
-        }
-
-
-
         [HttpGet]
         public ActionResult form3()
         {
@@ -263,20 +243,81 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            ViewBag.ft = db.FaliyetPlani.Where(x => x.faliyetID == b.ID).FirstOrDefault();
+            return View(b);
+        }
 
-            if (b != null)
-            {
-                return View(b);
-            }
-
-            return View();
+        public PartialViewResult faaliyetPlaniWidget()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            List<FaliyetPlani> fp = db.FaliyetPlani.Where(x => x.faliyetID == b.ID).ToList();
+            ViewBag.fp = fp;
+            return PartialView();
         }
 
         [HttpPost]
-        public ActionResult form4(int ID)
+        public ActionResult faaliyetPlaniEkle(FaliyetPlani fp)
         {
-            return View();
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            if (b.FaliyetPlani.Count != 5)
+            {
+                fp.faliyetID = b.ID;
+                db.FaliyetPlani.Add(fp);
+                db.SaveChanges();
+                return Json(true);
+            }
+            else
+            {
+                return Json(false); // 5 faaliyetten fazla eklenemez.
+            }
+
+        }
+
+        public ActionResult faaliyetSil(int id)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+
+            FaliyetPlani ol = db.FaliyetPlani.Where(x => x.ID == id).FirstOrDefault();
+            if (ol == null)
+            {
+                return Json(false);
+            }
+            else
+            {
+                db.FaliyetPlani.Remove(ol);
+                db.SaveChanges();
+                return Json(true);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult form4(Basvuru bas)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            b.toplantiNo = bas.toplantiNo;
+            b.toplantiTarihi = bas.toplantiTarihi;
+            b.saat = bas.saat;
+            b.mekan = bas.mekan;
+
+            if (b.adimNo == 2)
+            {
+                b.adimNo = 3;
+            }
+
+            if (b.FaliyetPlani.Count < 5)
+            {
+                ViewBag.Hata = "En az 5 faaliyet eklemeniz gerekmektedir.";
+                return View(b);
+            }
+
+            db.SaveChanges();
+            return View(b);
         }
 
         //form5
