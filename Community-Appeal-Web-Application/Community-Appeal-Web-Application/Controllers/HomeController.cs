@@ -243,11 +243,10 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            if (b.Danisman.Count == 0)
-            {
-                ViewBag.danisman = "İlk önce danışmanları girmeniz gerekmektedir.";
-                return View();
-            }
+            Danisman d1 = db.Danisman.Where(x => x.basvuruID == b.ID && x.aktif == true).SingleOrDefault();
+            Danisman d2 = db.Danisman.Where(x => x.basvuruID == b.ID && x.aktif == false).SingleOrDefault();
+            ViewBag.d1 = d1;
+            ViewBag.d2 = d2;
             return View(b);
         }
 
@@ -343,7 +342,13 @@ namespace Community_Appeal_Web_Application.Controllers
 
             if (b.Danisman.Count ==0)
             {
-                ViewBag.danisman = "İlk önce danışmanları girmeniz gerekmektedir.";
+                TempData["danisman"] = "İlk önce danışmanları girmeniz gerekmektedir.";
+                return View(b);
+            }
+
+            if (b.FaliyetPlani.Count == 0)
+            {
+                TempData["faaliyet"] = "İlk önce 5 faaliyet girmeniz gerekmektedir.";
                 return View(b);
             }
 
@@ -352,9 +357,9 @@ namespace Community_Appeal_Web_Application.Controllers
             b.saat = bas.saat;
             b.mekan = bas.mekan;
 
-            if (b.adimNo == 2)
+            if (b.adimNo == 4)
             {
-                b.adimNo = 3;
+                b.adimNo = 5;
             }
 
             if (b.FaliyetPlani.Count < 5)
