@@ -199,6 +199,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Classes\BasvuruDanisman.cs" />
     <Compile Include="App_Classes\BasvuruVeGuncelle.cs" />
     <Compile Include="App_Classes\Functions.cs" />
     <Compile Include="App_Classes\GuncelleForm1.cs" />
@@ -295,6 +296,10 @@
     <Content Include="Views\Guncelle\guncellemeTamamla.cshtml" />
     <Content Include="Views\Home\form4.cshtml" />
     <Content Include="Views\Home\faaliyetPlaniWidget.cshtml" />
+    <Content Include="Views\Print\Form3_admin.cshtml" />
+    <Content Include="Views\Print\Form3.cshtml" />
+    <Content Include="Views\Print\Form4_admin.cshtml" />
+    <Content Include="Views\Print\Form4.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
