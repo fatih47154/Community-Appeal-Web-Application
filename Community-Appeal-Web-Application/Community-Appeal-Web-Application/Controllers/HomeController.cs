@@ -294,11 +294,53 @@ namespace Community_Appeal_Web_Application.Controllers
             }
         }
 
+        public ActionResult form4DanismanEkle(BasvuruDanisman danisman)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            Danisman d1 = new Danisman();
+            Danisman d2 = new Danisman();
+
+            if (danisman.Kontrol == true)
+            {
+                d2.aktif = true;
+                d1.aktif = false;
+            }
+            else
+            {
+                d1.aktif = true;
+                d2.aktif = false;
+            }
+            d1.adi = danisman.adi1;
+            d1.soyadi = danisman.soyadi1;
+            d1.unvan = danisman.unvan1;
+            d1.akademikBirim = danisman.akademikBirim1;
+            d1.basvuruID = b.ID;
+
+
+            d2.adi = danisman.adi2;
+            d2.soyadi = danisman.soyadi2;
+            d2.unvan = danisman.unvan2;
+            d2.akademikBirim = danisman.akademikBirim2;
+            d2.basvuruID = b.ID;
+            db.Danisman.Add(d1);
+            db.Danisman.Add(d2);
+            db.SaveChanges();
+
+            return RedirectToAction("form4");
+        }
+
         [HttpPost]
         public ActionResult form4(Basvuru bas)
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            if (b.Danisman.Count ==0)
+            {
+                ViewBag.danisman = "İlk önce danışmanları girmeniz gerekmektedir.";
+                return View();
+            }
 
             b.toplantiNo = bas.toplantiNo;
             b.toplantiTarihi = bas.toplantiTarihi;
