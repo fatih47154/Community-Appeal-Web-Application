@@ -493,15 +493,15 @@ namespace Community_Appeal_Web_Application.Controllers
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
 
             Danisman danisman = db.Danisman.FirstOrDefault(x => x.ID == dan.ID);
-            danisman.aktif = true;
+            //danisman.aktif = true;
 
-            var danismanList = db.Danisman.Where(x => x.ID != dan.ID && x.basvuruID == b.ID).ToList();
-            foreach (var item in danismanList)
-            {
-                item.aktif = false;
-            }
+            //var danismanList = db.Danisman.Where(x => x.ID != dan.ID && x.basvuruID == b.ID).ToList();
+            //foreach (var item in danismanList)
+            //{
+            //    item.aktif = false;
+            //}
 
-            db.SaveChanges();
+            //db.SaveChanges();
 
             ViewBag.danisman = danisman;
 

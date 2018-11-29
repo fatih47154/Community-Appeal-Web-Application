@@ -73,6 +73,13 @@ namespace Community_Appeal_Web_Application.Models
 
         public int? kullanıcıID { get; set; }
 
+        [StringLength(50)]
+        public string yazmanAdi { get; set; }
+
+        [StringLength(50)]
+        public string yazmanSoyadi { get; set; }
+        public int? gUyeSayisi { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GDanisman> GDanisman { get; set; }
 
