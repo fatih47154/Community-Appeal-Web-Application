@@ -22,6 +22,10 @@ namespace Community_Appeal_Web_Application.App_Classes
                         filterContext.Result = new RedirectResult("/Admin/Login");
                     }
                 }
+                else if(controllerName == "Print" && HttpContext.Current.Session["Admin"] != null)
+                {
+                    base.OnActionExecuting(filterContext);
+                }
                 else
                 {
                     if (actionName != "SifremiUnuttum" || actionName != "GuncelleAdmin")

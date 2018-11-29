@@ -64,6 +64,56 @@ namespace Community_Appeal_Web_Application.Controllers
             return report;
         }
 
+        public ActionResult Form3_admin(int ID)
+        {
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == ID).FirstOrDefault();
+            var ogrnci = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.Ogreciler = ogrnci;
+            var report = new ViewAsPdf("Form3_admin", b)
+            {
+
+            };
+            return report;
+        }
+
+        public ActionResult Form3()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            var ogrnci = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.Ogreciler = ogrnci;
+            var report = new ViewAsPdf("Form2")
+            {
+               
+            };
+            return report;
+        }
+
+        public ActionResult Form4_admin(int ID)
+        {
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == ID).FirstOrDefault();
+            var ogrnci = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.Ogreciler = ogrnci;
+            var report = new ViewAsPdf("Form3_admin", b)
+            {
+
+            };
+            return report;
+        }
+
+        public ActionResult Form4()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            var ogrnci = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
+            ViewBag.Ogreciler = ogrnci;
+            var report = new ViewAsPdf("Form2")
+            {
+
+            };
+            return report;
+        }
+
         // Güncelleme Print
 
         public ActionResult GForm1()

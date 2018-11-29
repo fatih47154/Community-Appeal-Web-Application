@@ -175,7 +175,7 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            var ogrnci = db.OgrenciListesi.ToList();
+            var ogrnci = db.OgrenciListesi.Where(x=>x.basvuruID==b.ID).ToList();
             ViewBag.Ogreciler = ogrnci;
 
             OgrenciListesi ogr = db.OgrenciListesi.Where(x => x.ID == ID).FirstOrDefault();
@@ -243,6 +243,11 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            if (b.Danisman.Count == 0)
+            {
+                ViewBag.danisman = "İlk önce danışmanları girmeniz gerekmektedir.";
+                return View();
+            }
             return View(b);
         }
 
