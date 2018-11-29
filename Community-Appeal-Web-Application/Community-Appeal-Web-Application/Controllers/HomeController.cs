@@ -243,8 +243,14 @@ namespace Community_Appeal_Web_Application.Controllers
         [HttpGet]
         public ActionResult form4()
         {
+
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            if (b.adimNo < 4)
+            {
+                return View();
+            }
+            ViewBag.Ogreciler = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList() ;
             return View(b);
         }
 
@@ -301,48 +307,83 @@ namespace Community_Appeal_Web_Application.Controllers
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
 
-            List<Danisman> danisman2 = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
+            List<Danisman> danismanL = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
 
-            
-
-            Danisman d1 = new Danisman();
-            Danisman d2 = new Danisman();
-
-            if (danisman.Kontrol == true)
+            if (danismanL.Count !=0)
             {
-                d2.aktif = true;
-                d1.aktif = false;
+                Danisman d1 = db.Danisman.Where(x => x.aktif == true && x.basvuruID == b.ID).SingleOrDefault();
+                Danisman d2 = db.Danisman.Where(x => x.aktif == false && x.basvuruID == b.ID).SingleOrDefault();
+
+                if (danisman.Kontrol == true)
+                {
+                    d2.aktif = true;
+                    d1.aktif = false;
+                }
+                else
+                {
+                    d1.aktif = true;
+                    d2.aktif = false;
+                }
+                d1.adi = danisman.adi1;
+                d1.soyadi = danisman.soyadi1;
+                d1.unvan = danisman.unvan1;
+                d1.akademikBirim = danisman.akademikBirim1;
+                d1.basvuruID = b.ID;
+
+
+                d2.adi = danisman.adi2;
+                d2.soyadi = danisman.soyadi2;
+                d2.unvan = danisman.unvan2;
+                d2.akademikBirim = danisman.akademikBirim2;
+                d2.basvuruID = b.ID;
+                db.SaveChanges();
             }
             else
             {
-                d1.aktif = true;
-                d2.aktif = false;
+                Danisman d1 = new Danisman();
+                Danisman d2 = new Danisman();
+
+                if (danisman.Kontrol == true)
+                {
+                    d2.aktif = true;
+                    d1.aktif = false;
+                }
+                else
+                {
+                    d1.aktif = true;
+                    d2.aktif = false;
+                }
+                d1.adi = danisman.adi1;
+                d1.soyadi = danisman.soyadi1;
+                d1.unvan = danisman.unvan1;
+                d1.akademikBirim = danisman.akademikBirim1;
+                d1.basvuruID = b.ID;
+
+
+                d2.adi = danisman.adi2;
+                d2.soyadi = danisman.soyadi2;
+                d2.unvan = danisman.unvan2;
+                d2.akademikBirim = danisman.akademikBirim2;
+                d2.basvuruID = b.ID;
+                db.Danisman.Add(d1);
+                db.Danisman.Add(d2);
+                db.SaveChanges();
             }
-            d1.adi = danisman.adi1;
-            d1.soyadi = danisman.soyadi1;
-            d1.unvan = danisman.unvan1;
-            d1.akademikBirim = danisman.akademikBirim1;
-            d1.basvuruID = b.ID;
-
-
-            d2.adi = danisman.adi2;
-            d2.soyadi = danisman.soyadi2;
-            d2.unvan = danisman.unvan2;
-            d2.akademikBirim = danisman.akademikBirim2;
-            d2.basvuruID = b.ID;
-            db.Danisman.Add(d1);
-            db.Danisman.Add(d2);
-            db.SaveChanges();
 
             return RedirectToAction("form4");
         }
 
         [HttpPost]
-        public ActionResult form4(Basvuru bas)
+        public ActionResult form4(Basvuru bas , int ID)
         {
+
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            
+
+            OgrenciListesi baskan = db.OgrenciListesi.Where(x => x.ID == ID).FirstOrDefault();
+            TempData["baskan"] = baskan;
+            ViewBag.Ogreciler = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
+
 
             if (b.Danisman.Count ==0)
             {
@@ -360,6 +401,11 @@ namespace Community_Appeal_Web_Application.Controllers
             b.toplantiTarihi = bas.toplantiTarihi;
             b.saat = bas.saat;
             b.mekan = bas.mekan;
+            if (ID!=null)
+            {
+                b.baskanAdi = baskan.adi;
+                b.baskanSoyadi = baskan.soyadi;
+            }
 
             if (b.adimNo == 4)
             {
@@ -382,9 +428,8 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            if (b.adimNo < 2)
+            if (b.adimNo < 5)
             {
-                ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
                 return View();
             }
             List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
@@ -481,10 +526,8 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-
-            if (b.adimNo < 4)
+            if (b.adimNo < 6)
             {
-                ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
                 return View();
             }
             List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
@@ -530,9 +573,8 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            if (b.adimNo < 1)
+            if (b.adimNo < 7)
             {
-                ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
                 return View();
             }
 
@@ -964,9 +1006,8 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            if (b.adimNo < 1)
+            if (b.adimNo < 8)
             {
-                ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
                 return View();
             }
 
@@ -1069,8 +1110,9 @@ namespace Community_Appeal_Web_Application.Controllers
         //Basvuru Tamamla
         public ActionResult basvuruTamamla()
         {
-
-            return View();
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            return View(b);
         }
 
     }
