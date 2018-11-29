@@ -246,7 +246,7 @@ namespace Community_Appeal_Web_Application.Controllers
             if (b.Danisman.Count == 0)
             {
                 ViewBag.danisman = "İlk önce danışmanları girmeniz gerekmektedir.";
-                return View();
+                return View(b);
             }
             return View(b);
         }
