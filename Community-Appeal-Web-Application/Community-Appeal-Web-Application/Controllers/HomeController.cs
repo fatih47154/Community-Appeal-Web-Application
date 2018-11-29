@@ -481,13 +481,14 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
             if (b.adimNo < 4)
             {
                 ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
                 return View();
             }
             List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
-            Danisman dl1 = db.Danisman.FirstOrDefault(x => x.basvuruID == b.ID);
+            Danisman dl1 = db.Danisman.FirstOrDefault(x => x.basvuruID == b.ID && x.aktif == true);
             ViewBag.dl = dl;
             ViewBag.dl1 = dl1;
             return View(b);
@@ -518,7 +519,7 @@ namespace Community_Appeal_Web_Application.Controllers
                 db.SaveChanges();
             }
 
-            return View("form6", b);
+            return RedirectToAction("form6");
 
         }
 
@@ -971,6 +972,98 @@ namespace Community_Appeal_Web_Application.Controllers
 
             ViewBag.yonetimKurulu = db.YonetimKurulu.Where(x => x.basvuruID == b.ID).ToList();
             return View(b);
+        }
+
+        [HttpPost]
+        public ActionResult form8TBilg(Basvuru veri)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            if (veri.kurulusTarihi != null)
+            {
+                b.kurulusTarihi = veri.kurulusTarihi;
+            }
+
+            if (veri.toplantiNiteligi != null)
+            {
+                b.toplantiNiteligi = veri.toplantiNiteligi;
+            }
+
+            if (veri.tuzukDegisikligi != null)
+            {
+                b.tuzukDegisikligi = veri.tuzukDegisikligi;
+            }
+
+            if (veri.gUyeSayisi != null)
+            {
+                b.gUyeSayisi = veri.gUyeSayisi;
+            }
+            
+            db.SaveChanges();
+
+            return RedirectToAction("form8");
+        }
+
+        [HttpPost]
+        public ActionResult form8Uye(YonetimKurulu veri)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            var uye = db.YonetimKurulu.FirstOrDefault(x => x.ID == veri.ID && x.basvuruID == b.ID);
+
+            if (veri.bolum != null)
+            {
+                uye.bolum = veri.bolum;
+            }
+
+            if (veri.adres != null)
+            {
+                uye.adres = veri.adres;
+            }
+
+            if (veri.evTel != null)
+            {
+                uye.evTel = veri.evTel;
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("form8");
+        }
+
+        public ActionResult form8Kaydet()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            int sayac = 0;
+            bool gecis = false;
+            var yonetim = db.YonetimKurulu.Where(x => x.basvuruID == b.ID).ToList();
+
+            foreach (var item in yonetim)
+            {
+                if (item.adres != null && item.bolum != null)
+                {
+                    sayac++;
+                }
+            }
+
+            if (b.kurulusTarihi != null && b.gUyeSayisi != null && b.toplantiNiteligi != null &&
+                b.tuzukDegisikligi != null)
+            {
+                sayac++;
+            }
+
+            if (b.adimNo == 7 && sayac == 8)
+            {
+                b.adimNo = 8;
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("form8");
+
         }
 
         //Basvuru Tamamla

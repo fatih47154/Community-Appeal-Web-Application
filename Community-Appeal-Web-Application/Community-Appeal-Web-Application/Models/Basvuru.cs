@@ -98,5 +98,7 @@ namespace Community_Appeal_Web_Application.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<YonetimKurulu> YonetimKurulu { get; set; }
+
+        public int? gUyeSayisi { get; set; }
     }
 }
