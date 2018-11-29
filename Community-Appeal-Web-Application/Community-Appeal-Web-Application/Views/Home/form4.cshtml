@@ -11,10 +11,30 @@
 
 @model Basvuru
 
+@if (ViewBag.danisman != null)
+{
+    <div class="alert alert-block alert-danger fade in">
+        <button data-dismiss="alert" class="close close-sm" type="button">
+            <i class="icon-remove"></i>
+        </button>
+        <strong>@ViewBag.danisman</strong> 
+    </div>
+  
+}
+@if (ViewBag.faaliyet != null)
+{
+    <div class="alert alert-block alert-danger fade in">
+        <button data-dismiss="alert" class="close close-sm" type="button">
+            <i class="icon-remove"></i>
+        </button>
+        <strong>@ViewBag.faaliyet</strong>
+    </div>
+}
+
 @{
     if (Model.adimNo == 4)
     {
-        if (Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault() != null)
+        if (Model.Danisman.Where(x => x.aktif == true).SingleOrDefault() != null)
         {
             <div class="row">
                 <div class="col-lg-12">
@@ -41,6 +61,7 @@
                                         <label for="exampleInputPassword1">Topluluk 1. Danışman Akademik Birim</label>
                                         <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().akademikBirim">
                                     </div>
+                                    <text>* Aşağıdaki formları doldurmadan önce danışmanlara ait bilgileri girdikten sonra yandeki button ile danışman bilgilerini kayıt etmelisiniz</text>
                                 </div>
                                 <div class="col-lg-6">
 
@@ -66,7 +87,6 @@
                                         </label>
                                     </div>
                                 </div>
-                                <text>* İstenilen Bilgileri girdikten sonra Aşağıdaki formda herhangi bir sorun yoksa 2. forma geçebilirsiniz.</text><br />
                                 <button style="float:right;margin-left:5px;" type="submit" class="btn btn-info">Kaydet</button>
                             </form>
                         </div>
@@ -92,16 +112,18 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Topluluk 1. Danışman Soyadı</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi1" >
+                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi1">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Topluluk 1. Danışman Unvanı</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan1" >
+                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan1">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Topluluk 1. Danışman Akademik Birim</label>
                                         <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim1">
                                     </div>
+                                    <text>* Aşağıdaki formları doldurmadan önce danışmanlara ait bilgileri girdikten sonra yandeki button ile danışman bilgilerini kayıt etmelisiniz</text><br />
+
                                 </div>
                                 <div class="col-lg-6">
 
@@ -127,7 +149,6 @@
                                         </label>
                                     </div>
                                 </div>
-                                <text>* İstenilen Bilgileri girdikten sonra Aşağıdaki formda herhangi bir sorun yoksa 2. forma geçebilirsiniz.</text><br />
                                 <button style="float:right;margin-left:5px;" type="submit" class="btn btn-info">Kaydet</button>
                             </form>
                         </div>
@@ -186,7 +207,7 @@
                                     <label>Toplantı Numarası:</label>
                                     <input name="toplantiNo" type="number" class="form-control" id="toplantiNo" required>
                                 </div>
-                                <button type="submit" id="button" style="margin-right: 5px; float: left" class="btn btn-info">Kaydet</button>
+                                <button type="submit" id="button" style="margin-right: 5px; float: right;margin-top:40px;" class="btn btn-info">Kaydet</button>
                             </form>
                         </div>
                     </div>
@@ -250,6 +271,7 @@
                                     <label for="exampleInputPassword1">Topluluk 1. Danışman Akademik Birim</label>
                                     <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().akademikBirim">
                                 </div>
+                                <text>* Aşağıdaki formları doldurmadan önce danışmanlara ait bilgileri girdikten sonra yandeki button ile danışman bilgilerini kayıt etmelisiniz</text>
                             </div>
                             <div class="col-lg-6">
 
@@ -275,7 +297,6 @@
                                     </label>
                                 </div>
                             </div>
-                            <text>* İstenilen Bilgileri girdikten sonra Aşağıdaki formda herhangi bir sorun yoksa 2. forma geçebilirsiniz.</text><br />
                             <button style="float:right;margin-left:5px;" type="submit" class="btn btn-info">Kaydet</button>
                         </form>
                     </div>
@@ -285,15 +306,6 @@
         </div>
 
         <div class="row">
-            <div>
-                @if (ViewBag.Hata != null)
-                {
-
-                    <div class="alert alert-danger alert-dismissable">
-                        <p>@ViewBag.Hata</p>
-                    </div>
-                }
-            </div>
             <div class="col-lg-6">
                 <section class="panel">
                     <header class="panel-heading">
@@ -323,7 +335,7 @@
                 </section>
             </div>
             <div class="col-lg-6">
-                <section class="panel">
+                <section class="panel" style="padding-bottom:40px;">
                     <header class="panel-heading">
                         Form 4 - Toplanti Bilgileri
                     </header>
@@ -363,7 +375,7 @@
                                     <label>Toplantı yeri:</label>
                                     <input name="mekan" type="text" class="form-control" value="@Model.mekan" required>
                                 </div>
-                                <button type="submit" id="button" style="margin-right: 5px; float: left" class="btn btn-info">Kaydet</button>
+                                <button type="submit" id="button" style="margin-right: 5px; float: right;margin-top:30px;" class="btn btn-info">Kaydet</button>
                                 @if (Model.adimNo == 3)
                                 {
                                     <a href="/Guncelle/form4" style="margin-right: 5px; float: left" class="btn btn-info">Form 4</a>

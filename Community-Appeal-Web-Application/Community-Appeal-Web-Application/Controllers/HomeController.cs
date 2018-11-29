@@ -51,7 +51,6 @@ namespace Community_Appeal_Web_Application.Controllers
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
             if (b.adimNo < 2)
             {
-                ViewBag.Hata = "İlk önce 1.Formu Doldurmanız Gerekmektedir.";
                 return View();
             }
             List<OgrenciListesi> ol = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
@@ -156,7 +155,10 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-
+            if (b.adimNo < 3)
+            {
+                return View();
+            }
             var ogr = db.OgrenciListesi.Where(x=>x.basvuruID==b.ID).ToList();
             ViewBag.Ogreciler = ogr;
 
@@ -298,6 +300,11 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            List<Danisman> danisman2 = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
+
+            
+
             Danisman d1 = new Danisman();
             Danisman d2 = new Danisman();
 
@@ -335,16 +342,17 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            
 
             if (b.Danisman.Count ==0)
             {
-                TempData["danisman"] = "İlk önce danışmanları girmeniz gerekmektedir.";
+                ViewBag.danisman = "İlk önce danışmanları girmeniz gerekmektedir.";
                 return View(b);
             }
 
             if (b.FaliyetPlani.Count == 0)
             {
-                TempData["faaliyet"] = "İlk önce 5 faaliyet girmeniz gerekmektedir.";
+                ViewBag.faaliyet = "İlk önce 5 faaliyet girmeniz gerekmektedir.";
                 return View(b);
             }
 
