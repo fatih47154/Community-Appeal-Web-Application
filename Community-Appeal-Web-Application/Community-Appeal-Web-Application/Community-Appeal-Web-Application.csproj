@@ -273,7 +273,6 @@
     <Content Include="Views\Guncelle\form2.cshtml" />
     <Content Include="Views\Guncelle\ogrenciListesiWidget.cshtml" />
     <Content Include="Views\Kullanici\SifremiUnuttum.cshtml" />
-    <Content Include="Views\Home\form4.cshtml" />
     <Content Include="Views\Home\yKuruluListesiWidget.cshtml" />
     <Content Include="Views\Home\dKuruluListesiWidget.cshtml" />
     <Content Include="Views\Home\form8.cshtml" />
@@ -294,6 +293,8 @@
     <Content Include="Views\Print\GForm4.cshtml" />
     <Content Include="Views\Print\GForm4_admin.cshtml" />
     <Content Include="Views\Guncelle\guncellemeTamamla.cshtml" />
+    <Content Include="Views\Home\form4.cshtml" />
+    <Content Include="Views\Home\faaliyetPlaniWidget.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
