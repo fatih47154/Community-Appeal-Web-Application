@@ -180,9 +180,9 @@ namespace Community_Appeal_Web_Application.Controllers
             var ogr = db.OgrenciListesi.Where(x=>x.basvuruID==b.ID).ToList();
             ViewBag.Ogreciler = ogr;
 
-            YonetimKurulu baskan = db.YonetimKurulu.Where(x => x.Baskan == true && x.basvuruID==b.ID).FirstOrDefault();
+            YonetimKurulu baskan = db.YonetimKurulu.Where(x => x.Baskan == true && x.basvuruID == b.ID).FirstOrDefault();
 
-            if (b.adimNo>3)
+            if (b.adimNo > 3)
             {
                 ViewBag.baskan = baskan;
                 return View(b);
