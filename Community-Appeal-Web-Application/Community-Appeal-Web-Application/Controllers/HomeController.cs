@@ -243,10 +243,6 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            Danisman d1 = db.Danisman.Where(x => x.basvuruID == b.ID && x.aktif == true).SingleOrDefault();
-            Danisman d2 = db.Danisman.Where(x => x.basvuruID == b.ID && x.aktif == false).SingleOrDefault();
-            ViewBag.d1 = d1;
-            ViewBag.d2 = d2;
             return View(b);
         }
 
