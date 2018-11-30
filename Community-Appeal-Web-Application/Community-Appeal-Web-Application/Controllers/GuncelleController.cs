@@ -292,104 +292,6 @@ namespace Community_Appeal_Web_Application.Controllers
             return View(g);
         }
 
-        [HttpGet]
-        public ActionResult form5()
-        {
-            Kullanici k = (Kullanici)Session["Kullanici"];
-            Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            if (b.adimNo < 2)
-            {
-                ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
-                return View();
-            }
-            List<GDanisman> dl = db.GDanisman.Where(x => x.GuncelleID == b.ID).ToList();
-            List<GOgrenciListesi> ol = db.GOgrenciListesi.Where(x => x.GuncelleID == b.ID).ToList();
-            ViewBag.dl = dl;
-            ViewBag.ol = ol;
-            return View(b);
-        }
-
-        [HttpPost]
-        public ActionResult form5(int ID)
-        {
-            Kullanici k = (Kullanici)Session["Kullanici"];
-            Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-
-            if (b.GDanisman.Count < 2)
-            {
-                List<GDanisman> dl = db.GDanisman.Where(x => x.GuncelleID == b.ID).ToList();
-                List<GOgrenciListesi> ol = db.GOgrenciListesi.ToList();
-                ViewBag.ol = ol;
-                ViewBag.dl = dl;
-                TempData["a"] = "Bu formu kaydetmek için danışman sayısı 2 olmalıdır.";
-                return View(b);
-            }
-            else
-            {
-                if (b.adimNo <= 3)
-                {
-                    b.adimNo = 5;
-                    GOgrenciListesi baskan = db.GOgrenciListesi.FirstOrDefault(x => x.ID == ID);
-                    b.baskanAdi = baskan.adi;
-                    b.baskanSoyadi = baskan.soyadi;
-                    db.SaveChanges();
-                }
-                List<GDanisman> dl = db.GDanisman.Where(x => x.GuncelleID == b.ID).ToList();
-                List<GOgrenciListesi> ol = db.GOgrenciListesi.ToList();
-                ViewBag.dl = dl;
-                ViewBag.ol = ol;
-                return View(b);
-            }
-        }
-
-        public PartialViewResult danismanListesiWidget()
-        {
-            Kullanici k = (Kullanici)Session["Kullanici"];
-            Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            List<GDanisman> dl = db.GDanisman.Where(x => x.GuncelleID == b.ID).ToList();
-            ViewBag.dl = dl;
-            return PartialView();
-        }
-
-        [HttpPost]
-        public ActionResult danismanListesiSil(int id)
-        {
-            Kullanici k = (Kullanici)Session["Kullanici"];
-            Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-
-            GDanisman dl = db.GDanisman.Where(x => x.ID == id).FirstOrDefault();
-            if (dl == null)
-            {
-                return Json(1);
-            }
-            else
-            {
-                db.GDanisman.Remove(dl);
-                db.SaveChanges();
-                return Json(3);
-            }
-        }
-
-        [HttpPost]
-        public ActionResult danismanEkle(GDanisman ol)
-        {
-            Kullanici k = (Kullanici)Session["Kullanici"];
-            Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            int sayac = db.GDanisman.Count();
-            if (sayac < 2)
-            {
-                ol.GuncelleID = b.ID;
-                db.GDanisman.Add(ol);
-                db.SaveChanges();
-                return Json(true);
-            }
-            else
-            {
-                return Json(false);
-            }
-
-        }
-
         //form6
         [HttpGet]
         public ActionResult form6()
@@ -397,7 +299,7 @@ namespace Community_Appeal_Web_Application.Controllers
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
 
-            if (b.adimNo < 4)
+            if (b.adimNo < 1)
             {
                 ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
                 return View();

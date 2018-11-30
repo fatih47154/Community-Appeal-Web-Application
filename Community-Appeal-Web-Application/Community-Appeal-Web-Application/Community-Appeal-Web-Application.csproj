@@ -300,8 +300,7 @@
     <Content Include="Views\Print\Form3.cshtml" />
     <Content Include="Views\Print\Form4_admin.cshtml" />
     <Content Include="Views\Print\Form4.cshtml" />
-    <Content Include="Views\Guncelle\form5.cshtml" />
-    <Content Include="Views\Guncelle\danismanListesiWidget.cshtml" />
+    <Content Include="Views\Guncelle\form6.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
