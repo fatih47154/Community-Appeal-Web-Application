@@ -32,39 +32,40 @@
                     <div class="panel-body">
                         <form class="form" role="form" method="post" action="/Home/form2">
                             <div class="form-group">
-                                <input style="margin-right:5px;" type="text" class="form-control" id="adi" placeholder="Adı">
+                                <input style="margin-right:5px;" type="text" class="form-control" id="adi" placeholder="Adı"  maxlength="100">
                             </div>
                             <div class="form-group">
-                                <input style="margin-right:5px;" type="text" class="form-control" id="soyadi" placeholder="Soyadı">
+                                <input style="margin-right:5px;" type="text" class="form-control" id="soyadi" placeholder="Soyadı"  maxlength="100">
                             </div>
                             <div class="form-group">
-                                <input style="margin-right:5px;" type="text" class="form-control" id="fak" placeholder="Fak/Yüksekokul/MYO">
+                                <input style="margin-right:5px;" type="text" class="form-control" id="fak" placeholder="Fak/Yüksekokul/MYO"  maxlength="200">
                             </div>
                             <div class="form-group">
-                                <input style="margin-right:5px;" type="text" class="form-control" id="tc" placeholder="TC Kimlik No">
+                                <input style="margin-right:5px;" type="text" class="form-control" id="tc" placeholder="TC Kimlik No"  maxlength="11">
                             </div>
                             <div class="form-group">
-                                <input style="margin-right:5px;" type="text" class="form-control" id="ogrNo" placeholder="Öğrenci No">
+                                <input style="margin-right:5px;" type="text" class="form-control" id="ogrNo" placeholder="Öğrenci No"  maxlength="100">
                             </div>
                             <div class="form-group">
-                                <input style="margin-right:5px;" type="text" class="form-control" id="tel" placeholder="Cep Tel No">
+                                <input style="margin-right:5px;" type="text" class="form-control" id="tel" placeholder="Cep Tel No"  maxlength="11">
                             </div>
                             <div class="form-group">
-                                <input style="margin-right:5px;" type="text" class="form-control" id="mail" placeholder="e-Posta">
+                                <input style="margin-right:5px;" type="text" class="form-control" id="mail" placeholder="e-Posta"  maxlength="100">
                             </div>
-                            <button style="float:right;margin-right:5px;" type="submit" class="btn btn-danger">Kaydet</button>
-                            <a id="ekle" style="margin-right:5px;float:right;" class="btn btn-success"><i class="glyphicon-plus"></i> Ekle</a>
+                            <p>*Topluluğunuzda bulunacak olan 20 kişiyi ekledikten sonra "Kaydet" Buttonuna Basarak Form 3'e geçebilirsiniz.</p>
 
+                            @{
+                                if (Model.adimNo == 3)
+                                {
+                                    <a style="float:right;" href="/Home/form3" class="btn btn-primary">Form 3</a>
+                                }
+                            }
+
+                            <button style="float:right;margin-right:5px;" type="submit" class="btn btn-info">Kaydet</button>
+                            <a id="ekle" style="margin-right:5px;float:right;" class="btn btn-success"><i class="glyphicon-plus"></i> Ekle</a>
 
                         </form>
                         <br />
-                        <p>*Topluluğunuzda bulunacak olan 20 kişiyi ekledikten sonra "Kaydet" Buttonuna Basarak Form 3'e geçebilirsiniz.</p>
-                        @{
-                            if (Model.adimNo == 3)
-                            {
-                                <a style="float:right;" href="/Home/form3" class="btn btn-primary">Form 3</a>
-                            }
-                        }
 
 
 

@@ -79,6 +79,8 @@ namespace Community_Appeal_Web_Application.Models
         [StringLength(50)]
         public string yazmanSoyadi { get; set; }
 
+        public int? gUyeSayisi { get; set; }
+
         public virtual Kullanici Kullanici { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -98,7 +100,5 @@ namespace Community_Appeal_Web_Application.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<YonetimKurulu> YonetimKurulu { get; set; }
-
-        public int? gUyeSayisi { get; set; }
     }
 }

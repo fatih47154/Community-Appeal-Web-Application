@@ -123,7 +123,6 @@ namespace Community_Appeal_Web_Application.Controllers
             Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
             if (g.adimNo < 2)
             {
-                ViewBag.Hata = "İlk önce 1.Formu Doldurmanız Gerekmektedir.";
                 return View();
             }
             List<GOgrenciListesi> ol = db.GOgrenciListesi.Where(x => x.GuncelleID == g.ID).ToList();
@@ -191,6 +190,10 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            if (g.adimNo < 3)
+            {
+                return View();
+            }
             return View(g);
         }
 
@@ -248,6 +251,11 @@ namespace Community_Appeal_Web_Application.Controllers
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
 
+            if (g.adimNo < 3)
+            {
+                return View();
+            }
+
             g.toplantiNo = gun.toplantiNo;
             g.toplantiTarihi = gun.toplantiTarihi;
             g.saat = gun.saat;
@@ -274,6 +282,10 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            if (g.adimNo < 4)
+            {
+                return View();
+            }
             List<GDanisman> DL = db.GDanisman.Where(x => x.GuncelleID == g.ID).ToList();
             ViewBag.DL = DL;
             return View(g);

@@ -9,11 +9,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="Mosaddek">
-    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="shortcut icon" href="/Content/img/favicon.png">
 
-    <title>FlatLab - Flat & Responsive Bootstrap Admin Template</title>
+    <title>Düzce Üniversitesi</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/Content/css/bootstrap.min.css" rel="stylesheet">
@@ -44,13 +42,13 @@
                 </div>
             }
                 <div class="login-wrap">
-                    <input name="adi" type="text" class="form-control" placeholder="Adı" autofocus required>
-                    <input name="soyadi" type="text" class="form-control" placeholder="Soyadı" autofocus required>
-                    <input style="margin-bottom:15px;font-size:12px;" name="ogrMail" type="email" class="form-control" placeholder="Öğrenci Mail" autofocus required>
-                    <input name="tel" type="text" class="form-control" placeholder="Telefon Numarası" autofocus required>
-                    <input name="fak" type="text" class="form-control" placeholder="Bağlı olduğunuz Fakülte" autofocus required>
-                    <input onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="ogrNo" type="text" class="form-control" placeholder="Öğrenci Numarası" autofocus required>
-                    <input onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="tc" type="text" class="form-control" placeholder="Öğrenci T.C. Kimlik Numarası" autofocus required maxlength="11">
+                    <input name="adi" type="text" class="form-control" placeholder="Adı" autofocus required maxlength="100">
+                    <input name="soyadi" type="text" class="form-control" placeholder="Soyadı" autofocus required maxlength="100">
+                    <input style="margin-bottom:15px;font-size:12px;" name="ogrMail" type="email" class="form-control" placeholder="Öğrenci Mail" autofocus required maxlength="100">
+                    <input name="tel" type="text" class="form-control" placeholder="Telefon Numarası (05**)" autofocus required title="En az 11 karakter girmelisiniz." pattern=".{11,}" maxlength="11" >
+                    <input name="fak" type="text" class="form-control" placeholder="Bağlı olduğunuz Fakülte" autofocus required maxlength="200">
+                    <input onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="ogrNo" type="text" class="form-control" placeholder="Öğrenci Numarası" autofocus required   maxlength="100">
+                    <input onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="tc" type="text" class="form-control" placeholder="Öğrenci T.C. Kimlik Numarası" autofocus required title="En az 11 karakter girmelisiniz." pattern=".{11,}" maxlength="11">
                     <input name="sifre" type="password" class="form-control" placeholder="Şifre" required>
                     <button class="btn btn-danger btn-block" type="submit" style="color:white;" >Kayıt Ol</button>
                     <a class="btn btn-success btn-block" style="color:white;" href="/Kullanici/Login">Giriş Yap</a>

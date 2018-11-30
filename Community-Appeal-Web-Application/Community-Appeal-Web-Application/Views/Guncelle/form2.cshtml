@@ -13,6 +13,8 @@
 @model Guncelle
 
 @{
+
+
     if (Model != null)
     {
         <div class="row">
@@ -52,19 +54,20 @@
                             <div class="form-group">
                                 <input style="margin-right:5px;" type="text" class="form-control" id="mail" placeholder="e-Posta">
                             </div>
-                            <button style="float:right;margin-right:5px;" type="submit" class="btn btn-danger">Kaydet</button>
+                            <p>*Topluluğunuzda bulunacak olan 20 kişiyi ekledikten sonra "Kaydet" Buttonuna Basarak Form 3'e geçebilirsiniz.</p>
+                            @{
+                                if (Model.adimNo == 3)
+                                {
+                                    <a style="float:right;margin-left:5px;" href="/Home/form3" class="btn btn-primary">Form 3</a>
+                                }
+                            }
+                            <button style="float:right;margin-right:5px;" type="submit" class="btn btn-info">Kaydet</button>
                             <a id="ekle" style="margin-right:5px;float:right;" class="btn btn-success"><i class="glyphicon-plus"></i> Ekle</a>
 
 
                         </form>
                         <br />
-                        <p>*Topluluğunuzda bulunacak olan 20 kişiyi ekledikten sonra "Kaydet" Buttonuna Basarak Form 3'e geçebilirsiniz.</p>
-                        @{
-                            if (Model.adimNo == 3)
-                            {
-                                <a style="float:right;" href="/Home/form3" class="btn btn-primary">Form 3</a>
-                            }
-                        }
+
 
 
 
@@ -188,7 +191,7 @@
     else
     {
         <div class="alert alert-danger" role="alert">
-            <strong><p style="font-size:18px;"> @ViewBag.Hata</p></strong>
+            <strong><p style="font-size:18px;"> İlk önce 1. formu doldurmanız gerekmektedir.</p></strong>
         </div>
     }
 }
@@ -233,7 +236,7 @@
         var say = parseInt($('#say').text()) + 1;
 
 
-        if (value1 === "" || value2 === "" || value3 === "" || value4 === "" || value5 === "" || value6 === "" || value7 === "" ) {
+        if (value1 === "" || value2 === "" || value3 === "" || value4 === "" || value5 === "" || value6 === "" || value7 === "") {
             alert("Tüm alanlar doldurulmalıdır.");
         }
         else {
