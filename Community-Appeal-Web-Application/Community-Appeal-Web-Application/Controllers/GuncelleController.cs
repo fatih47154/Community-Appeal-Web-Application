@@ -304,56 +304,7 @@ namespace Community_Appeal_Web_Application.Controllers
             return View(g);
         }
 
-        //form6
-        [HttpGet]
-        public ActionResult form6()
-        {
-            Kullanici k = (Kullanici)Session["Kullanici"];
-            Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-
-            if (b.adimNo < 1)
-            {
-                ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
-                return View();
-            }
-            List<GDanisman> dl = db.GDanisman.Where(x => x.GuncelleID == b.ID).ToList();
-            GDanisman dl1 = db.GDanisman.FirstOrDefault(x => x.GuncelleID == b.ID && x.aktif == true);
-            ViewBag.dl = dl;
-            ViewBag.dl1 = dl1;
-            return View(b);
-        }
-
-        [HttpPost]
-        public ActionResult form6(GDanisman dan)
-        {
-            Kullanici k = (Kullanici)Session["Kullanici"];
-            Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-
-            GDanisman danisman = db.GDanisman.FirstOrDefault(x => x.ID == dan.ID);
-            //danisman.aktif = true;
-
-            //var danismanList = db.GDanisman.Where(x => x.ID != dan.ID && x.GuncelleID == b.ID).ToList();
-            //foreach (var item in danismanList)
-            //{
-            //    item.aktif = false;
-            //}
-
-            //db.SaveChanges();
-
-            ViewBag.danisman = danisman;
-
-            if (b.adimNo == 5)
-            {
-                b.adimNo = 6;
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("form6");
-
-        }
-
-
-        //form7
+        //form5.1
         [HttpGet]
         public ActionResult form7()
         {
