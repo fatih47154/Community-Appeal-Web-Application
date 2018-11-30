@@ -89,25 +89,25 @@ namespace Community_Appeal_Web_Application.Controllers
             return report;
         }
 
-        public ActionResult Form4_admin(int ID)
+        public ActionResult Form4()
         {
-            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == ID).FirstOrDefault();
-            var ogrnci = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
-            ViewBag.Ogreciler = ogrnci;
-            var report = new ViewAsPdf("Form3_admin", b)
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru g = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            List<Danisman> DL = db.Danisman.Where(x => x.basvuruID == g.ID).ToList();
+            ViewBag.DL = DL;
+            var report = new ViewAsPdf("Form4", g)
             {
 
             };
             return report;
         }
 
-        public ActionResult Form4()
+        public ActionResult Form4_admin(int ID)
         {
-            Kullanici k = (Kullanici)Session["Kullanici"];
-            Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            var ogrnci = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
-            ViewBag.Ogreciler = ogrnci;
-            var report = new ViewAsPdf("Form2")
+            Basvuru g = db.Basvuru.Where(x => x.kullanıcıID == ID).FirstOrDefault();
+            List<Danisman> DL = db.Danisman.Where(x => x.basvuruID == g.ID).ToList();
+            ViewBag.DL = DL;
+            var report = new ViewAsPdf("Form4_admin", g)
             {
 
             };
