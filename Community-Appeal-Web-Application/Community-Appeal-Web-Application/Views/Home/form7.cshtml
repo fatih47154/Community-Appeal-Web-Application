@@ -30,6 +30,21 @@
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
+                        Bilgilendirme Alanı
+                    </header>
+                    <div class="panel-body">
+                        <text> * Aşağıdaki formları sırası ile doldurunuz.</text><br />
+                        <text> * Girilmesi istenen bilgileri girdikten sonra en altta bulunan forma doğru bir şekilde geldiğini kontrol edeniz.</text>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
                         Yönetim Kurulu
                     </header>
                     <div class="panel-body">
@@ -200,7 +215,7 @@
                         </div>
                         <a href="#" id="ekle1" class="btn btn-success" style="margin-right: 5px;"><i class="glyphicon-plus"></i> Üye Ekle</a>
                         @{
-                            if (Model.adimNo >= 7)
+                            if (Model.adimNo == 8)
                             {
                                 <a href="/Home/form8" style="margin-left: 5px;" class="btn btn-primary">Form 8</a>
                             }
@@ -229,7 +244,7 @@
                         <div style="text-align: center;">
                             <p style="">
                                 <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif;">
-                                    DÜZCE ÜNİVERSİTESİ <b>@Model.toplulukAdi TOPLULUĞU</b><br/>
+                                    DÜZCE ÜNİVERSİTESİ <b>@Model.toplulukAdi.ToUpper() TOPLULUĞU</b><br/>
                                     OLAĞAN/OLAĞANÜSTÜ GENEL KURUL TUTANAĞI<br/>
                                     <b>@DateTime.Now.ToShortDateString()</b>
                                 </span>

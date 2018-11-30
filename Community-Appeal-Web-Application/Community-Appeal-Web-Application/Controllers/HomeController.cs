@@ -440,36 +440,22 @@ namespace Community_Appeal_Web_Application.Controllers
         }
 
         [HttpPost]
-        public ActionResult form5(int ID)
+        public ActionResult form5(Basvuru ba)
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            
-            if (b.Danisman.Count < 2)
+
+            if (b.adimNo==5)
             {
-                List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
-                List<OgrenciListesi> ol = db.OgrenciListesi.ToList();
-                ViewBag.ol = ol;
-                ViewBag.dl = dl;
-                TempData["a"] = "Bu formu kaydetmek için danışman sayısı 2 olmalıdır.";
-                return View(b);
+                b.adimNo = 6;
+                db.SaveChanges();
             }
-            else
-            {
-                if (b.adimNo <= 3)
-                {
-                    b.adimNo = 5;
-                    OgrenciListesi baskan = db.OgrenciListesi.FirstOrDefault(x => x.ID == ID);
-                    b.baskanAdi = baskan.adi;
-                    b.baskanSoyadi = baskan.soyadi;
-                    db.SaveChanges();
-                }
+
                 List<Danisman> dl = db.Danisman.Where(x => x.basvuruID == b.ID).ToList();
                 List<OgrenciListesi> ol = db.OgrenciListesi.ToList();
                 ViewBag.dl = dl;
                 ViewBag.ol = ol;
                 return View(b);
-            }
         }
 
         public PartialViewResult danismanListesiWidget()
@@ -556,9 +542,9 @@ namespace Community_Appeal_Web_Application.Controllers
 
             ViewBag.danisman = danisman;
 
-            if (b.adimNo == 5)
+            if (b.adimNo == 6)
             {
-                b.adimNo = 6;
+                b.adimNo = 7;
                 db.SaveChanges();
             }
 

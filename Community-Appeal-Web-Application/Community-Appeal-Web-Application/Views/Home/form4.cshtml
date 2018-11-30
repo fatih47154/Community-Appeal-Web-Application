@@ -204,8 +204,8 @@
                                 <form role="form" method="post" action="/Home/form4">
                                     <div class="form-group">
                                         <label>Topluluk Başkanı</label>
-                                        <select class="form-control" name="ID" required>
-                                            <option value="default">Topluluk Başkanı Seçiniz..</option>
+                                        <select class="form-control" name="ID" id="ID" required>
+                                            <option value="">Topluluk Başkanı Seçiniz..</option>
                                             @foreach (var item in ViewBag.Ogreciler)
                                             {
                                                 <option value="@item.ID"> @item.adi @item.soyadi</option>
@@ -223,6 +223,10 @@
                                     <div class="form-group">
                                         <label>Toplantı Numarası:</label>
                                         <input name="toplantiNo" type="number" class="form-control" id="toplantiNo" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Toplantı yeri:</label>
+                                        <input name="mekan" type="text" class="form-control" required>
                                     </div>
                                     <button type="submit" id="button" style="margin-right: 5px; float: right;" class="btn btn-info">Kaydet</button>
                                 </form>
@@ -362,7 +366,7 @@
                                     <div class="form-group">
                                         <label>Topluluk Başkanı</label>
                                         <select class="form-control" name="ID" required>
-                                            <option value="default">Topluluk Başkanı Seçiniz..</option>
+                                            <option value="">Topluluk Başkanı Seçiniz..</option>
                                             @foreach (OgrenciListesi item in ViewBag.Ogreciler)
                                             {
 
@@ -404,11 +408,12 @@
                                         <label>Toplantı yeri:</label>
                                         <input name="mekan" type="text" class="form-control" value="@Model.mekan" required>
                                     </div>
-                                    <button type="submit" id="button" style="margin-right: 5px; float: right;" class="btn btn-info">Kaydet</button>
                                     @if (Model.adimNo == 5)
                                     {
-                                        <a href="/Guncelle/form5" style="margin-right: 5px; float: right;" class="btn btn-info">Form 5</a>
+                                        <a href="/Guncelle/form5" style="margin-left: 5px; float: right;" class="btn btn-primary">Form 5</a>
                                     }
+                                    <button type="submit" id="button" style="margin-right: 5px; float: right;" class="btn btn-info">Kaydet</button>
+
                                 </form>
                             </div>
                         </div>
@@ -436,10 +441,10 @@
 
 
                             <p style="tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;</span></p>
-                            <p style="tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">Topluluk Başkanı&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Topluluk Danışmanı</span></p>
-                            <p style="tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;&nbsp;Ad-Soyad-İmza&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ad-Soyad-İmza</span></p>
+                            <p style="tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topluluk Başkanı&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Topluluk Danışmanı</span></p>
+                            <p style="tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ad-Soyad-İmza&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ad-Soyad-İmza</span></p>
 
-                            <p style="tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.baskanAdi @Model.baskanSoyadi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Model.Danisman.Where(x => x.aktif == true).FirstOrDefault().adi  @Model.Danisman.Where(x => x.aktif == true).FirstOrDefault().soyadi </span></p>
+                            <p style="tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">@Model.baskanAdi @Model.baskanSoyadi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Model.Danisman.Where(x => x.aktif == true).FirstOrDefault().adi  @Model.Danisman.Where(x => x.aktif == true).FirstOrDefault().soyadi </span></p>
                             <p>&nbsp;</p>
                         </div>
                     </section>

@@ -25,23 +25,24 @@
 
                         <form role="form" method="post" action="/Home/form6">
                             @*<div class="form-group">
-                                    <label>Danışman Seçiniz</label>
-                                    <select class="form-control" id="list" name="ID">
-                                        <option>Danışman Seçiniz...</option>
-                                        @foreach (var item in Model.Danisman.ToList())
-                                        {
-                                            <option value="@item.ID">@item.adi<span> </span>@item.soyadi</option>
-                                        }
-                                    </select>
-                                </div>*@
-
-                            <button type="submit" style="margin-right: 5px;" class="btn btn-info">Kaydet</button>
+            <label>Danışman Seçiniz</label>
+            <select class="form-control" id="list" name="ID">
+                <option>Danışman Seçiniz...</option>
+                @foreach (var item in Model.Danisman.ToList())
+                {
+                    <option value="@item.ID">@item.adi<span> </span>@item.soyadi</option>
+                }
+            </select>
+        </div>*@
+                            <text>* Bu formdaki tüm veriler önceki formlarda girilmiştir. Bu Formu kontrol ettikten sonra Kaydet dedikten sonra 7.forma geçebilirsiniz.</text>
                             @{
-                                if (Model.adimNo >= 6)
+                                if (Model.adimNo == 7)
                                 {
-                                    <a href="/Home/form7" class="btn btn-primary">Form 7</a>
+                                    <a href="/Home/form7" style="float:right;margin-left:5px;" class="btn btn-primary">Form 7</a>
                                 }
                             }
+                            <button type="submit" style="float:right;" class="btn btn-info">Kaydet</button>
+
                         </form>
                     </div>
                 </section>
