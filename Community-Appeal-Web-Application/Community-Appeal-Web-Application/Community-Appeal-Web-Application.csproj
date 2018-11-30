@@ -306,6 +306,16 @@
     <Content Include="Views\Guncelle\yKuruluListesiWidget.cshtml" />
     <Content Include="Views\Guncelle\dKuruluListesiWidget.cshtml" />
     <Content Include="Views\Guncelle\form8.cshtml" />
+    <Content Include="Views\Print\Form6.cshtml" />
+    <Content Include="Views\Print\Form6_admin.cshtml" />
+    <Content Include="Views\Print\Form7.cshtml" />
+    <Content Include="Views\Print\Form8.cshtml" />
+    <Content Include="Views\Print\Form7_admin.cshtml" />
+    <Content Include="Views\Print\Form8_admin.cshtml" />
+    <Content Include="Views\Print\GForm7.cshtml" />
+    <Content Include="Views\Print\GForm7_admin.cshtml" />
+    <Content Include="Views\Print\GForm8.cshtml" />
+    <Content Include="Views\Print\GForm8_admin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
