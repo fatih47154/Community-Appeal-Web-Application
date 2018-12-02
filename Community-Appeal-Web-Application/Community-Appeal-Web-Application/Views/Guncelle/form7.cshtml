@@ -16,6 +16,13 @@
 
 @model Guncelle
 
+<style>
+    body {
+        text-align: justify;
+        text-rendering: geometricPrecision;
+    }
+</style>
+
 @{
     if (Model != null)
     {
@@ -26,6 +33,15 @@
                 <strong>@TempData["YönetimHata"]</strong>
             </div>
         }
+
+        if (TempData["Eklendi"] != null)
+        {
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>@TempData["Eklendi"]</strong>
+            </div>
+        }
+
         <div class="row">
             <div class="col-lg-12">
                 <section class="panel">
@@ -37,12 +53,16 @@
                         <text><span style="color: red">* </span>Girilmesi istenen bilgileri girdikten sonra en altta bulunan forma doğru bir şekilde geldiğini kontrol edeniz.</text>
                         <br />
                         <text><span style="color: red">* </span>Yönetim Kurulu ve Denetim Kurulunda Toplam 10 Kişi Bulunduğunda Bir Sonraki Forma Geçebilirsiniz.</text>
+                        <br><text><span style="color: red">* </span>Tüm alanları doldurduktan sonra bilgilendirme alanındaki kaydet buttonuna basarak başvurunuzu tamamlayabilirsiniz.</text>
+                        <br />
                         @{
-                            if (Model.adimNo >= 8)
+                            if (Model.adimNo >= 5)
                             {
-                                <a href="/Guncelle/form8" style="margin-left: 5px;float: right" class="btn btn-primary">Form 8</a>
+                                <a href="/Guncelle/form8" style="margin-left: 5px;float: right" class="btn btn-primary">Form 5.1</a>
                             }
                         }
+
+                        <a href="/Guncelle/form7Kayit" style="margin-left: 5px;float: right" class="btn btn-info">Kaydet</a>
                     </div>
 
                 </section>

@@ -38,6 +38,37 @@
 @{
     if (Model != null)
     {
+        if (TempData["YönetimHata"] != null)
+        {
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>@TempData["YönetimHata"]</strong>
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Bilgilendirme Alanı
+                    </header>
+                    <div class="panel-body">
+                        <text><span style="color: red">* </span>Aşağıdaki formları sırası ile doldurunuz.</text><br />
+                        <text><span style="color: red">* </span>Aşağıdaki forma göre her bir yönetim kurulu üyesi için "Yönetim Kurulu Üye Düzenle" alanını doldurunuz.</text>
+                        <br />
+                        @if (Model.adimNo >= 6)
+                        {
+                            <a href="/Guncelle/guncellemeTamamla" style="margin-left: 5px;float: right" class="btn btn-primary">Güncelleme Tamamlama</a>
+                        }
+                        <a href="/Guncelle/form8Kaydet" style="float:right;" class="btn btn-info">Kaydet</a>
+
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-lg-12">
                 <section class="panel">
@@ -118,12 +149,6 @@
                             <button type="submit" style="margin-right: 5px;" class="btn btn-info">Üye Bilgilerini Kaydet</button>
                             <a href="/Guncelle/form8Kaydet" class="btn btn-primary">Kaydet</a>
 
-                            @{
-                                if (Model.adimNo >= 8)
-                                {
-                                    <a href="/Guncelle/guncellemeTamamla" class="btn btn-primary" style="margin-left:5px">Başvuru Tamamla</a>
-                                }
-                            }
                         </form>
                     </div>
                 </section>
@@ -192,13 +217,47 @@
                         </table>
 
                         <br />
+                    @{
+                        int gunInt = 0;
+                        gunInt = (int)Model.kurulusTarihi.Value.Day;
+                        string ay = Model.kurulusTarihi.Value.Month.ToString();
+                        string yil = Model.kurulusTarihi.Value.Year.ToString();
+                        string gun;
+                        if (gunInt <= 9)
+                        {
+                            gun = "0" + Model.kurulusTarihi.Value.Day.ToString();
+                        }
+                        else
+                        {
+                            gun = Model.kurulusTarihi.Value.Day.ToString();
+                        }
 
+                        string kurulusTarihi = yil + "-" + ay + "-" + gun;
+                    }
+
+                    @{
+                        int gunInt1 = 0;
+                        gunInt = (int)Model.toplantiTarihi.Value.Day;
+                        string ay1 = Model.toplantiTarihi.Value.Month.ToString();
+                        string yil1 = Model.toplantiTarihi.Value.Year.ToString();
+                        string gun1;
+                        if (gunInt1 <= 9)
+                        {
+                            gun1 = "0" + Model.toplantiTarihi.Value.Day.ToString();
+                        }
+                        else
+                        {
+                            gun1 = Model.toplantiTarihi.Value.Day.ToString();
+                        }
+
+                        string toplantiTarihi = yil1 + "-" + ay1 + "-" + gun1;
+                    }
                         <table style="width: 100%; height: 90px;" id="table2">
                             <tr>
                                 <th style="width: 13%">Topluluk Adı</th>
                                 <th colspan="6">@Model.toplulukAdi</th>
                                 <th style="width: 15%">Kuruluş Tarihi</th>
-                                <th style="width: 15%">@Model.kurulusTarihi</th>
+                                <th style="width: 15%">@kurulusTarihi</th>
                             </tr>
                             <tr>
                                 <th>Toplantı Niteliği</th>
@@ -217,7 +276,7 @@
                                 {
                                     <th></th>}
                                 <th>Toplantı Tarihi</th>
-                                <th>@Model.toplantiTarihi</th>
+                                <th>@toplantiTarihi</th>
                                 <th>Toplam Üye Sayısı</th>
                                 <th>@Model.uyeSayisi</th>
                             </tr>
