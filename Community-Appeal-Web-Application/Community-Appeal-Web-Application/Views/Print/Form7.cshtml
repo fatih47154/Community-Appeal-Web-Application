@@ -6,7 +6,17 @@
 @using Community_Appeal_Web_Application.Models
 @model Basvuru
     
-<section class="panel-body" style="padding-left: 90px; padding-right: 90px">
+<style type="text/css">
+    table, tr, td, th, tbody, thead, tfoot {
+        page-break-inside: avoid !important;
+    }
+
+    body {    
+        text-align: justify;
+        text-rendering: geometricPrecision;
+    }
+</style>
+<section class="panel-body" style="padding-left: 40px; padding-right: 40px">
     <div style="float: right;">
         <p style="text-indent: 35.4pt;"><span style="font-size: 12.0pt;font-family: 'Times New Roman', serif;">Ek-7</span></p>
     </div>
@@ -24,7 +34,7 @@
     <br />
     <div style="">
         <p style="text-indent: 35.4pt;">
-            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif;text-align: justify">
+            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif;text-align: justify-all">
                 Düzce Üniversitesi <b>@Model.toplulukAdi</b> Topluluğu
                 <b>@Model.toplantiTarihi.ToString().Substring(0, 10)</b>
                 Tarihinde saat <b>@Model.saat</b>'de <b>@Model.mekan</b>'de,
@@ -44,66 +54,66 @@
                 üye ile @{
                     if (Model.marscı == null)
                     {
-                        <span>…………………………………………</span>
+                        <span>…………………………………………</span><i>(kişi ismi yazılacak)</i>
                     }
                     else
                     {
                         <b>@Model.marscı</b>
                     }
                 }
-                (kişi ismi yazılacak) tarafından açıldı.
+                 tarafından açıldı.
             </span>
         </p>
 
         <p style="text-indent: 35.4pt;">
-            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify-all">
                 Açılış ve yoklama gerçekleştikten sonra @{
                     if (Model.marscı == null)
                     {
-                        <span>…………………………………………</span>
+                        <span>…………………………………………</span><i>(kişi ismi yazılacak)</i>
                     }
                     else
                     {
                         <b>@Model.marscı</b>
                     }
-                } (kişi ismi yazılacak) katılanları
+                } katılanları
                 saygı duruşunda bulunmaya ve İstiklal Marşı’nı söylemeye davet etti.
                 <br /><br />
                 Gündemin ikinci maddesi gereği, toplantıyı yönetmek üzere Divan Kurulu oluşturuldu.
                 Divan Başkanlığı’na @{
                     if (Model.divanBaskanAdi == null)
                     {
-                        <span>…………………………………………</span>
+                        <span>…………………………………………</span><i>(kişi ismi yazılacak)</i>
                     }
                     else
                     {
                         <b>@Model.divanBaskanAdi<span> </span>@Model.divanBaskanSoyadi</b>
                     }
-                } (kişi ismi yazılacak), Başkan Yardımcılığına @{
+                }, Başkan Yardımcılığına @{
                     if (ViewBag.BaskanYar == null)
                     {
-                        <span>…………………………………………</span>
+                        <span>…………………………………………</span><i>(kişi ismi yazılacak)</i>
                     }
                     else
                     {
                         <b>@ViewBag.BaskanYar.adi<span> </span>@ViewBag.BaskanYar.soyadi</b>
                     }
                 }
-                (kişi ismi yazılacak), Yazman üyeliğine @{
+                , Yazman üyeliğine @{
                     if (Model.yazmanAdi == null)
                     {
-                        <span>…………………………………………</span>
+                        <span>…………………………………………</span><i>(kişi ismi yazılacak)</i>
                     }
                     else
                     {
                         <b>@Model.yazmanAdi<span> </span>@Model.yazmanSoyadi</b>
                     }
-                } (kişi ismi yazılacak) seçildi.
+                }  seçildi.
             </span>
         </p>
 
         <p style="text-indent: 35.4pt;">
-            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify-all">
                 Gündemin üçüncü maddesi gereği, @{
                     if (Model.akademikYıl == null)
                     {
@@ -114,62 +124,90 @@
                         <b>@Model.akademikYıl</b>
                     }
                 } Akademik yılında gerçekleştirilecek etkinlikler
-                belirlenmiştir. (Burada gerçekleştirilecek etkinlikler anlatılacaktır.)
+                belirlenmiştir. @{
+                                    if (Model.etkinlik == null)
+                                    {
+                                        <span><i>(Burada gerçekleştirilecek
+                                            etkinlikler için bütçeden bahsedilecek.)</i></span>
+                                    }
+                                    else
+                                    {
+                                        <b>@Model.etkinlik</b>
+                                    }
+                                }
             </span>
         </p>
 
         <p style="text-indent: 35.4pt;">
-            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
-                Gündemin dördüncü maddesi gereği, bütçe önerisi görüşüldü. (Burada gerçekleştirilecek
-                etkinlikler için bütçeden bahsedilecek.)
+            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify-all-all">
+                Gündemin dördüncü maddesi gereği, bütçe önerisi görüşüldü. @{
+                                                                               if (Model.butce == null)
+                                                                               {
+                                                                                   <span><i>(Burada gerçekleştirilecek
+                                                                                       etkinlikler için bütçeden bahsedilecek.)</i></span>
+                                                                               }
+                                                                               else
+                                                                               {
+                                                                                   <b>@Model.butce</b>
+                                                                               }
+                                                                           }
             </span>
         </p>
 
         <p style="text-indent: 35.4pt;">
-            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify-all">
                 Gündemin beşinci maddesi gereği, Divan Başkanı @{
                     if (Model.divanBaskanAdi == null)
                     {
-                        <span>…………………………………………</span>
+                        <span>…………………………………………</span><i>(kişi ismi yazılacak)</i>
                     }
                     else
                     {
                         <b>@Model.divanBaskanAdi<span> </span>@Model.divanBaskanSoyadi</b>
                     }
-                } (kişi ismi yazılacak)
+                } 
                 yönetim kurulunun ibrazının gerektiğini belirtti.
             </span>
         </p>
 
         <p style="text-indent: 35.4pt;">
-            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify-all">
                 Gündemin altıncı maddesi gereği, yönetim kurulunun, denetleme kurulunun,
-                (topluluk tüzüğünde belirtilen başka kurul varsa burada yazılacak) seçimine
+                @{
+                    if (Model.baskaKurul == null)
+                    {
+                        <span>…………………………………………</span><i> (topluluk tüzüğünde belirtilen başka kurul varsa burada yazılacak)</i>
+                    }
+                    else
+                    {
+                        <b>@Model.baskaKurul</b>
+                    }
+                } seçimine
                 Divan Başkanı @{
                     if (Model.divanBaskanAdi == null)
                     {
-                        <span>…………………………………………</span>
+                        <span>…………………………………………</span><i>(kişi ismi yazılacak)</i>
                     }
                     else
                     {
                         <b>@Model.divanBaskanAdi<span> </span>@Model.divanBaskanSoyadi</b>
                     }
-                } (kişi ismi yazılacak) başkanlığında geçildi.
+                } başkanlığında geçildi.
             </span>
         </p>
 
         <p style="text-indent: 35.4pt;">
-            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify-all">
                 Yönetim Kurulu için gerekli koşulları ve görevlerini Divan Başkanı @{
                     if (Model.divanBaskanAdi == null)
                     {
-                        <span>…………………………………………</span>
+                        <span>…………………………………………</span><i>(kişi ismi yazılacak)</i>
                     }
                     else
                     {
                         <b>@Model.divanBaskanAdi<span> </span>@Model.divanBaskanSoyadi</b>
                     }
-                } (kişi ismi yazılacak)
+                }
                 üyelere anlattıktan sonra Yönetim Kurulu’na üye olmak isteyen kişiler kendilerini tanıttı.
                 Yönetim Kurulu üyesi olmak isteyen kişiler aşağıdadır:
             </span>
@@ -212,36 +250,41 @@
     </table>
 
         <p style="text-indent: 35.4pt;">
-            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify-all">
                 Divan Başkanı @{
                     if (Model.divanBaskanAdi == null)
                     {
-                        <span>…………………………………………</span>
+                        <span>…………………………………………</span><i>(kişi ismi yazılacak)</i>
                     }
                     else
                     {
                         <b>@Model.divanBaskanAdi<span> </span>@Model.divanBaskanSoyadi</b>
                     }
-                } (kişi ismi yazılacak) yönetim kurulu üyesi olmak isteyen üyelere Yönetim Kurulu’nun
+                } yönetim kurulu üyesi olmak isteyen üyelere Yönetim Kurulu’nun
                 @{
                     if (Model.YonetimKurulu == null)
                     {
-                        <span>………………………</span>
+                        <span>………………………</span><i>
+                                                  (topluluk tüzüğünde belirtilen yönetim kurulu üyelerinin neler olduğu ve kaç kişiden oluştuğu
+                                                  yazılacak)</i>                <span>
+                    oluştuğunu söyledikten sonra üyelere söz vererek talep ettikleri kurul üyeliğini sordu.
+                    Buna göre Yönetim Kurulu şu kişilerden oluşmuştur;
+                </span> <i>(Burada kurul üyeliklerine kimlerin seçildiği
+                                                                                                                            yazılacak)</i>
+                                            
                     }
                     else
                     {
-                        <b>@Model.YonetimKurulu.Count()</b>
+                        <b>@Model.YonetimKurulu.Count()</b><span> kişiden oluştuğunu söyledikten sonra üyelere söz vererek talep ettikleri kurul üyeliğini sordu.
+                                                               Buna göre Yönetim Kurulu şu kişilerden oluşmuştur;</span> 
                     }
-                } (topluluk tüzüğünde belirtilen yönetim kurulu üyelerinin neler olduğu ve kaç kişiden oluştuğu
-                yazılacak) oluştuğunu söyledikten sonra üyelere söz vererek talep ettikleri kurul üyeliğini sordu.
-                Buna göre Yönetim Kurulu şu kişilerden oluşmuştur; (Burada kurul üyeliklerine kimlerin seçildiği
-                yazılacak)
+                }
             </span>
         </p><br />
-        <br/><br/><br/><br/><br/>
+        <br/>
     <table class="table" style="width: 70%; margin: auto; border: solid; border: solid; border-color:lightgrey;border-width: 2px">
         <thead>
-        <tr>
+        <tr style="page-break-inside: avoid !important">
             <th>Sıra No</th>
             <th>Görev Adı</th>
             <th>Adı Soyadı</th>
@@ -267,7 +310,7 @@
     <br />
 
     <p style="text-indent: 35.4pt;">
-        <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+        <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify-all">
             Yönetim Kurulu seçiminin ardından Denetleme Kurulu seçimine geçilmiştir.
             Yapılan seçimin ardından Denetleme Kurulu şu kişilerden oluşmuştur;
         </span>
@@ -298,40 +341,50 @@
 </table>
     <br />
     <p style="text-indent: 35.4pt;">
-        <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+        <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify-all">
             Divan Başkanı @{
                 if (Model.divanBaskanAdi == null)
                 {
-                    <span>…………………………………………</span>
+                    <span>…………………………………………</span><i>(kişi ismi yazılacak)</i>
                 }
                 else
                 {
                     <b>@Model.divanBaskanAdi<span> </span>@Model.divanBaskanSoyadi</b>
                 }
-            } (kişi ismi yazılacak) Yönetim Kurulu ve Denetleme Kurulu üyelerinin seçimlerinin bittiğini
+            } Yönetim Kurulu ve Denetleme Kurulu üyelerinin seçimlerinin bittiğini
             ve seçimlerle ilgili konuşmak isteyen olup olmadığını toplantıya katılan üyelere sordu.
-            (Topluluk tüzüğünde belirtilen başka Kurul varsa onların üye seçimi de yapılacak ve burada yazılacak)
+            @{
+                if (Model.baskaKurul == null)
+                {
+                    <span>…………………………………………</span><i> (Topluluk tüzüğünde belirtilen başka Kurul varsa onların üye seçimi de yapılacak ve burada yazılacak)</i>
+                }
+                else
+                {
+                    <b>@Model.baskaKurul</b>
+                }
+            }
+            
         </span>
     </p>
 
     <p style="text-indent: 35.4pt;">
-        <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+        <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify-all">
             Divan Başkanı @{
                 if (Model.divanBaskanAdi == null)
                 {
-                    <span>…………………………………………</span>
+                    <span>…………………………………………</span><i>(kişi ismi yazılacak)</i>
                 }
                 else
                 {
                     <b>@Model.divanBaskanAdi<span> </span>@Model.divanBaskanSoyadi</b>
                 }
-            } (kişi ismi yazılacak) gündemin yedinci maddesi gereği sözü konuşmak isteyen üyelere verdi.
-            (Söz almak isteyen çıkmazsa kapanışa geçileceği söylendi.)
+            } gündemin yedinci maddesi gereği sözü konuşmak isteyen üyelere verdi.
+            <i>(Söz almak isteyen çıkmazsa kapanışa geçileceği söylendi.)</i>
         </span>
     </p>
 
     <p style="text-indent: 35.4pt;">
-        <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+        <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify-all">
             Divan Başkanı @{
                 if (Model.divanBaskanAdi == null)
                 {
@@ -347,7 +400,7 @@
     <br /><br />
     <div style="float: right">
         <p style="text-indent: 35.4pt; text-align: center">
-            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
+            <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify-all">
                 Düzce Üniversitesi @{
                     if (Model.toplulukAdi == null)
                     {
