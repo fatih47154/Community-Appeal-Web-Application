@@ -112,7 +112,7 @@ namespace Community_Appeal_Web_Application.Controllers
         [HttpGet]
         public ActionResult Basvurular()
         {
-            return View(db.Basvuru.Where(x=>x.adimNo>=6).ToList());
+            return View(db.Basvuru.Where(x=>x.adimNo>=8).ToList());
         }
 
         [HttpGet]

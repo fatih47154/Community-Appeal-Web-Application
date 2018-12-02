@@ -318,11 +318,13 @@ namespace Community_Appeal_Web_Application.Controllers
                 {
                     d2.aktif = true;
                     d1.aktif = false;
+                    db.SaveChanges();
                 }
                 else
                 {
                     d1.aktif = true;
                     d2.aktif = false;
+                    db.SaveChanges();
                 }
                 d1.adi = danisman.adi1;
                 d1.soyadi = danisman.soyadi1;
@@ -330,6 +332,7 @@ namespace Community_Appeal_Web_Application.Controllers
                 d1.akademikBirim = danisman.akademikBirim1;
                 d1.basvuruID = b.ID;
 
+                db.SaveChanges();
 
                 d2.adi = danisman.adi2;
                 d2.soyadi = danisman.soyadi2;
@@ -347,18 +350,20 @@ namespace Community_Appeal_Web_Application.Controllers
                 {
                     d2.aktif = true;
                     d1.aktif = false;
+                    db.SaveChanges();
                 }
                 else
                 {
                     d1.aktif = true;
                     d2.aktif = false;
+                    db.SaveChanges();
                 }
                 d1.adi = danisman.adi1;
                 d1.soyadi = danisman.soyadi1;
                 d1.unvan = danisman.unvan1;
                 d1.akademikBirim = danisman.akademikBirim1;
                 d1.basvuruID = b.ID;
-
+                db.SaveChanges();
 
                 d2.adi = danisman.adi2;
                 d2.soyadi = danisman.soyadi2;

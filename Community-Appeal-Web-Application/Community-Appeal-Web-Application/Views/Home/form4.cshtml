@@ -78,15 +78,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 2. Danışman Soyadı.</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().adi">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().soyadi">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 2. Danışman Unvanı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().adi">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().unvan">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 2. Danışman Akademik Birim</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().adi">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().akademikBirim">
                                         </div>
                                         <div class="checkbox">
                                             <label>
@@ -302,15 +302,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Topluluk 2. Danışman Soyadı.</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().adi">
+                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().soyadi">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Topluluk 2. Danışman Unvanı</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().adi">
+                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().unvan">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Topluluk 2. Danışman Akademik Birim</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().adi">
+                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().akademikBirim">
                                     </div>
                                     <div class="checkbox">
                                         <label>
@@ -410,7 +410,7 @@
                                     </div>
                                     @if (Model.adimNo == 5)
                                     {
-                                        <a href="/Guncelle/form5" style="margin-left: 5px; float: right;" class="btn btn-primary">Form 5</a>
+                                        <a href="/Home/form5" style="margin-left: 5px; float: right;" class="btn btn-primary">Form 5</a>
                                     }
                                     <button type="submit" id="button" style="margin-right: 5px; float: right;" class="btn btn-info">Kaydet</button>
 
