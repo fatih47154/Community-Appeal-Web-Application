@@ -131,6 +131,33 @@ namespace Community_Appeal_Web_Application.Controllers
         }
 
         [HttpPost]
+        public ActionResult form2(Guncelle guncelle)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            if (b.GOgrenciListesi.Count < 20)
+            {
+                List<GOgrenciListesi> ol = db.GOgrenciListesi.Where(x => x.GuncelleID == b.ID).ToList();
+                ViewBag.ol = ol;
+                ViewBag.hata = "Bu formu kaydetmek için en az 20 kişi eklemelisiniz.";
+                return View(b);
+            }
+            else
+            {
+                b.akademikYıl = DateTime.Now.Year.ToString() + " - " + DateTime.Now.AddYears(+1).Year.ToString();
+                if (b.adimNo == 2)
+                {
+                    b.adimNo = 3;
+                    db.SaveChanges();
+                }
+                List<GOgrenciListesi> ol = db.GOgrenciListesi.Where(x => x.GuncelleID == b.ID).ToList();
+                ViewBag.ol = ol;
+                return View(b);
+            }
+        }
+
+        [HttpPost]
         public ActionResult OgrenciListesiEkle(GOgrenciListesi ol)
         {
 
@@ -194,6 +221,8 @@ namespace Community_Appeal_Web_Application.Controllers
             {
                 return View();
             }
+
+            ViewBag.Ogreciler = db.GOgrenciListesi.Where(x => x.GuncelleID == g.ID).ToList();
             return View(g);
         }
 
@@ -256,22 +285,23 @@ namespace Community_Appeal_Web_Application.Controllers
                 return View();
             }
 
-            g.toplantiNo = gun.toplantiNo;
-            g.toplantiTarihi = gun.toplantiTarihi;
-            g.saat = gun.saat;
-            g.mekan = gun.mekan;
-
-            if (g.adimNo == 2)
-            {
-                g.adimNo = 3;
-            }
-
             if (g.GFaliyetPlani.Count < 5)
             {
                 ViewBag.Hata = "En az 5 faaliyet eklemeniz gerekmektedir.";
                 return View(g);
             }
+            g.toplantiNo = gun.toplantiNo;
+            g.toplantiTarihi = gun.toplantiTarihi;
+            g.saat = gun.saat;
+            g.mekan = gun.mekan;
 
+            if (g.adimNo == 3)
+            {
+                g.adimNo = 4;
+            }
+           
+
+            ViewBag.Ogreciler = db.GOgrenciListesi.Where(x => x.GuncelleID == g.ID).ToList();
             db.SaveChanges();
             return View(g);
         }
@@ -296,10 +326,12 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            if (g.adimNo==3)
+            if (g.adimNo==4)
             {
-                g.adimNo = 4;
+                g.adimNo = 5;
             }
+            List<GDanisman> DL = db.GDanisman.Where(x => x.GuncelleID == g.ID).ToList();
+            ViewBag.DL = DL;
             db.SaveChanges();
             return View(g);
         }

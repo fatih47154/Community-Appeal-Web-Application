@@ -1,6 +1,5 @@
 ﻿
 @{
-    ViewBag.Title = "form4";
     if (Session["Admin"] != null)
     {
         Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -49,9 +48,9 @@
                         <text><span style="color: red">* </span>İlk önce danışman bilgilerini giriniz..</text><br />
                         <text><span style="color: red">* </span>Aşağıdaki formda faaliyet alanı için 5 adet faaliyet giriniz..</text><br />
                         <text><span style="color: red">* </span>Topluluğunuza ait bilgileri giriniz.</text><br />
-                        @if (Model.adimNo >= 5)
+                        @if (Model.adimNo >= 4)
                         {
-                            <a href="/Home/form5" style="margin-left: 5px;float: right" class="btn btn-primary">Form 5</a>
+                            <a href="/Guncelle/form4" style="margin-left: 5px;float: right" class="btn btn-primary">Form 4</a>
                         }
                     </div>
 
@@ -61,132 +60,9 @@
         </div>
 
 
-        if (Model.adimNo == 4)
+        if (Model.adimNo == 3)
         {
-            if (Model.GDanisman.Where(x => x.aktif == true).SingleOrDefault() != null)
-            {
-                <div class="row">
-                    <div class="col-lg-12">
-                        <section class="panel">
-                            <header class="panel-heading">
-                                Form 4 - Danışman Ekleme
-                            </header>
-                            <div class="panel-body">
-                                <form class="form" role="form" method="post" action="/Guncelle/form4DanismanEkle">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 1. Danışman Adı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi1" value="@Model.GDanisman.Where(x=>x.aktif==true).SingleOrDefault().adi">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 1. Danışman Soyadı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi1" value="@Model.GDanisman.Where(x=>x.aktif==true).SingleOrDefault().soyadi">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 1. Danışman Unvanı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan1" value="@Model.GDanisman.Where(x=>x.aktif==true).SingleOrDefault().unvan">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 1. Danışman Akademik Birim</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim1" value="@Model.GDanisman.Where(x=>x.aktif==true).SingleOrDefault().akademikBirim">
-                                        </div>
-                                        <text>* Aşağıdaki formları doldurmadan önce danışmanlara ait bilgileri girdikten sonra yandeki button ile danışman bilgilerini kayıt etmelisiniz</text>
-                                    </div>
-                                    <div class="col-lg-6">
-
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 2. Danışman Adı.</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi2" value="@Model.GDanisman.Where(x=>x.aktif==false).SingleOrDefault().adi">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 2. Danışman Soyadı.</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi2" value="@Model.GDanisman.Where(x=>x.aktif==false).SingleOrDefault().soyadi">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 2. Danışman Unvanı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan2" value="@Model.GDanisman.Where(x=>x.aktif==false).SingleOrDefault().unvan">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 2. Danışman Akademik Birim</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim2" value="@Model.GDanisman.Where(x=>x.aktif==false).SingleOrDefault().akademikBirim">
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="true" name="Kontrol"> Aşağıdaki formda danışman alanına 2.danışmanın gelmesini istiyorsanız yandaki kutucuğu İşaretleyiniz. (Default olarak 1. Danışman forma yazılır.)
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <button style="float:right;margin-left:5px;" type="submit" class="btn btn-info">Kaydet</button>
-                                </form>
-                            </div>
-                        </section>
-                    </div>
-
-                </div>
-            }
-            else
-            {
-                <div class="row">
-                    <div class="col-lg-12">
-                        <section class="panel">
-                            <header class="panel-heading">
-                                Form 4 - Danışman Ekleme
-                            </header>
-                            <div class="panel-body">
-                                <form class="form" role="form" method="post" action="/Home/form4DanismanEkle">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 1. Danışman Adı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi1">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 1. Danışman Soyadı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi1">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 1. Danışman Unvanı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan1">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 1. Danışman Akademik Birim</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim1">
-                                        </div>
-                                        <text>* Aşağıdaki formları doldurmadan önce danışmanlara ait bilgileri girdikten sonra yandeki button ile danışman bilgilerini kayıt etmelisiniz</text><br />
-
-                                    </div>
-                                    <div class="col-lg-6">
-
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 2. Danışman Adı.</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi2">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 2. Danışman Soyadı.</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi2">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 2. Danışman Unvanı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan2">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Topluluk 2. Danışman Akademik Birim</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim2">
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="true" name="Kontrol"> Aşağıdaki formda danışman alanına 2.danışmanın gelmesini istiyorsanız yandaki kutucuğu İşaretleyiniz. (Default olarak 1. Danışman forma yazılır.)
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <button style="float:right;margin-left:5px;" type="submit" class="btn btn-info">Kaydet</button>
-                                </form>
-                            </div>
-                        </section>
-                    </div>
-
-                </div>
-            }
-
+           
             <div class="row">
                 <div class="col-lg-6">
                     <section class="panel">
@@ -194,7 +70,7 @@
                             Form 4 - Faaliyet Ekleme
                         </header>
                         <div class="panel-body">
-                            <form role="form" method="post" action="/Home/faaliyetPlaniEkle">
+                            <form role="form" method="post" action="/Guncelle/faaliyetPlaniEkle">
                                 <div class="form-group">
                                     <label>Faliyet Türü:</label>
                                     <input name="faliyetTürü" type="text" class="form-control" id="faliyetTürü" required>
@@ -223,7 +99,7 @@
                         </header>
                         <div class="panel-body">
                             <div class="panel-body">
-                                <form role="form" method="post" action="/Home/form4">
+                                <form role="form" method="post" action="/Guncelle/form3">
                                     <div class="form-group">
                                         <label>Topluluk Başkanı</label>
                                         <select class="form-control" name="ID" id="ID" required>
@@ -289,64 +165,7 @@
         }
         else
         {
-            <div class="row">
-                <div class="col-lg-12">
-                    <section class="panel">
-                        <header class="panel-heading">
-                            Form 4 - Danışman Ekleme
-                        </header>
-                        <div class="panel-body">
-                            <form class="form" role="form" method="post" action="/Home/form4DanismanEkle">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Topluluk 1. Danışman Adı</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi1" value="@Model.GDanisman.Where(x=>x.aktif==true).SingleOrDefault().adi">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Topluluk 1. Danışman Soyadı</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi1" value="@Model.GDanisman.Where(x=>x.aktif==true).SingleOrDefault().soyadi">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Topluluk 1. Danışman Unvanı</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan1" value="@Model.GDanisman.Where(x=>x.aktif==true).SingleOrDefault().unvan">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Topluluk 1. Danışman Akademik Birim</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim1" value="@Model.GDanisman.Where(x=>x.aktif==true).SingleOrDefault().akademikBirim">
-                                    </div>
-                                    <text>* Aşağıdaki formları doldurmadan önce danışmanlara ait bilgileri girdikten sonra yandeki button ile danışman bilgilerini kayıt etmelisiniz</text>
-                                </div>
-                                <div class="col-lg-6">
-
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Topluluk 2. Danışman Adı.</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi2" value="@Model.GDanisman.Where(x=>x.aktif==false).SingleOrDefault().adi">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Topluluk 2. Danışman Soyadı.</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi2" value="@Model.GDanisman.Where(x=>x.aktif==false).SingleOrDefault().soyadi">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Topluluk 2. Danışman Unvanı</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan2" value="@Model.GDanisman.Where(x=>x.aktif==false).SingleOrDefault().unvan">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Topluluk 2. Danışman Akademik Birim</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim2" value="@Model.GDanisman.Where(x=>x.aktif==false).SingleOrDefault().akademikBirim">
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="true" name="Kontrol"> Aşağıdaki formda danışman alanına 2.danışmanın gelmesini istiyorsanız yandaki kutucuğu İşaretleyiniz. (Default olarak 1. Danışman forma yazılır.)
-                                        </label>
-                                    </div>
-                                </div>
-                                <button style="float:right;margin-left:5px;" type="submit" class="btn btn-info">Kaydet</button>
-                            </form>
-                        </div>
-                    </section>
-                </div>
-
-            </div>
+            
 
             <div class="row">
                 <div class="col-lg-6">
@@ -355,7 +174,7 @@
                             Form 4 - Faaliyet Plani
                         </header>
                         <div class="panel-body">
-                            <form role="form" method="post" action="/Home/faaliyetPlaniEkle">
+                            <form role="form" method="post" action="/Guncelle/faaliyetPlaniEkle">
                                 <div class="form-group">
                                     <label>Faliyet Türü:</label>
                                     <input name="faliyetTürü" type="text" class="form-control" id="faliyetTürü" required>
@@ -384,12 +203,12 @@
                         </header>
                         <div class="panel-body">
                             <div class="panel-body">
-                                <form role="form" method="post" action="/Home/form4">
+                                <form role="form" method="post" action="/Guncelle/form3">
                                     <div class="form-group">
                                         <label>Topluluk Başkanı</label>
                                         <select class="form-control" name="ID" required>
                                             <option value="">Topluluk Başkanı Seçiniz..</option>
-                                            @foreach (OgrenciListesi item in ViewBag.Ogreciler)
+                                            @foreach (GOgrenciListesi item in ViewBag.Ogreciler)
                                             {
 
                                                 <option value="@item.ID"> @item.adi @item.soyadi</option>
@@ -462,7 +281,7 @@
                             <p style="tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topluluk Başkanı&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Topluluk Danışmanı</span></p>
                             <p style="tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ad-Soyad-İmza&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ad-Soyad-İmza</span></p>
 
-                            <p style="tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">@Model.baskanAdi @Model.baskanSoyadi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Model.Danisman.Where(x => x.aktif == true).FirstOrDefault().adi  @Model.Danisman.Where(x => x.aktif == true).FirstOrDefault().soyadi </span></p>
+                            <p style="tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">@Model.baskanAdi @Model.baskanSoyadi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Model.GDanisman.Where(x => x.aktif == true).FirstOrDefault().adi  @Model.GDanisman.Where(x => x.aktif == true).FirstOrDefault().soyadi </span></p>
                             <p>&nbsp;</p>
                         </div>
                     </section>
@@ -505,7 +324,7 @@
             var data1 = { faliyetTürü: value1, faliyetAmaci: value2, tarih: value3, yerleske: value4 };
             $.ajax({
                 type: 'POST',
-                url: '/Home/faaliyetPlaniEkle',
+                url: '/Guncelle/faaliyetPlaniEkle',
                 data: data1,
                 success: function (result) {
                     if (result === true) {

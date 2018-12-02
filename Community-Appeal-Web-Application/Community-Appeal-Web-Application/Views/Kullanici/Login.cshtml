@@ -35,7 +35,7 @@
     <div class="container">
 
         <form class="form-signin" method="post" action="/Kullanici/GirisYap">
-            <h2 class="form-signin-heading">Düzce Üniversitesi Öğrenci Topluluğu Başvuru Sistemi</h2>
+            <h2 class="form-signin-heading">Düzce Üniversitesi Öğrenci Topluluğu Başvuru ve Güncelleme Sistemi</h2>
             <div class="login-wrap">
                 @if (ViewBag.Hata != null)
                 {
@@ -43,6 +43,7 @@
                         <b>@ViewBag.Hata</b>
                     </div>
                 }
+                <img src="/Content/img/duLogo.png" style=" width: 70px; margin-left: 35%;margin-bottom: 10px;"/>
                 <input name="ogrMail" type="text" class="form-control" placeholder="Öğrenci Mail" autofocus required>
                 <input name="sifre" type="password" class="form-control" placeholder="Şifre" required>
                 <button type="submit" class="btn btn-success btn-block">Giriş Yap</button>
