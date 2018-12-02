@@ -305,12 +305,31 @@ namespace Community_Appeal_Web_Application.Controllers
         }
 
         //form5.1
+        public ActionResult form7Kayit()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            if (b.adimNo == 4 && db.GYonetimKurulu.Where(x => x.GuncelleID == b.ID).ToList().Count() == 7 && db.GDenetimKurulu.Where(x => x.GuncelleID == b.ID).ToList().Count() == 3
+                && b.divanBaskanAdi != null && b.marscı != null && b.butce != null && b.etkinlik != null)
+            {
+                b.adimNo = 5;
+                db.SaveChanges();
+            }
+            else
+            {
+                TempData["YönetimHata"] = "Aşağıdaki Formda Bilgilerin Doğru veya Eksiksiz Olduğunu Kontrol Ediniz.";
+            }
+
+            return RedirectToAction("form7");
+        }
+
         [HttpGet]
         public ActionResult form7()
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            if (b.adimNo < 5)
+            if (b.adimNo < 1)
             {
                 ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
                 return View();
@@ -529,12 +548,6 @@ namespace Community_Appeal_Web_Application.Controllers
                 }
             }
 
-            if (b.adimNo == 6 && db.GYonetimKurulu.Where(x => x.GuncelleID == b.ID).ToList().Count() == 7 && db.GDenetimKurulu.Where(x => x.GuncelleID == b.ID).ToList().Count() == 3)
-            {
-                b.adimNo = 7;
-                db.SaveChanges();
-            }
-
             TempData["Eklendi"] = "Girmiş Olduğunuz Verileriniz Eklenmiştir. Lütfen Aşağıdaki Formdan Kontrol Ediniz.";
 
             return RedirectToAction("form7");
@@ -727,12 +740,6 @@ namespace Community_Appeal_Web_Application.Controllers
                 TempData["YönetimHata"] = "Denetim Kurulu Başkanını Seçmediniz.";
             }
 
-            if (b.adimNo == 6 && db.GYonetimKurulu.Where(x => x.GuncelleID == b.ID).ToList().Count() == 7 && db.GDenetimKurulu.Where(x => x.GuncelleID == b.ID).ToList().Count() == 3)
-            {
-                b.adimNo = 7;
-                db.SaveChanges();
-            }
-
             return RedirectToAction("form7");
 
 
@@ -877,10 +884,14 @@ namespace Community_Appeal_Web_Application.Controllers
                 sayac++;
             }
 
-            if (b.adimNo == 7 && sayac == 8)
+            if (b.adimNo == 6 && sayac == 8)
             {
-                b.adimNo = 8;
+                b.adimNo = 7;
                 db.SaveChanges();
+            }
+            else
+            {
+                TempData["YönetimHata"] = "Formda Eksik Bilgi Bulunmaktadır. Lütfen Aşağıdaki Formdan Kontrol Ediniz.";
             }
 
             return RedirectToAction("form8");
