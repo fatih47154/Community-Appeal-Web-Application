@@ -55,7 +55,7 @@
                             <p>*Topluluğunuzda bulunacak olan 20 kişiyi ekledikten sonra "Kaydet" Buttonuna Basarak Form 3'e geçebilirsiniz.</p>
 
                             @{
-                                if (Model.adimNo == 3)
+                                if (Model.adimNo >= 3)
                                 {
                                     <a style="float:right;" href="/Home/form3" class="btn btn-primary">Form 3</a>
                                 }

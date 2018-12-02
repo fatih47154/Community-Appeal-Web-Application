@@ -16,6 +16,14 @@
 
 @model Basvuru
 
+<style>
+    body {
+        text-align: justify;
+        text-rendering: geometricPrecision;
+    }
+</style>
+
+
 @{
     if (Model != null)
     {
@@ -46,12 +54,16 @@
                         <text><span style="color: red">* </span>Girilmesi istenen bilgileri girdikten sonra en altta bulunan forma doğru bir şekilde geldiğini kontrol edeniz.</text>
                         <br />
                         <text><span style="color: red">* </span>Yönetim Kurulu ve Denetim Kurulunda Toplam 10 Kişi Bulunduğunda Bir Sonraki Forma Geçebilirsiniz.</text>
+                        <text><span style="color: red">* </span>Tüm alanları doldurduktan sonra bilgilendirme alanındaki kaydet buttonuna basark başvurunuzu tamamlayabilirsiniz.</text>
+                        <br />
                         @{
                             if (Model.adimNo >= 8)
                             {
-                                <a href="/Guncelle/form8" style="margin-left: 5px;float: right" class="btn btn-primary">Form 8</a>
+                                <a href="/Home/form8" style="margin-left: 5px;float: right" class="btn btn-primary">Form 8</a>
                             }
                         }
+
+                        <a href="/Home/form7Kayit" style="margin-left: 5px;float: right" class="btn btn-info">Kaydet</a>
                     </div>
 
                 </section>
@@ -95,7 +107,7 @@
                                         </select>
                                     </div>
 
-                                    
+
                                 </div>
                                 <div class="col-lg-6">
 
@@ -133,7 +145,7 @@
                                     </div>
 
                                 </div>
-                            </div>                       
+                            </div>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -146,11 +158,11 @@
                                             }
                                         </select>
                                     </div>
-                                    
+
                                     <button type="submit" style="margin-right: 5px;" class="btn btn-info">Yönetim Kurulunu Kaydet</button>
-                                    
+
                                 </div>
-                                
+
                             </div>
                         </form>
                     </div>
@@ -180,7 +192,7 @@
                     </div>
                 </section>
             </div>
-            
+
             <div class="col-lg-4">
                 <section class="panel">
                     <header class="panel-heading">
@@ -208,7 +220,7 @@
                     </div>
                 </section>
             </div>
-            
+
             <div class="col-lg-4">
                 <section class="panel">
                     <header class="panel-heading">
@@ -226,7 +238,7 @@
                             </select>
                         </div>
                         <a href="#" id="ekle1" class="btn btn-success" style="margin-right: 5px;"><i class="glyphicon-plus"></i> Üye Ekle</a>
-                        
+
                     </div>
                 </section>
             </div>
@@ -249,17 +261,17 @@
                                 <label>Gerçekleştirilecek Etkinlikler İçin Gerekli Bütçeden Bahsedin</label>
                                 <textarea name="butce" style="resize: vertical; height: 100px" class=form-control type="text"></textarea>
                             </div>
-                            
+
                             <div class="form-group">
-                                <label>Varsa Başka Kurulu Giriniz</label>
+                                <label>Topluluğunuzda başka Kurul varsa Giriniz</label>
                                 <textarea name="kurul" style="resize: vertical; height: 100px" class=form-control type="text"></textarea>
                             </div>
-                            
+
                             <div class="form-group">
-                                <label>Kurunulunuz Üye Seçimini Açıklayınız.</label>
+                                <label> Diğer Kurunulunuzun Üye Seçimini Açıklayınız.</label>
                                 <textarea name="kUyeSecimi" style="resize: vertical; height: 100px" class=form-control type="text"></textarea>
                             </div>
-                            
+
                             <button type="submit" style="margin-right: 5px;" class="btn btn-info">Kaydet</button>
                         </form>
                     </div>
@@ -433,16 +445,16 @@
                             <p style="text-indent: 35.4pt;">
                                 <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
                                     Gündemin altıncı maddesi gereği, yönetim kurulunun, denetleme kurulunun, @{
-                                                                                                                 if (Model.baskaKurul == null)
-                                                                                                                 {
-                                                                                                                     <span>…………………………………………</span><i> (topluluk tüzüğünde belirtilen başka kurul varsa burada yazılacak)</i>
-                                                                                                                 }
-                                                                                                                 else
-                                                                                                                 {
-                                                                                                                     <b>@Model.baskaKurul</b>
-                                                                                                                 }
-                                                                                                             }
-                                     seçimine
+                                        if (Model.baskaKurul == null)
+                                        {
+                                            <span>…………………………………………</span><i> (topluluk tüzüğünde belirtilen başka kurul varsa burada yazılacak)</i>
+                                        }
+                                        else
+                                        {
+                                            <b>@Model.baskaKurul</b>
+                                        }
+                                    }
+                                    seçimine
                                     Divan Başkanı @{
                                         if (Model.divanBaskanAdi == null)
                                         {
@@ -496,17 +508,22 @@
                                         {
                                             <span>………………………</span><i>
                                                 (topluluk tüzüğünde belirtilen yönetim kurulu üyelerinin neler olduğu ve kaç kişiden oluştuğu
-                                                                      yazılacak)</i>                                    <span>
-                                        oluştuğunu söyledikten sonra üyelere söz vererek talep ettikleri kurul üyeliğini sordu.
-                                        Buna göre Yönetim Kurulu şu kişilerden oluşmuştur;
-                                    </span> <i>(Burada kurul üyeliklerine kimlerin seçildiği
-                                                yazılacak)</i>
-                                            
+                                                yazılacak)
+                                            </i> <span>
+                                                oluştuğunu söyledikten sonra üyelere söz vererek talep ettikleri kurul üyeliğini sordu.
+                                                Buna göre Yönetim Kurulu şu kişilerden oluşmuştur;
+                                            </span> <i>
+                                                (Burada kurul üyeliklerine kimlerin seçildiği
+                                                yazılacak)
+                                            </i>
+
                                         }
                                         else
                                         {
-                                            <b>@Model.YonetimKurulu.Count()</b><span> kişiden oluştuğunu söyledikten sonra üyelere söz vererek talep ettikleri kurul üyeliğini sordu.
-                                                                                   Buna göre Yönetim Kurulu şu kişilerden oluşmuştur;</span> 
+                                            <b>@Model.YonetimKurulu.Count()</b><span>
+                                                kişiden oluştuğunu söyledikten sonra üyelere söz vererek talep ettikleri kurul üyeliğini sordu.
+                                                Buna göre Yönetim Kurulu şu kişilerden oluşmuştur;
+                                            </span>
                                         }
                                     }
                                 </span>
@@ -543,16 +560,16 @@
                                     }
                                 } Yönetim Kurulu ve Denetleme Kurulu üyelerinin seçimlerinin bittiğini
                                 ve seçimlerle ilgili konuşmak isteyen olup olmadığını toplantıya katılan üyelere sordu.@{
-                                                                                                                           if (Model.bkUyeSecimi == null)
-                                                                                                                           {
-                                                                                                                               <span>…………………………………………</span><i> (Topluluk tüzüğünde belirtilen başka Kurul varsa onların üye seçimi de yapılacak ve burada yazılacak)</i>
-                                                                                                                           }
-                                                                                                                           else
-                                                                                                                           {
-                                                                                                                               <b>@Model.bkUyeSecimi</b>
-                                                                                                                           }
-                                                                                                                       }
-                                
+                                    if (Model.bkUyeSecimi == null)
+                                    {
+                                        <span>…………………………………………</span><i> (Topluluk tüzüğünde belirtilen başka Kurul varsa onların üye seçimi de yapılacak ve burada yazılacak)</i>
+                                    }
+                                    else
+                                    {
+                                        <b>@Model.bkUyeSecimi</b>
+                                    }
+                                }
+
                             </span>
                         </p>
 
@@ -591,30 +608,30 @@
                             <p style="text-indent: 35.4pt; text-align: center">
                                 <span style="font-size: 12.0pt; font-family: 'Times New Roman', serif; text-align: justify">
                                     Düzce Üniversitesi @{
-                                                           if (Model.toplulukAdi == null)
-                                                           {
-                                                               <span>…………………………………………</span>
-                                                           }
-                                                           else
-                                                           {
-                                                               <b>@Model.toplulukAdi</b>
-                                                           }
-                                                       } Topluluğu<br/>Yön.Kur.Bşk<br />
-                                    İmza<br/><br/>Ad Soyad<br/>@{
-                                                                         if (Model.YonetimKurulu.FirstOrDefault(x => x.unvan == "Yönetim Kurulu Başkanı") != null)
-                                                                         {
-                                                                             <b>@Model.YonetimKurulu.FirstOrDefault(x => x.unvan == "Yönetim Kurulu Başkanı").adi</b>
-                                                                             <span> </span>
-                                                                             <b>@Model.YonetimKurulu.FirstOrDefault(x => x.unvan == "Yönetim Kurulu Başkanı").soyadi</b>
-                                                                         }
+                                        if (Model.toplulukAdi == null)
+                                        {
+                                            <span>…………………………………………</span>
+                                        }
+                                        else
+                                        {
+                                            <b>@Model.toplulukAdi</b>
+                                        }
+                                    } Topluluğu<br />Yön.Kur.Bşk<br />
+                                    İmza<br /><br />Ad Soyad<br />@{
+                                        if (Model.YonetimKurulu.FirstOrDefault(x => x.unvan == "Yönetim Kurulu Başkanı") != null)
+                                        {
+                                            <b>@Model.YonetimKurulu.FirstOrDefault(x => x.unvan == "Yönetim Kurulu Başkanı").adi</b>
+                                            <span> </span>
+                                            <b>@Model.YonetimKurulu.FirstOrDefault(x => x.unvan == "Yönetim Kurulu Başkanı").soyadi</b>
+                                        }
 
-                                                                     }
-                                    
+                                    }
+
 
                                 </span>
                             </p>
                         </div>
-                        <br/><br/>
+                        <br /><br />
                     </section>
                 </section>
             </div>
@@ -644,8 +661,7 @@
     function myFunction1() {
         var selector = document.getElementById('ogrenci1');
         var valuea = selector[selector.selectedIndex].value;
-        if (valuea != "null")
-        {
+        if (valuea != "null") {
             document.getElementById('ekle1').href = "/Home/denetimKuruluUyeEkle/" + valuea;
         } else {
             document.getElementById('ekle1').href = "#";

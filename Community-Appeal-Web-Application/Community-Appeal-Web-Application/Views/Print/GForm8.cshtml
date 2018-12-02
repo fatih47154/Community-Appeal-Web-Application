@@ -33,6 +33,43 @@
 @using Community_Appeal_Web_Application.Models
 @model Guncelle
 
+
+@{
+    int gunInt = 0;
+    gunInt = (int)Model.kurulusTarihi.Value.Day;
+    string ay = Model.kurulusTarihi.Value.Month.ToString();
+    string yil = Model.kurulusTarihi.Value.Year.ToString();
+    string gun;
+    if (gunInt <= 9)
+    {
+        gun = "0" + Model.kurulusTarihi.Value.Day.ToString();
+    }
+    else
+    {
+        gun = Model.kurulusTarihi.Value.Day.ToString();
+    }
+
+    string kurulusTarihi = yil + "-" + ay + "-" + gun;
+}
+
+@{
+    int gunInt1 = 0;
+    gunInt = (int)Model.toplantiTarihi.Value.Day;
+    string ay1 = Model.toplantiTarihi.Value.Month.ToString();
+    string yil1 = Model.toplantiTarihi.Value.Year.ToString();
+    string gun1;
+    if (gunInt1 <= 9)
+    {
+        gun1 = "0" + Model.toplantiTarihi.Value.Day.ToString();
+    }
+    else
+    {
+        gun1 = Model.toplantiTarihi.Value.Day.ToString();
+    }
+
+    string toplantiTarihi = yil1 + "-" + ay1 + "-" + gun1;
+}
+
 <div class="panel-body">
 
     <table style="width: 100%">
@@ -95,7 +132,7 @@
             <th style="width: 15%">Topluluk Adı</th>
             <th colspan="6">@Model.toplulukAdi</th>
             <th style="width: 15%">Kuruluş Tarihi</th>
-            <th style="width: 15%">@Model.kurulusTarihi</th>
+            <th style="width: 15%">@kurulusTarihi</th>
         </tr>
         <tr>
             <th>Toplantı Niteliği</th>
@@ -114,7 +151,7 @@
             {
                 <th></th>}
             <th>Toplantı Tarihi</th>
-            <th>@Model.toplantiTarihi</th>
+            <th>@toplantiTarihi</th>
             <th>Toplam Üye Sayısı</th>
             <th>@Model.uyeSayisi</th>
         </tr>

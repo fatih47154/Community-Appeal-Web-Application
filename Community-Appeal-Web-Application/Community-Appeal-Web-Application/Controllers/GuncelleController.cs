@@ -310,7 +310,7 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            if (b.adimNo < 1)
+            if (b.adimNo < 5)
             {
                 ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
                 return View();
@@ -785,7 +785,7 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            if (b.adimNo < 1)
+            if (b.adimNo < 6)
             {
                 ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
                 return View();
