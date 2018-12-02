@@ -8,50 +8,68 @@
 @using Community_Appeal_Web_Application.Models
 @model Basvuru
 
-<div class="panel-body" style="padding: 30px">
-    <p style="text-align: center; line-height: normal; tab-stops: 59.25pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">D&Uuml;ZCE &Uuml;NİVERSİTESİ</span></p>
-    <p style="text-align: center; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">SAĞLIK K&Uuml;LT&Uuml;R VE SPOR DAİRE BAŞKANLIĞI&rsquo;NA</span></p>
-    <p><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-    <p style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>@Model.akademikYıl</b> Akademik yılında kuruluşu onaylanan D&uuml;zce &Uuml;niversitesi <b>@Model.toplulukAdi</b> Topluluğu&rsquo;nun faaliyete başlayabilmesi i&ccedil;in, Genel Kurul Tutanağı (Ek-7) ile D&uuml;zce &Uuml;niversitesi &Ouml;ğrenci Toplulukları Y&ouml;nergesi&rsquo;nin 6.Maddesine istinaden iki akademik danışman adayının bilgileri aşağıda sunulmuştur.</span></p>
-    <p style="text-align: justify; text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">Gereğini bilgilerinize arz ederim.</span></p>
-    <p style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
 
-    <table class="table" style="width: 70%; margin: auto; border: solid; border: solid; border-color:lightgrey;border-width: 2px">
-        <thead>
-            <tr>
-                <th>Sıra No</th>
-                <th>Danışman Ünvanı</th>
-                <th>Danışman Adı</th>
-                <th>Danışman Soyadı</th>
-                <th>Danışman Okulu</th>
+<div class="panel-body" align="center" style="padding: 100px">
+    <p>&nbsp;</p>
+    <p style="text-align: center; tab-stops: 133.5pt;"><strong><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">@DateTime.Now.Year-@DateTime.Now.AddYears(+1).Year AKADEMİK YILI FAALİYET PLANI</span></strong></p><br /><br /><br />
+    <p style="text-align: center; tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;</span></p>
+    <p style="text-align: justify; text-indent: 35.45pt; tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">D&uuml;zce &Uuml;niversitesi &nbsp;<b> @Model.toplulukAdi.ToUpper() </b> &nbsp;&nbsp;&nbsp;Topluluğu <b> @Model.toplantiTarihi.ToString().Substring(0, 10) </b>tarihinde saat <b>@Model.saat</b> de <b>@Model.mekan</b> de <b>@Model.toplantiNo</b> .ıncı (birinci, ikinci, &uuml;&ccedil;&uuml;nc&uuml; vb.) olağan genel kurul toplantısında alınan karar doğrultusunda;<b> @DateTime.Now.Year-@DateTime.Now.AddYears(+1).Year </b>Akademik yılında ger&ccedil;ekleştirilmesi planlanan faaliyetler aşağıda sunulmuştur. </span></p>
+    <p style="text-indent: 35.45pt; tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;</span></p>
+    <br /><br /><br /><br /><br /><br />
+
+    <table style="border-collapse: collapse; border: none;">
+        <tbody>
+            <tr style="height: 20.45pt;">
+                <td style="width: 40.85pt; border: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 20.45pt;" width="54">
+                    <p style="margin-bottom: .0001pt; text-align: center; line-height: normal; tab-stops: 133.5pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">S. NO</span></p>
+                </td>
+                <td style="width: 127.6pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 20.45pt;" width="170">
+                    <p style="margin-bottom: .0001pt; text-align: center; line-height: normal; tab-stops: 133.5pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">FAALİYET T&Uuml;R&Uuml;</span></p>
+                </td>
+                <td style="width: 297.65pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 20.45pt;" width="397">
+                    <p style="margin-bottom: .0001pt; text-align: center; line-height: normal; tab-stops: 133.5pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">KONUSU/İ&Ccedil;ERİĞİ</span></p>
+                </td>
+                <td style="width: 106.3pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 20.45pt;" width="142">
+                    <p style="margin-bottom: .0001pt; text-align: center; line-height: normal; tab-stops: 133.5pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">TARİHİ</span></p>
+                </td>
+                <td style="width: 120.5pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 20.45pt;" width="161">
+                    <p style="margin-bottom: .0001pt; text-align: center; line-height: normal; tab-stops: 133.5pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">YERLEŞKESİ</span></p>
+                </td>
             </tr>
-        </thead>
-        <tbody class="kisi">
             @{
-                int i = 0;
-                foreach (Danisman item in ViewBag.DL)
+                int counter = 1;
+                foreach (FaliyetPlani item in ViewBag.fp)
                 {
-                    i++;
-                    <tr id="@item.ID">
-                        <td>@i</td>
-                        <td>@item.unvan</td>
-                        <td>@item.adi</td>
-                        <td>@item.soyadi</td>
-                        <td>@item.akademikBirim</td>
+
+                    <tr id="@item.ID" style="height: 20.45pt;">
+                        <td style="width: 40.85pt; border: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 20.45pt;" width="54">
+                            <p style="margin-bottom: .0001pt; text-align: center; line-height: normal; tab-stops: 133.5pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';"> @counter</span></p>
+                        </td>
+                        <td style="width: 127.6pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 20.45pt;" width="170">
+                            <p style="margin-bottom: .0001pt; text-align: center; line-height: normal; tab-stops: 133.5pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">@item.faliyetTürü</span></p>
+                        </td>
+                        <td style="width: 297.65pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 20.45pt;" width="397">
+                            <p style="margin-bottom: .0001pt; text-align: center; line-height: normal; tab-stops: 133.5pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">@item.faliyetAmaci</span></p>
+                        </td>
+                        <td style="width: 106.3pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 20.45pt;" width="142">
+                            <p style="margin-bottom: .0001pt; text-align: center; line-height: normal; tab-stops: 133.5pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">@item.tarih.Value.Year/@item.tarih.Value.Month/@item.tarih.Value.Day</span></p>
+                        </td>
+                        <td style="width: 120.5pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 20.45pt;" width="161">
+                            <p style="margin-bottom: .0001pt; text-align: center; line-height: normal; tab-stops: 133.5pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman', 'serif';">@item.yerleske</span></p>
+                        </td>
                     </tr>
+                    counter = counter + 1;
                 }
             }
         </tbody>
     </table>
 
-    <br /><br /><br />
-    <p style="text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-    <p style="text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-    <div style="float: right;text-align: center">
-        <p style="text-indent: 35.4pt; tab-stops: 313.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;"><b>@DateTime.Now.Date.ToShortDateString()</b> </span></p>
-        <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Düzce Üniversitesi <b>@Model.toplulukAdi</b> Topluluğu</span></p>
-        <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Topluluk Başkanı - İmza </span></p>
-        <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;"><b>@Model.baskanAdi @Model.baskanSoyadi</b></span></p>
-    </div>
-    <br /><br /><br />
+
+
+    <p style="tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;</span></p>
+    <p style="tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topluluk Başkanı&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Topluluk Danışmanı</span></p>
+    <p style="tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ad-Soyad-İmza&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ad-Soyad-İmza</span></p>
+
+    <p style="tab-stops: 133.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman', 'serif';"> &nbsp;&nbsp;&nbsp;<b>@Model.baskanAdi @Model.baskanSoyadi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>@Model.Danisman.Where(x => x.aktif == true).FirstOrDefault().adi  @Model.Danisman.Where(x => x.aktif == true).FirstOrDefault().soyadi</b>  </span></p>
+    <p>&nbsp;</p>
 </div>

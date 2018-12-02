@@ -80,9 +80,9 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            var ogrnci = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
-            ViewBag.Ogreciler = ogrnci;
-            var report = new ViewAsPdf("Form2")
+            var ogrnci = db.YonetimKurulu.Where(x => x.basvuruID == b.ID && x.Baskan == true).FirstOrDefault(); ;
+            ViewBag.baskan = ogrnci;
+            var report = new ViewAsPdf("Form3",b)
             {
                
             };
@@ -93,8 +93,9 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Basvuru g = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            List<Danisman> DL = db.Danisman.Where(x => x.basvuruID == g.ID).ToList();
-            ViewBag.DL = DL;
+            List<FaliyetPlani> fp = db.FaliyetPlani.Where(x => x.faliyetID == g.ID).ToList();
+            ViewBag.fp = fp;
+
             var report = new ViewAsPdf("Form4", g)
             {
 
@@ -105,9 +106,35 @@ namespace Community_Appeal_Web_Application.Controllers
         public ActionResult Form4_admin(int ID)
         {
             Basvuru g = db.Basvuru.Where(x => x.kullanıcıID == ID).FirstOrDefault();
+            List<FaliyetPlani> fp = db.FaliyetPlani.Where(x => x.faliyetID == g.ID).ToList();
+            ViewBag.fp = fp;
+            var report = new ViewAsPdf("Form4_admin", g)
+            {
+
+            };
+            return report;
+        }
+
+
+        public ActionResult Form5()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru g = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
             List<Danisman> DL = db.Danisman.Where(x => x.basvuruID == g.ID).ToList();
             ViewBag.DL = DL;
-            var report = new ViewAsPdf("Form4_admin", g)
+            var report = new ViewAsPdf("Form5", g)
+            {
+
+            };
+            return report;
+        }
+
+        public ActionResult Form5_admin(int ID)
+        {
+            Basvuru g = db.Basvuru.Where(x => x.kullanıcıID == ID).FirstOrDefault();
+            List<Danisman> DL = db.Danisman.Where(x => x.basvuruID == g.ID).ToList();
+            ViewBag.DL = DL;
+            var report = new ViewAsPdf("Form5_admin", g)
             {
 
             };

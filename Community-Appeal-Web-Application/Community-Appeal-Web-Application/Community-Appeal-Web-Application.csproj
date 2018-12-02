@@ -301,6 +301,8 @@
     <Content Include="Views\Guncelle\danismanListesiWidget.cshtml" />
     <Content Include="Views\Print\Form4.cshtml" />
     <Content Include="Views\Print\Form4_admin.cshtml" />
+    <Content Include="Views\Print\Form5_admin.cshtml" />
+    <Content Include="Views\Print\Form5.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
