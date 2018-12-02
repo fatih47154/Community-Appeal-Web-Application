@@ -6,7 +6,11 @@
 @using Community_Appeal_Web_Application.Models
 
 
-@model Basvuru
+@{
+    CommunityContext db = new CommunityContext();
+    Kullanici k = (Kullanici)Session["Kullanici"];
+    Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+}
 
 <!DOCTYPE html>
 
@@ -22,14 +26,14 @@
                 <strong></strong>
             </p>
             <p align="center">
-                <strong>DÜZCE ÜNİVERSİTESİ @Model.toplulukAdi.ToUpper() TOPLULUĞU</strong>
+                <strong>DÜZCE ÜNİVERSİTESİ @b.toplulukAdi.ToUpper() TOPLULUĞU</strong>
             </p>
             <p align="center">
                 <strong>@DateTime.Now.Year-@DateTime.Now.AddYears(+1).Year AKADEMİK YILI ÜYE LİSTESİ</strong>
             </p>
             <div class="append">
-
-                <table border="1" cellspacing="0" cellpadding="0" width="100%">
+                <br /><br /><br /><br />
+                <table border="1" cellspacing="0.3" cellpadding="0" width="100%">
 
                     <tbody class="kisi">
                         <tr>
@@ -85,6 +89,7 @@
                                             @counter
                                         </p>
                                     </td>
+
                                     <td width="164" valign="middle" style="padding-left:5px;">@item.adi @item.soyadi</td>
                                     <td width="158" valign="middle" style="padding-left:5px;">@item.fak</td>
                                     <td width="117" valign="middle" style="padding-left:5px;">@item.tc</td>
@@ -92,6 +97,7 @@
                                     <td width="134" valign="middle" style="padding-left:5px;">@item.tel</td>
                                     <td width="143" valign="middle" style="padding-left:5px;">@item.mail</td>
                                     <td width="99" valign="middle" style="padding-left:5px;"></td>
+
                                 </tr>
                                 counter = counter + 1;
                             }
