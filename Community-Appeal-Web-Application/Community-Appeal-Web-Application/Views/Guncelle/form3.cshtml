@@ -14,23 +14,14 @@
 
 @model Guncelle
 
-@if (ViewBag.danisman != null)
-{
-    <div class="alert alert-block alert-danger fade in">
-        <button data-dismiss="alert" class="close close-sm" type="button">
-            <i class="icon-remove"></i>
-        </button>
-        <strong>@ViewBag.danisman</strong>
-    </div>
 
-}
-@if (ViewBag.faaliyet != null)
+@if (ViewBag.Hata != null)
 {
     <div class="alert alert-block alert-danger fade in">
         <button data-dismiss="alert" class="close close-sm" type="button">
             <i class="icon-remove"></i>
         </button>
-        <strong>@ViewBag.faaliyet</strong>
+        <strong>@ViewBag.Hata</strong>
     </div>
 }
 
@@ -45,7 +36,6 @@
                     </header>
                     <div class="panel-body">
                         <text><span style="color: red">* </span>Aşağıdaki formları sırası ile doldurunuz.</text><br />
-                        <text><span style="color: red">* </span>İlk önce danışman bilgilerini giriniz..</text><br />
                         <text><span style="color: red">* </span>Aşağıdaki formda faaliyet alanı için 5 adet faaliyet giriniz..</text><br />
                         <text><span style="color: red">* </span>Topluluğunuza ait bilgileri giriniz.</text><br />
                         @if (Model.adimNo >= 4)
@@ -292,7 +282,7 @@
     else
     {
         <div class="alert alert-danger" role="alert">
-            <strong><p style="font-size:18px;"> İlk önce 3. formu doldurmanız gerekmektedir.</p></strong>
+            <strong><p style="font-size:18px;"> İlk önce 2. formu doldurmanız gerekmektedir.</p></strong>
         </div>
     }
 

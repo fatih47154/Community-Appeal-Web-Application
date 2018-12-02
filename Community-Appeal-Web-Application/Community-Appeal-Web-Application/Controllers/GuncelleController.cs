@@ -217,12 +217,13 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            ViewBag.Ogreciler = db.GOgrenciListesi.Where(x => x.GuncelleID == g.ID).ToList();
             if (g.adimNo < 3)
             {
                 return View();
             }
 
-            ViewBag.Ogreciler = db.GOgrenciListesi.Where(x => x.GuncelleID == g.ID).ToList();
             return View(g);
         }
 
@@ -279,7 +280,7 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-
+            ViewBag.Ogreciler = db.GOgrenciListesi.Where(x => x.GuncelleID == g.ID).ToList();
             if (g.adimNo < 3)
             {
                 return View();
@@ -342,10 +343,10 @@ namespace Community_Appeal_Web_Application.Controllers
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
 
-            if (b.adimNo == 4 && db.GYonetimKurulu.Where(x => x.GuncelleID == b.ID).ToList().Count() == 7 && db.GDenetimKurulu.Where(x => x.GuncelleID == b.ID).ToList().Count() == 3
+            if (b.adimNo == 5 && db.GYonetimKurulu.Where(x => x.GuncelleID == b.ID).ToList().Count() == 7 && db.GDenetimKurulu.Where(x => x.GuncelleID == b.ID).ToList().Count() == 3
                 && b.divanBaskanAdi != null && b.marscı != null && b.butce != null && b.etkinlik != null)
             {
-                b.adimNo = 5;
+                b.adimNo = 6;
                 db.SaveChanges();
             }
             else
@@ -361,7 +362,7 @@ namespace Community_Appeal_Web_Application.Controllers
         {
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-            if (b.adimNo < 1)
+            if (b.adimNo < 5)
             {
                 ViewBag.Hata = "İlk Önce Diğer Formları Doldurmanız Gerekmektedir.";
                 return View();
@@ -933,7 +934,9 @@ namespace Community_Appeal_Web_Application.Controllers
         // Güncelleme Tamamlama
         public ActionResult guncellemeTamamla()
         {
-            return View();
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            return View(b);
         }
     }
 }
