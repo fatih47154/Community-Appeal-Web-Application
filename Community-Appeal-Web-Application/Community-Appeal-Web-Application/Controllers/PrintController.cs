@@ -141,6 +141,99 @@ namespace Community_Appeal_Web_Application.Controllers
             return report;
         }
 
+        public ActionResult Form6()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru g = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+            Danisman dl1 = db.Danisman.FirstOrDefault(x => x.basvuruID == g.ID && x.aktif == true);
+            ViewBag.dl1 = dl1;
+            var report = new ViewAsPdf("Form6", g)
+            {
+
+            };
+            return report;
+        }
+
+        public ActionResult Form6_admin(int ID)
+        {
+            Basvuru g = db.Basvuru.Where(x => x.kullanıcıID == ID).FirstOrDefault();
+            Danisman dl1 = db.Danisman.FirstOrDefault(x => x.basvuruID == g.ID && x.aktif == true);
+            ViewBag.dl1 = dl1;
+            var report = new ViewAsPdf("Form6_admin", g)
+            {
+
+            };
+            return report;
+        }
+
+        public ActionResult Form7()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru g = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            var BaskanYar = db.YonetimKurulu.FirstOrDefault(x => x.unvan == "Başkan Yardımcısı");
+            ViewBag.BaskanYar = BaskanYar;
+
+            var yk1 = db.YonetimKurulu.Where(x => x.basvuruID == g.ID).ToList();
+            ViewBag.yk1 = yk1;
+
+            var dk = db.DenetimKurulu.Where(x => x.basvuruID == g.ID).ToList();
+            ViewBag.dk = dk;
+
+            var report = new ViewAsPdf("Form7", g)
+            {
+
+            };
+            return report;
+        }
+
+        public ActionResult Form7_admin(int ID)
+        {
+            Basvuru g = db.Basvuru.Where(x => x.kullanıcıID == ID).FirstOrDefault();
+
+            var BaskanYar = db.YonetimKurulu.FirstOrDefault(x => x.unvan == "Başkan Yardımcısı");
+            ViewBag.BaskanYar = BaskanYar;
+
+            var yk1 = db.YonetimKurulu.Where(x => x.basvuruID == g.ID).ToList();
+            ViewBag.yk1 = yk1;
+
+            var dk = db.DenetimKurulu.Where(x => x.basvuruID == g.ID).ToList();
+            ViewBag.dk = dk;
+
+            var report = new ViewAsPdf("Form7_admin", g)
+            {
+
+            };
+            return report;
+        }
+
+        public ActionResult Form8()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Basvuru g = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            ViewBag.yonetimKurulu = db.YonetimKurulu.Where(x => x.basvuruID == g.ID).ToList();
+
+            var report = new ViewAsPdf("Form8", g)
+            {
+
+            };
+            return report;
+        }
+
+        public ActionResult Form8_admin(int ID)
+        {
+            Basvuru g = db.Basvuru.Where(x => x.kullanıcıID == ID).FirstOrDefault();
+
+            ViewBag.yonetimKurulu = db.YonetimKurulu.Where(x => x.basvuruID == g.ID).ToList();
+
+            var report = new ViewAsPdf("Form8_Admin", g)
+            {
+
+            };
+            return report;
+        }
+
         // Güncelleme Print
 
         public ActionResult GForm1()
@@ -240,6 +333,74 @@ namespace Community_Appeal_Web_Application.Controllers
             List<GDanisman> DL = db.GDanisman.Where(x => x.GuncelleID == g.ID).ToList();
             ViewBag.DL = DL;
             var report = new ViewAsPdf("GForm4_admin", g)
+            {
+
+            };
+            return report;
+        }
+
+        public ActionResult GForm7()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            var BaskanYar = db.GYonetimKurulu.FirstOrDefault(x => x.unvan == "Başkan Yardımcısı");
+            ViewBag.BaskanYar = BaskanYar;
+
+            var yk1 = db.GYonetimKurulu.Where(x => x.GuncelleID == g.ID).ToList();
+            ViewBag.yk1 = yk1;
+
+            var dk = db.GDenetimKurulu.Where(x => x.GuncelleID == g.ID).ToList();
+            ViewBag.dk = dk;
+
+            var report = new ViewAsPdf("GForm7", g)
+            {
+
+            };
+            return report;
+        }
+
+        public ActionResult GForm7_admin(int ID)
+        {
+            Guncelle g = db.Guncelle.Where(x => x.ID == ID).FirstOrDefault();
+
+            var BaskanYar = db.GYonetimKurulu.FirstOrDefault(x => x.unvan == "Başkan Yardımcısı");
+            ViewBag.BaskanYar = BaskanYar;
+
+            var yk1 = db.GYonetimKurulu.Where(x => x.GuncelleID == g.ID).ToList();
+            ViewBag.yk1 = yk1;
+
+            var dk = db.GDenetimKurulu.Where(x => x.GuncelleID == g.ID).ToList();
+            ViewBag.dk = dk;
+
+            var report = new ViewAsPdf("GForm7_admin", g)
+            {
+
+            };
+            return report;
+        }
+
+        public ActionResult GForm8()
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            ViewBag.yonetimKurulu = db.GYonetimKurulu.Where(x => x.GuncelleID == g.ID).ToList();
+
+            var report = new ViewAsPdf("GForm8", g)
+            {
+
+            };
+            return report;
+        }
+
+        public ActionResult GForm8_admin(int ID)
+        {
+            Guncelle g = db.Guncelle.Where(x => x.ID == ID).FirstOrDefault();
+
+            ViewBag.yonetimKurulu = db.GYonetimKurulu.Where(x => x.GuncelleID == g.ID).ToList();
+
+            var report = new ViewAsPdf("GForm8_Admin", g)
             {
 
             };

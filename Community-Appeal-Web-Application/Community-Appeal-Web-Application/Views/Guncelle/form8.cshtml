@@ -1,0 +1,327 @@
+﻿
+@{
+    ViewBag.Title = "form8";
+    if (Session["Admin"] != null)
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    }
+}
+
+@using Community_Appeal_Web_Application.Models
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        color: black;
+        font-size: 11.0pt;
+        font-family: 'Times New Roman', serif;
+    }
+
+    #th-left {
+        text-align: left;
+        padding-left: 15px;
+    }
+
+    #table2, tr, th {
+        text-align: left;
+        padding-left: 15px;
+    }
+</style>
+
+@model Guncelle
+
+@{
+    if (Model != null)
+    {
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Topluluk Bilgileri
+                    </header>
+                    <div class="panel-body">
+                        <form role="form" method="post" action="/Guncelle/form8TBilg">
+
+                            <div class="form-group">
+                                <label>Kuruluş Tarihi</label>
+                                <input name="kurulusTarihi" class="form-control" placeholder="Kuruluş tarihini Giriniz..." type="date" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Toplantı Niteliği</label>
+                                <select name="toplantiNiteligi" class="form-control">
+                                    <option value=true>Olağan</option>
+                                    <option value=false>Olağan Üstü</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tüzük Değişikliği</label>
+                                <select name="tuzukDegisikligi" class="form-control">
+                                    <option value=true>Evet</option>
+                                    <option value=false>Hayır</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Genel Kurula Katılan Üye Sayısı</label>
+                                <input name="gUyeSayisi" class="form-control" placeholder="Üye Sayısı Giriniz..." />
+                            </div>
+
+                            <button type="submit" style="margin-right: 5px;" class="btn btn-info">Topluluk Bilgilerini Kaydet</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Yönetim Kurulu Üye Düzenle
+                    </header>
+                    <div class="panel-body">
+                        <form role="form" method="post" action="/Guncelle/form8Uye">
+
+                            <div class="form-group">
+                                <label>Yönetim Kurulu Üyesi</label>
+                                <select class="form-control" id="list" name="ID">
+                                    <option>Yönetim Kurulu Üyesi Seçiniz...</option>
+                                    @foreach (var item in Model.GYonetimKurulu.ToList())
+                                    {
+                                        <option value="@item.ID"><b>@item.unvan</b> / @item.adi<span> </span>@item.soyadi</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Y.Okul / Bölüm</label>
+                                <input name="bolum" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Adres</label>
+                                <input name="adres" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Ev Tel</label>
+                                <input name="evTel" class="form-control" type="tel" />
+                            </div>
+
+                            <button type="submit" style="margin-right: 5px;" class="btn btn-info">Üye Bilgilerini Kaydet</button>
+                            <a href="/Guncelle/form8Kaydet" class="btn btn-primary">Kaydet</a>
+
+                            @{
+                                if (Model.adimNo >= 8)
+                                {
+                                    <a href="/Guncelle/guncellemeTamamla" class="btn btn-primary" style="margin-left:5px">Başvuru Tamamla</a>
+                                }
+                            }
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Form 8
+                    </header>
+                    <div class="panel-body">
+
+                        <table style="width: 100%">
+                            <tr>
+                                <th rowspan="8" style="padding: 10px; width: 13%"><img src="/duzce.png" width="100%" /></th>
+                                <th rowspan="5" style="text-align: center">
+                                    <b>
+                                        TC.<br />
+                                        DÜZCE ÜNİVERSİTESİ<br />
+                                        SAĞLIK KÜLTÜR VE SPOR DAİRE BAŞKANLIĞI<br />
+                                        <br />
+                                        Genel Kurul Sonuç Bildirimi Formu
+                                    </b>
+                                </th>
+                                <th style="width: 15%" id="th-left">
+                                    <b>Doküman Kodu</b>
+                                </th>
+                                <th style="width: 15%" id="th-left">
+
+                                </th>
+                            </tr>
+                            <tr>
+                                <th id="th-left">
+                                    <b>Yayın Tarihi</b>
+                                </th>
+                                <th id="th-left">
+
+                                </th>
+                            </tr>
+                            <tr>
+                                <th id="th-left">
+                                    <b>Revizyon Tarihi</b>
+                                </th>
+                                <th id="th-left">
+
+                                </th>
+                            </tr>
+                            <tr>
+                                <th id="th-left">
+                                    <b>Revizyon No</b>
+                                </th>
+                                <th id="th-left">
+
+                                </th>
+                            </tr>
+                            <tr>
+                                <th id="th-left">
+                                    <b>Sayfa No</b>
+                                </th>
+                                <th id="th-left">
+
+                                </th>
+                            </tr>
+                        </table>
+
+                        <br />
+
+                        <table style="width: 100%; height: 90px;" id="table2">
+                            <tr>
+                                <th style="width: 13%">Topluluk Adı</th>
+                                <th colspan="6">@Model.toplulukAdi</th>
+                                <th style="width: 15%">Kuruluş Tarihi</th>
+                                <th style="width: 15%">@Model.kurulusTarihi</th>
+                            </tr>
+                            <tr>
+                                <th>Toplantı Niteliği</th>
+                                <th>Olağan</th>
+                                @if (Model.toplantiNiteligi == true)
+                                {
+                                    <th style="padding: 5px;width: 2.2%"><div style="background-color: black; width: 100%; height: 100%; border-radius: 50%;"></div></th> }
+                                else
+                                {
+                                    <th></th>}
+                                <th>Olağanüstü</th>
+                                @if (Model.toplantiNiteligi == false)
+                                {
+                                    <th style="padding: 5px;width: 2.5%"><div style="background-color: black; width: 100%; height: 100%; border-radius: 50%;"></div></th> }
+                                else
+                                {
+                                    <th></th>}
+                                <th>Toplantı Tarihi</th>
+                                <th>@Model.toplantiTarihi</th>
+                                <th>Toplam Üye Sayısı</th>
+                                <th>@Model.uyeSayisi</th>
+                            </tr>
+                            <tr>
+                                <th>Tüzük Değişikliği</th>
+                                <th>Evet</th>
+                                @if (Model.tuzukDegisikligi == true)
+                                {
+                                    <th style="padding: 5px"><div style="background-color: black; width: 100%; height: 100%; border-radius: 50%;"></div></th> }
+                                else
+                                {
+                                    <th></th>}
+                                <th>Hayır</th>
+                                @if (Model.tuzukDegisikligi == false)
+                                {
+                                    <th style="padding: 5px"><div style="background-color: black; width: 100%; height: 100%; border-radius: 50%;"></div></th> }
+                                else
+                                {
+                                    <th></th>}
+                                <th colspan="2">Genel Kurula Katılan Üye Sayısı</th>
+                                <th colspan="2">@Model.gUyeSayisi</th>
+                            </tr>
+                        </table>
+
+                        <br />
+
+                        @foreach (var item in ViewBag.yonetimKurulu)
+                        {
+                            <table id="table2" style="width: 100%;height: 100px">
+                                <tr>
+                                    <th rowspan="2" style="width: 35%">Adı Soyadı (@item.unvan) :<br /> @item.adi @item.soyadi</th>
+                                    <th colspan="2">T.C. Kimlik No : @item.tc</th>
+                                    <th rowspan="6" style="text-align: center;width: 20%">Resim</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">Fakilte : @item.fakulte</th>
+                                </tr>
+                                <tr>
+                                    @if (item.bolum != null)
+                                    {
+                                        <th>Y. Okul / Bölüm : @item.bolum</th>}
+                                    else
+                                    {
+                                        <th>Y. Okul / Bölüm : </th>}
+
+                                    <th colspan="2">Öğrenci No : @item.ogrNo</th>
+                                </tr>
+                                <tr>
+                                    @if (item.adres != null)
+                                    {
+                                        <th colspan="3">Adres : @item.adres</th>}
+                                    else
+                                    {
+                                        <th colspan="3">Adres : </th>}
+
+                                </tr>
+                                <tr>
+                                    @if (item.evTel != null)
+                                    {
+                                        <th>Ev Tel : @item.evTel</th>}
+                                    else
+                                    {
+                                        <th>Ev Tel : </th>}
+
+                                    <th>GSM : @item.gsm</th>
+                                    <th rowspan="2" style="width: 20%">İmza : </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">E-Mail : @item.eMail</th>
+                                </tr>
+                            </table><br />
+                        }
+
+                        <div style="float: left;color: black">
+                            Topluluk Başkanı /İmza<br /><br />
+                            <b>@Model.baskanAdi @Model.baskanSoyadi</b>
+                        </div>
+
+                        <div style="float: right;color: black">
+                            Topluluk Danışmanı/İmza<br /><br />
+                            <b>
+                                @{
+                                    if (Model.GDanisman.FirstOrDefault(x => x.aktif == true) != null)
+                                    {
+                                        @Model.GDanisman.FirstOrDefault(x => x.aktif == true).adi<span> </span> @Model.GDanisman.FirstOrDefault(x => x.aktif == true).soyadi
+                                    }
+                                }
+                            </b>
+                        </div>
+                        <br /><br /><br /><br /><span></span>
+                    </div>
+                </section>
+
+
+            </div>
+
+        </div>
+
+
+                                    }
+                                    else
+                                    {
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong><p style="font-size:18px;"> İlk önce 7. formu doldurmanız gerekmektedir.</p></strong>
+                                        </div>
+                                    }
+}
