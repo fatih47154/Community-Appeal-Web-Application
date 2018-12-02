@@ -116,9 +116,21 @@ namespace Community_Appeal_Web_Application.Controllers
         }
 
         [HttpGet]
+        public ActionResult tamamlanmayanBasvurular()
+        {
+            return View(db.Basvuru.Where(x => x.adimNo <=7).ToList());
+        }
+
+        [HttpGet]
         public ActionResult Guncellemeler()
         {
             return View(db.Guncelle.Where(x => x.adimNo >= 6).ToList());
+        }
+
+        [HttpGet]
+        public ActionResult tamamlanmayanGuncellemer()
+        {
+            return View(db.Guncelle.Where(x => x.adimNo <= 6).ToList());
         }
 
 
@@ -127,5 +139,41 @@ namespace Community_Appeal_Web_Application.Controllers
             return View(db.Kullanici.ToList());
         }
 
+
+        [HttpPost]
+        public ActionResult KayitSil(int id)
+        {
+            Kullanici k = db.Kullanici.Where(x => x.ID == id).FirstOrDefault();
+            if (k != null)
+            {
+                Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).SingleOrDefault();
+                Guncelle g = db.Guncelle.Where(x => x.kullanıcıID == k.ID).SingleOrDefault();
+
+                if (b!=null)
+                {
+                    db.Danisman.RemoveRange(db.Danisman.Where(x => x.basvuruID == b.ID).ToList());
+                    db.FaliyetPlani.RemoveRange(db.FaliyetPlani.Where(x => x.faliyetID == b.ID).ToList());
+                    db.OgrenciListesi.RemoveRange(db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList());
+                    db.DenetimKurulu.RemoveRange(db.DenetimKurulu.Where(x => x.basvuruID == b.ID).ToList());
+                    db.YonetimKurulu.RemoveRange(db.YonetimKurulu.Where(x => x.basvuruID == b.ID).ToList());
+                    db.Basvuru.Remove(b);
+                    db.SaveChanges();
+                }
+                if (g!=null)
+                {
+                    db.GDanisman.RemoveRange(db.GDanisman.Where(x => x.GuncelleID == g.ID).ToList());
+                    db.GFaliyetPlani.RemoveRange(db.GFaliyetPlani.Where(x => x.faliyetID == g.ID).ToList());
+                    db.GOgrenciListesi.RemoveRange(db.GOgrenciListesi.Where(x => x.GuncelleID == g.ID).ToList());
+                    db.GDenetimKurulu.RemoveRange(db.GDenetimKurulu.Where(x => x.GuncelleID == g.ID).ToList());
+                    db.GYonetimKurulu.RemoveRange(db.GYonetimKurulu.Where(x => x.GuncelleID == g.ID).ToList());
+                    db.Guncelle.Remove(g);
+                    db.SaveChanges();
+                }
+                db.Kullanici.Remove(k);
+                db.SaveChanges();
+                return Json(true);
+            }
+            return Json(false);
+        }
     }
 }
