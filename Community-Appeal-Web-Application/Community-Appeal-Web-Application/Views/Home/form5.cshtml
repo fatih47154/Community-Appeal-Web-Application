@@ -19,13 +19,7 @@
 @{
     if (Model != null)
     {
-        if (TempData["a"] != null)
-        {
-            <div class="alert alert-danger alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>@TempData["a"]</strong>
-            </div>
-        }
+        
         <div class="row">
             <div class="col-lg-12">
                 <section class="panel">
@@ -36,49 +30,51 @@
 
                         <form role="form" method="post" action="/Home/form5">
                             @*<div class="form-group">
-                                <label>Danışman Ünvanı</label>
-                                <input id="unvan" name="unvan" type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Danışman Adı</label>
-                                <input id="adi" name="adi" type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Danışman Soyadı</label>
-                                <input id="soyadi" name="soyadi" type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Danışman Okulu</label>
-                                <input id="akademikBirim" name="akademikBirim" type="text" class="form-control" >
-                            </div>
-                            <div class="form-group">
-                                <label>Topluluk Başkanı</label>
-                                <select onload="show_selected()" onchange="show_selected()" class="form-control" id="toplulukBaskani" name="ID" required>
-                                    <option value="default">Topluluk Başkanı Seçiniz</option>
-                                    @foreach (var item in ViewBag.ol)
-                                    {
-                                        <option value="@item.ID">
-                                            @item.adi @item.soyadi
-                                        </option>
-                                    }
-                                </select>
-                            </div>*@
-
-                            <button type="submit" id="button" style="margin-right:5px;" class="btn btn-info enabled">Kaydet</button>
-                            @*<a id="ekle" type="submit" style="margin-right:5px;" class="btn btn-success"><i class="glyphicon-plus"></i> Ekle</a>*@
+            <label>Danışman Ünvanı</label>
+            <input id="unvan" name="unvan" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Danışman Adı</label>
+            <input id="adi" name="adi" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Danışman Soyadı</label>
+            <input id="soyadi" name="soyadi" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Danışman Okulu</label>
+            <input id="akademikBirim" name="akademikBirim" type="text" class="form-control" >
+        </div>
+        <div class="form-group">
+            <label>Topluluk Başkanı</label>
+            <select onload="show_selected()" onchange="show_selected()" class="form-control" id="toplulukBaskani" name="ID" required>
+                <option value="default">Topluluk Başkanı Seçiniz</option>
+                @foreach (var item in ViewBag.ol)
+                {
+                    <option value="@item.ID">
+                        @item.adi @item.soyadi
+                    </option>
+                }
+            </select>
+        </div>*@
+                            <text>* Bu formdaki tüm veriler önceki formlarda girilmiştir. Bu Formu kontrol ettikten sonra Kaydet dedikten sonra 6.forma geçebilirsiniz.</text>
                             @{
-                                if (Model.adimNo >= 4)
+                                if (Model.adimNo == 6)
                                 {
-                                    <a href="form6" class="btn btn-primary">Form 6</a>
+                                    <a href="form6" style="float:right;margin-left:5px;" class="btn btn-primary">Form 6</a>
                                 }
                             }
-                            
+                            <button type="submit" id="button" style="margin-right:5px;float:right;" class="btn btn-info">Kaydet</button>
+
+                            @*<a id="ekle" type="submit" style="margin-right:5px;" class="btn btn-success"><i class="glyphicon-plus"></i> Ekle</a>*@
+
+
                         </form>
                     </div>
                 </section>
             </div>
-            
-            
+
+
         </div>
         <div class="row">
             <div class="col-lg-12">
@@ -94,13 +90,13 @@
                         <p style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>@Model.akademikYıl</b> Akademik yılında kuruluşu onaylanan D&uuml;zce &Uuml;niversitesi <b>@Model.toplulukAdi</b> Topluluğu&rsquo;nun faaliyete başlayabilmesi i&ccedil;in, Genel Kurul Tutanağı (Ek-7) ile D&uuml;zce &Uuml;niversitesi &Ouml;ğrenci Toplulukları Y&ouml;nergesi&rsquo;nin 6.Maddesine istinaden iki akademik danışman adayının bilgileri aşağıda sunulmuştur.</span></p>
                         <p style="text-align: justify; text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">Gereğini bilgilerinize arz ederim.</span></p>
                         <p style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
-                        
+
                         <div class="append">
                             @{
                                 Html.RenderAction("danismanListesiWidget");
                             }
                         </div>
-                        
+
                         <br /><br /><br />
                         <p style="text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
                         <p style="text-indent: 35.4pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
@@ -108,7 +104,7 @@
                             <p style="text-indent: 35.4pt; tab-stops: 313.5pt;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman',serif;"><b>@DateTime.Now.Date.ToShortDateString()</b> </span></p>
                             <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Düzce Üniversitesi <b>@Model.toplulukAdi</b> Topluluğu</span></p>
                             <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Topluluk Başkanı</span></p>
-                            <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">İmza</span></p><br/><br/>
+                            <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">İmza</span></p><br /><br />
                             @if (Model.baskanAdi == null && Model.baskanSoyadi == null)
                             {
                                 <p style="margin-bottom: 6.0pt; text-indent: 35.4pt; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;"><b>Topluluk Başkanı</b></span></p>
@@ -129,7 +125,7 @@
     else
     {
         <div class="alert alert-danger" role="alert">
-             <strong><p style="font-size:18px;"> @ViewBag.Hata</p></strong>
+            <strong><p style="font-size:18px;"> İlk önce 4. formu doldurmanız gerekmektedir.</p></strong>
         </div>
     }
 }
@@ -160,7 +156,7 @@
         var value2 = $('#adi').val();
         var value3 = $('#soyadi').val();
         var value4 = $('#akademikBirim').val();
-        
+
         if (value1 === "" || value2 === "" || value3 === "" || value4 === "") {
             alert("Tüm alanlar doldurulmalıdır.");
         }
@@ -191,7 +187,7 @@
             });
         }
 
-        
+
     });
 
 </script>

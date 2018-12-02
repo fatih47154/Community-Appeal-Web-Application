@@ -33,7 +33,7 @@
     }
 </style>
 
-@model Basvuru
+@model Guncelle
 
 @{
     if (Model != null)
@@ -45,7 +45,7 @@
                         Topluluk Bilgileri
                     </header>
                     <div class="panel-body">
-                        <form role="form" method="post" action="/Home/form8TBilg">
+                        <form role="form" method="post" action="/Guncelle/form8TBilg">
 
                             <div class="form-group">
                                 <label>Kuruluş Tarihi</label>
@@ -87,13 +87,13 @@
                         Yönetim Kurulu Üye Düzenle
                     </header>
                     <div class="panel-body">
-                        <form role="form" method="post" action="/Home/form8Uye">
+                        <form role="form" method="post" action="/Guncelle/form8Uye">
 
                             <div class="form-group">
                                 <label>Yönetim Kurulu Üyesi</label>
                                 <select class="form-control" id="list" name="ID">
                                     <option>Yönetim Kurulu Üyesi Seçiniz...</option>
-                                    @foreach (var item in Model.YonetimKurulu.ToList())
+                                    @foreach (var item in Model.GYonetimKurulu.ToList())
                                     {
                                         <option value="@item.ID"><b>@item.unvan</b> / @item.adi<span> </span>@item.soyadi</option>
                                     }
@@ -116,12 +116,12 @@
                             </div>
 
                             <button type="submit" style="margin-right: 5px;" class="btn btn-info">Üye Bilgilerini Kaydet</button>
-                            <a href="/Home/form8Kaydet" class="btn btn-primary">Kaydet</a>
+                            <a href="/Guncelle/form8Kaydet" class="btn btn-primary">Kaydet</a>
 
                             @{
                                 if (Model.adimNo >= 8)
                                 {
-                                    <a href="/Home/basvuruTamamla" class="btn btn-primary" style="margin-left:5px">Başvuru Tamamla</a>
+                                    <a href="/Guncelle/guncellemeTamamla" class="btn btn-primary" style="margin-left:5px">Başvuru Tamamla</a>
                                 }
                             }
                         </form>
@@ -300,28 +300,28 @@
                             Topluluk Danışmanı/İmza<br /><br />
                             <b>
                                 @{
-                                    if (Model.Danisman.FirstOrDefault(x => x.aktif == true) != null)
+                                    if (Model.GDanisman.FirstOrDefault(x => x.aktif == true) != null)
                                     {
-                                        @Model.Danisman.FirstOrDefault(x => x.aktif == true).adi<span> </span> @Model.Danisman.FirstOrDefault(x => x.aktif == true).soyadi
+                                        @Model.GDanisman.FirstOrDefault(x => x.aktif == true).adi<span> </span> @Model.GDanisman.FirstOrDefault(x => x.aktif == true).soyadi
                                     }
-                            }
-                        </b>
+                                }
+                            </b>
+                        </div>
+                        <br /><br /><br /><br /><span></span>
                     </div>
-                    <br /><br /><br /><br /><span></span>
-                </div>
-            </section>
+                </section>
 
+
+            </div>
 
         </div>
 
-    </div>
 
-
-}
-else
-{
-    <div class="alert alert-danger" role="alert">
-        <strong><p style="font-size:18px;"> İlk önce 7. formu doldurmanız gerekmektedir.</p></strong>
-    </div>
-}
+                                    }
+                                    else
+                                    {
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong><p style="font-size:18px;"> İlk önce 7. formu doldurmanız gerekmektedir.</p></strong>
+                                        </div>
+                                    }
 }

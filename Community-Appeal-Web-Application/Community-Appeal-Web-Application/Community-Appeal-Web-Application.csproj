@@ -228,7 +228,6 @@
     <Compile Include="Models\GYonetimKurulu.cs" />
     <Compile Include="Models\Kullanici.cs" />
     <Compile Include="Models\OgrenciListesi.cs" />
-    <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Models\YeniUye.cs" />
     <Compile Include="Models\YonetimKurulu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -300,8 +299,23 @@
     <Content Include="Views\Print\Form3.cshtml" />
     <Content Include="Views\Print\Form4_admin.cshtml" />
     <Content Include="Views\Print\Form4.cshtml" />
-    <Content Include="Views\Guncelle\form5.cshtml" />
-    <Content Include="Views\Guncelle\danismanListesiWidget.cshtml" />
+    <Content Include="Views\Print\Form4.cshtml" />
+    <Content Include="Views\Print\Form4_admin.cshtml" />
+    <Content Include="Views\Guncelle\form7.cshtml" />
+    <Content Include="Views\Guncelle\uyeListesiWidget.cshtml" />
+    <Content Include="Views\Guncelle\yKuruluListesiWidget.cshtml" />
+    <Content Include="Views\Guncelle\dKuruluListesiWidget.cshtml" />
+    <Content Include="Views\Guncelle\form8.cshtml" />
+    <Content Include="Views\Print\Form6.cshtml" />
+    <Content Include="Views\Print\Form6_admin.cshtml" />
+    <Content Include="Views\Print\Form7.cshtml" />
+    <Content Include="Views\Print\Form8.cshtml" />
+    <Content Include="Views\Print\Form7_admin.cshtml" />
+    <Content Include="Views\Print\Form8_admin.cshtml" />
+    <Content Include="Views\Print\GForm7.cshtml" />
+    <Content Include="Views\Print\GForm7_admin.cshtml" />
+    <Content Include="Views\Print\GForm8.cshtml" />
+    <Content Include="Views\Print\GForm8_admin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
