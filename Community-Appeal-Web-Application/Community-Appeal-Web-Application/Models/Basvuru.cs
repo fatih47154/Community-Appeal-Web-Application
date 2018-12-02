@@ -81,6 +81,18 @@ namespace Community_Appeal_Web_Application.Models
 
         public int? gUyeSayisi { get; set; }
 
+        [StringLength(400)]
+        public string etkinlik { get; set; }
+
+        [StringLength(400)]
+        public string butce { get; set; }
+
+        [StringLength(400)]
+        public string baskaKurul { get; set; }
+
+        [StringLength(400)]
+        public string bkUyeSecimi { get; set; }
+
         public virtual Kullanici Kullanici { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -535,6 +535,8 @@ namespace Community_Appeal_Web_Application.Controllers
                 db.SaveChanges();
             }
 
+            TempData["Eklendi"] = "Girmiş Olduğunuz Verileriniz Eklenmiştir. Lütfen Aşağıdaki Formdan Kontrol Ediniz.";
+
             return RedirectToAction("form7");
 
         }
@@ -544,7 +546,7 @@ namespace Community_Appeal_Web_Application.Controllers
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
 
-            int sayac = db.GYonetimKurulu.Where(x => x.unvan == "Üye").Count();
+            int sayac = db.GYonetimKurulu.Where(x => x.unvan == "Üye" && x.GuncelleID == b.ID).Count();
             if (sayac < 3)
             {
                 var ogrenci = db.GOgrenciListesi.FirstOrDefault(x => x.ID == id);
@@ -563,6 +565,8 @@ namespace Community_Appeal_Web_Application.Controllers
                     uye.eMail = ogrenci.mail;
                     db.GYonetimKurulu.Add(uye);
                     db.SaveChanges();
+                    TempData["Eklendi"] = "Girmiş Olduğunuz Uye Eklenmiştir. Lütfen Aşağıdaki Formdan Kontrol Ediniz.";
+
                 }
                 else
                 {
@@ -631,7 +635,7 @@ namespace Community_Appeal_Web_Application.Controllers
             Kullanici k = (Kullanici)Session["Kullanici"];
             Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
 
-            int sayac = db.GDenetimKurulu.Where(x => x.unvan == "Üye").Count();
+            int sayac = db.GDenetimKurulu.Where(x => x.unvan == "Üye" && x.GuncelleID == b.ID).Count();
             if (sayac < 2)
             {
                 var ogrenci = db.GOgrenciListesi.FirstOrDefault(x => x.ID == id);
@@ -647,6 +651,8 @@ namespace Community_Appeal_Web_Application.Controllers
 
                     db.GDenetimKurulu.Add(uye);
                     db.SaveChanges();
+
+                    TempData["Eklendi"] = "Girmiş Olduğunuz Uye Eklenmiştir. Lütfen Aşağıdaki Formdan Kontrol Ediniz.";
                 }
                 else
                 {
@@ -696,6 +702,8 @@ namespace Community_Appeal_Web_Application.Controllers
                         baskan.ogrNo = dBaskan.ogrNo;
                         db.GDenetimKurulu.Add(baskan);
                         db.SaveChanges();
+
+                        TempData["Eklendi"] = "Girmiş Olduğunuz Verileriniz Eklenmiştir. Lütfen Aşağıdaki Formdan Kontrol Ediniz.";
                     }
                     else
                     {
@@ -705,6 +713,8 @@ namespace Community_Appeal_Web_Application.Controllers
                         baskan.unvan = "Denetim Kurulu Başkanı";
                         baskan.ogrNo = dBaskan.ogrNo;
                         db.SaveChanges();
+
+                        TempData["Eklendi"] = "Girmiş Olduğunuz Verileriniz Eklenmiştir. Lütfen Aşağıdaki Formdan Kontrol Ediniz.";
                     }
                 }
                 else
@@ -736,6 +746,37 @@ namespace Community_Appeal_Web_Application.Controllers
             GDenetimKurulu ul = db.GDenetimKurulu.Where(x => x.ID == id).FirstOrDefault();
             db.GDenetimKurulu.Remove(ul);
             db.SaveChanges();
+            return RedirectToAction("form7");
+        }
+
+        [HttpPost]
+        public ActionResult etkButceKaydet(string etkinlik, string butce ,string kurul, string kUyeSecimi)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            if (etkinlik != "")
+            {
+                b.etkinlik = etkinlik;
+            }
+
+            if (butce != "")
+            {
+                b.butce = butce;
+            }
+
+            if (kurul != "")
+            {
+                b.baskaKurul = kurul;
+            }
+
+            if (kUyeSecimi != "")
+            {
+                b.bkUyeSecimi = kUyeSecimi;
+            }
+
+            db.SaveChanges();
+
             return RedirectToAction("form7");
         }
 
