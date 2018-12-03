@@ -6,7 +6,13 @@
 @using Community_Appeal_Web_Application.Models
 
 @model Guncelle
-
+<style>
+    body {
+        margin: 50px;
+        text-align: justify;
+        text-rendering: geometricPrecision;
+    }
+</style>
 @{
     int gunInt = 0;
     gunInt = (int)Model.toplantiTarihi.Value.Day;

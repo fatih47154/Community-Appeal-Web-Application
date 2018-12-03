@@ -180,6 +180,7 @@
     <Content Include="Content\todo_list.html" />
     <Content Include="Content\widget.html" />
     <Content Include="Content\xchart.html" />
+    <Content Include="DB Script\03122018_db.sql" />
     <Content Include="DB Script\db.sql" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -196,7 +197,9 @@
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Classes\BasvuruDanisman.cs" />
