@@ -67,8 +67,8 @@ namespace Community_Appeal_Web_Application.Controllers
         public ActionResult Form3_admin(int ID)
         {
             Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == ID).FirstOrDefault();
-            var ogrnci = db.OgrenciListesi.Where(x => x.basvuruID == b.ID).ToList();
-            ViewBag.Ogreciler = ogrnci;
+            var ogrnci = db.YonetimKurulu.Where(x => x.basvuruID == b.ID && x.Baskan == true).FirstOrDefault(); ;
+            ViewBag.baskan = ogrnci;
             var report = new ViewAsPdf("Form3_admin", b)
             {
 

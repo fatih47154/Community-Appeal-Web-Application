@@ -17,6 +17,8 @@
                 <thead>
                     <tr>
                         <th>Güncelleme</th>
+                        <th>Kullanıcı</th>
+                        <th>Kayıt Tarihi</th>
                         <th>Topluluk Adı</th>
                         <th>Topluluk Başkanı</th>
                         <th>İşlemler</th>
@@ -25,26 +27,35 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr id="@item.Kullanici.ID">
-                            <td>
-                                <a href="/Kullanici/GuncelleAdmin/@item.Kullanici.ID" title="Başvuruya Git" style="float:left;margin-left:5px;" class="btn btn-warning btn-xs">  Git <i class="icon-long-arrow-right"></i></a>
-                            </td>
-                            <td>
-                                @if (@item.toplulukAdi != null)
-                                {@item.toplulukAdi}
-                            else
-                            { <text></text>}
+                    <tr id="@item.Kullanici.ID">
+                        <td>
+                            <a href="/Kullanici/GuncelleAdmin/@item.Kullanici.ID" title="Başvuruya Git" style="float:left;margin-left:5px;" class="btn btn-warning btn-xs">  Git <i class="icon-long-arrow-right"></i></a>
                         </td>
                         <td>
+                            @item.Kullanici.adi @item.Kullanici.soyadi
+                        </td>
+                        <th>
+                            @item.Kullanici.kayitTarihi.Value.Day/@item.Kullanici.kayitTarihi.Value.Month/@item.Kullanici.kayitTarihi.Value.Year
+                        </th>
+                        <td>
+                            @if (@item.toplulukAdi != null)
+                            {@item.toplulukAdi}
+                        else
+                        { <text></text>}
+                        </td>
+                        <td>
+                            @{
+                                string baskan = item.baskanAdi + " " + item.baskanSoyadi;
+                            }
                             @if (@item.baskanAdi != null)
-                            {@item.baskanAdi @item.baskanSoyadi}
+                            {@baskan}
                         else
                         { <text>-</text>}
-                    </td>
-                <td>
-                    <a href="#" title="Sil" style="float:left;margin-left:5px;" data-id="@item.Kullanici.ID" class="btn btn-danger btn-xs btn-confirm">  Sil <i class="icon-remove-sign"></i></a>
-                </td>
-            </tr>
+                        </td>
+                        <td>
+                            <a href="#" title="Sil" style="float:left;margin-left:5px;" data-id="@item.Kullanici.ID" class="btn btn-danger btn-xs btn-confirm">  Sil <i class="icon-remove-sign"></i></a>
+                        </td>
+                    </tr>
         }
                 </tbody>
             </table>

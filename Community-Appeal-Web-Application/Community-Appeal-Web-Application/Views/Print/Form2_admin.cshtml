@@ -6,11 +6,7 @@
 @using Community_Appeal_Web_Application.Models
 
 
-@{
-    CommunityContext db = new CommunityContext();
-    Kullanici k = (Kullanici)Session["Kullanici"];
-    Basvuru b = db.Basvuru.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
-}
+@model Basvuru
 
 <!DOCTYPE html>
 
@@ -26,7 +22,7 @@
                 <strong></strong>
             </p>
             <p align="center">
-                <strong>DÜZCE ÜNİVERSİTESİ @b.toplulukAdi.ToUpper() TOPLULUĞU</strong>
+                <strong>DÜZCE ÜNİVERSİTESİ @Model.toplulukAdi.ToUpper() TOPLULUĞU</strong>
             </p>
             <p align="center">
                 <strong>@DateTime.Now.Year-@DateTime.Now.AddYears(+1).Year AKADEMİK YILI ÜYE LİSTESİ</strong>

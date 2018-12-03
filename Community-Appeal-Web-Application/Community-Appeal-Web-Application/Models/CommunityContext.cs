@@ -26,6 +26,7 @@
         public virtual DbSet<GYonetimKurulu> GYonetimKurulu { get; set; }
         public virtual DbSet<Kullanici> Kullanici { get; set; }
         public virtual DbSet<OgrenciListesi> OgrenciListesi { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<YeniUye> YeniUye { get; set; }
         public virtual DbSet<YonetimKurulu> YonetimKurulu { get; set; }
 

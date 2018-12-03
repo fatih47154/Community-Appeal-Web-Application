@@ -36,6 +36,9 @@ namespace Community_Appeal_Web_Application.Models
         [StringLength(100)]
         public string tc { get; set; }
 
+        [Column(TypeName = "date")]
+        public DateTime? kayitTarihi { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Basvuru> Basvuru { get; set; }
 
