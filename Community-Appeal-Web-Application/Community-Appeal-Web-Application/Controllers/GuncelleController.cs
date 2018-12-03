@@ -600,16 +600,17 @@ namespace Community_Appeal_Web_Application.Controllers
             { 
             if (baskan !=null)
             {
-                if (b.GYonetimKurulu.Where(x=>x.unvan == "baskan" && x.GuncelleID==b.ID).SingleOrDefault() != null)
+                if (b.GYonetimKurulu.Where(x=>x.unvan == "Yönetim Kurulu Başkanı" && x.GuncelleID==b.ID).SingleOrDefault() != null)
                 {
-                    GYonetimKurulu gbaskan = db.GYonetimKurulu.Where(x => x.unvan == "baskan" && x.GuncelleID == b.ID).SingleOrDefault();
+                    GYonetimKurulu gbaskan = db.GYonetimKurulu.Where(x => x.unvan == "Yönetim Kurulu Başkanı" && x.GuncelleID == b.ID).SingleOrDefault();
                     gbaskan.adi = baskan.adi;
                     gbaskan.soyadi = baskan.soyadi;
                     gbaskan.ogrNo = baskan.ogrNo;
                     gbaskan.tc = baskan.tc;
-                    gbaskan.unvan = "baskan";
+                    gbaskan.unvan = "Yönetim Kurulu Başkanı";
                     gbaskan.gsm = baskan.tel;
                     db.SaveChanges();
+                    TempData["Eklendi"] = "Girmiş Olduğunuz Verileriniz Eklenmiştir. Lütfen Aşağıdaki Formdan Kontrol Ediniz.";
                 }
                 else
                 {
@@ -619,11 +620,13 @@ namespace Community_Appeal_Web_Application.Controllers
                     g.soyadi = baskan.soyadi;
                     g.ogrNo = baskan.ogrNo;
                     g.tc = baskan.tc;
-                    g.unvan = "baskan";
+                    g.unvan = "Yönetim Kurulu Başkanı";
                     g.gsm = baskan.tel;
+                    g.GuncelleID = b.ID;
                     db.GYonetimKurulu.Add(g);
                     db.SaveChanges();
-                }
+                    TempData["Eklendi"] = "Girmiş Olduğunuz Verileriniz Eklenmiştir. Lütfen Aşağıdaki Formdan Kontrol Ediniz.";
+                    }
 
             }
             }
