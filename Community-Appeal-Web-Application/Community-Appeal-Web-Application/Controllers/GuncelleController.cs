@@ -587,6 +587,50 @@ namespace Community_Appeal_Web_Application.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult form7YonetimBaskan(int? yonetimbaskan)
+        {
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            Guncelle b = db.Guncelle.Where(x => x.kullanıcıID == k.ID).FirstOrDefault();
+
+            GOgrenciListesi baskan = db.GOgrenciListesi.Where(x => x.ID == yonetimbaskan).SingleOrDefault();
+
+
+            if(yonetimbaskan != null)
+            { 
+            if (baskan !=null)
+            {
+                if (b.GYonetimKurulu.Where(x=>x.unvan == "baskan" && x.GuncelleID==b.ID).SingleOrDefault() != null)
+                {
+                    GYonetimKurulu gbaskan = db.GYonetimKurulu.Where(x => x.unvan == "baskan" && x.GuncelleID == b.ID).SingleOrDefault();
+                    gbaskan.adi = baskan.adi;
+                    gbaskan.soyadi = baskan.soyadi;
+                    gbaskan.ogrNo = baskan.ogrNo;
+                    gbaskan.tc = baskan.tc;
+                    gbaskan.unvan = "baskan";
+                    gbaskan.gsm = baskan.tel;
+                    db.SaveChanges();
+                }
+                else
+                {
+
+                    GYonetimKurulu g = new GYonetimKurulu();
+                    g.adi = baskan.adi;
+                    g.soyadi = baskan.soyadi;
+                    g.ogrNo = baskan.ogrNo;
+                    g.tc = baskan.tc;
+                    g.unvan = "baskan";
+                    g.gsm = baskan.tel;
+                    db.GYonetimKurulu.Add(g);
+                    db.SaveChanges();
+                }
+
+            }
+            }
+            return RedirectToAction("form7");
+        }
+
+
         public ActionResult yonetimKuruluUyeEkle(int id)
         {
             Kullanici k = (Kullanici)Session["Kullanici"];

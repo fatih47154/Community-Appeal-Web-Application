@@ -170,6 +170,36 @@
 
         </div>
 
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Yönetim Kurulu Başkanı Seçimi
+                    </header>
+                    <div class="panel-body">
+                        <form method="post" action="/Guncelle/form7YonetimBaskan">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label>Yönetim Kurulu Başkanını seçin</label>
+                                    <select onchange="myFunction()" class="form-control" name="yonetimbaskan" id="yonetimbaskan" required>
+                                        <option value="null">Üye Seçiniz...</option>
+                                        @foreach (var item in Model.GOgrenciListesi.ToList())
+                                        {
+                                            <option value="@item.ID">@item.adi<span> </span>@item.soyadi</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                                <button style="margin-left: 5px;float: right" class="btn btn-info">Kaydet</button>
+                        </form>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+
+
         <div class="row">
             <div class="col-lg-4">
                 <section class="panel">
@@ -191,7 +221,7 @@
                     </div>
                 </section>
             </div>
-            
+
             <div class="col-lg-4">
                 <section class="panel">
                     <header class="panel-heading">
@@ -219,7 +249,7 @@
                     </div>
                 </section>
             </div>
-            
+
             <div class="col-lg-4">
                 <section class="panel">
                     <header class="panel-heading">
@@ -237,13 +267,13 @@
                             </select>
                         </div>
                         <a href="#" id="ekle1" class="btn btn-success" style="margin-right: 5px;"><i class="glyphicon-plus"></i> Üye Ekle</a>
-                        
+
                     </div>
                 </section>
             </div>
         </div>
 
-      
+
 
         <div class="row">
             <div class="col-lg-12">
@@ -262,7 +292,7 @@
                                 <label>Gerçekleştirilecek Etkinlikler İçin Gerekli Bütçeden Bahsedin</label>
                                 <textarea name="butce" style="resize: vertical; height: 100px" class=form-control type="text"></textarea>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label>Varsa Başka Kurulu Giriniz</label>
                                 <textarea name="kurul" style="resize: vertical; height: 100px" class=form-control type="text"></textarea>
@@ -330,7 +360,7 @@
                                             <b>@Model.marscı</b>
                                         }
                                     }
-                                     tarafından açıldı.
+                                    tarafından açıldı.
                                 </span>
                             </p>
 
@@ -507,16 +537,23 @@
                                         if (Model.GYonetimKurulu == null)
                                         {
                                             <span>………………………</span><i>
-                                                                      (topluluk tüzüğünde belirtilen yönetim kurulu üyelerinin neler olduğu ve kaç kişiden oluştuğu
-                                                                      yazılacak)</i> <span> kişiden oluştuğunu söyledikten sonra üyelere söz vererek talep ettikleri kurul üyeliğini sordu.
-                                                                                         Buna göre Yönetim Kurulu şu kişilerden oluşmuştur;</span> <i>(Burada kurul üyeliklerine kimlerin seçildiği
-                                                                                                                                                yazılacak)</i>
-                                            
+                                                (topluluk tüzüğünde belirtilen yönetim kurulu üyelerinin neler olduğu ve kaç kişiden oluştuğu
+                                                yazılacak)
+                                            </i> <span>
+                                                kişiden oluştuğunu söyledikten sonra üyelere söz vererek talep ettikleri kurul üyeliğini sordu.
+                                                Buna göre Yönetim Kurulu şu kişilerden oluşmuştur;
+                                            </span> <i>
+                                                (Burada kurul üyeliklerine kimlerin seçildiği
+                                                yazılacak)
+                                            </i>
+
                                         }
                                         else
                                         {
-                                            <b>@Model.GYonetimKurulu.Count()</b><span>oluştuğunu söyledikten sonra üyelere söz vererek talep ettikleri kurul üyeliğini sordu.
-                                                                                   Buna göre Yönetim Kurulu şu kişilerden oluşmuştur;</span> 
+                                            <b>@Model.GYonetimKurulu.Count()</b><span>
+                                                oluştuğunu söyledikten sonra üyelere söz vererek talep ettikleri kurul üyeliğini sordu.
+                                                Buna göre Yönetim Kurulu şu kişilerden oluşmuştur;
+                                            </span>
                                         }
                                     }
                                 </span>
@@ -614,8 +651,8 @@
                                         if (Model.GYonetimKurulu.FirstOrDefault(x => x.unvan == "Yönetim Kurulu Başkanı") != null)
                                         {
                                             <b>@Model.GYonetimKurulu.FirstOrDefault(x => x.unvan == "Yönetim Kurulu Başkanı").adi</b>
-                                                                            <span> </span>
-                                                                            <b>@Model.GYonetimKurulu.FirstOrDefault(x => x.unvan == "Yönetim Kurulu Başkanı").soyadi</b>
+                                            <span> </span>
+                                            <b>@Model.GYonetimKurulu.FirstOrDefault(x => x.unvan == "Yönetim Kurulu Başkanı").soyadi</b>
                                         }
 
                                     }
@@ -630,13 +667,13 @@
             </div>
         </div>
 
-                                        }
-                                        else
-                                        {
-                                            <div class="alert alert-danger" role="alert">
-                                                <strong><p style="font-size:18px;"> İlk önce 4. formu doldurmanız gerekmektedir.</p></strong>
-                                            </div>
-                                        }
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            <strong><p style="font-size:18px;"> İlk önce 4. formu doldurmanız gerekmektedir.</p></strong>
+        </div>
+    }
 }
 
 <script>
@@ -654,8 +691,7 @@
     function myFunction1() {
         var selector = document.getElementById('ogrenci1');
         var valuea = selector[selector.selectedIndex].value;
-        if (valuea != "null")
-        {
+        if (valuea != "null") {
             document.getElementById('ekle1').href = "/Guncelle/denetimKuruluUyeEkle/" + valuea;
         } else {
             document.getElementById('ekle1').href = "#";

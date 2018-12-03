@@ -319,6 +319,7 @@
     <Content Include="Views\Print\GForm8_admin.cshtml" />
     <Content Include="Views\Admin\tamamlanmayanBasvurular.cshtml" />
     <Content Include="Views\Admin\tamamlanmayanGuncellemer.cshtml" />
+    <Content Include="Views\Guncelle\form7YonetimBaskan.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
