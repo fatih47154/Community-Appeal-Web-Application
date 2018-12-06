@@ -250,11 +250,11 @@ else
                     <form role="form" method="post" action="/Home/form1">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Topluluk Adı</label>
-                            <input type="text" class="form-control" id="toplulukAdi" onkeyup="myFunction()" name="toplulukAdi" value="@Model.toplulukAdi">
+                            <input type="text" class="form-control" id="toplulukAdi" onkeyup="myFunction()" name="toplulukAdi" value="@Model.toplulukAdi" maxlength="149" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Topluluk Amacı</label>
-                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="toplulukAmac" value="@Model.toplulukAmac">
+                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="toplulukAmac" value="@Model.toplulukAmac" maxlength="499" required>
                         </div>
                         <text>* İstenilen Bilgileri girdikten sonra Aşağıdaki formda herhangi bir sorun yoksa 2. forma geçebilirsiniz.</text><br />
                         <a style="float:right;;margin-left:5px;" href="/Home/form2" class="btn btn-primary">Form 2</a>

@@ -218,39 +218,47 @@
 
                         <br />
                     @{
-                        int gunInt = 0;
-                        gunInt = (int)Model.kurulusTarihi.Value.Day;
-                        string ay = Model.kurulusTarihi.Value.Month.ToString();
-                        string yil = Model.kurulusTarihi.Value.Year.ToString();
-                        string gun;
-                        if (gunInt <= 9)
+                        string kurulusTarihi = "-";
+                        if (Model.kurulusTarihi != null)
                         {
-                            gun = "0" + Model.kurulusTarihi.Value.Day.ToString();
-                        }
-                        else
-                        {
-                            gun = Model.kurulusTarihi.Value.Day.ToString();
-                        }
+                            int gunInt = 0;
+                            gunInt = (int)Model.kurulusTarihi.Value.Day;
+                            string ay = Model.kurulusTarihi.Value.Month.ToString();
+                            string yil = Model.kurulusTarihi.Value.Year.ToString();
+                            string gun;
+                            if (gunInt <= 9)
+                            {
+                                gun = "0" + Model.kurulusTarihi.Value.Day.ToString();
+                            }
+                            else
+                            {
+                                gun = Model.kurulusTarihi.Value.Day.ToString();
+                            }
 
-                        string kurulusTarihi = yil + "-" + ay + "-" + gun;
+                            kurulusTarihi = yil + "-" + ay + "-" + gun;
+                        }
                     }
 
                     @{
-                        int gunInt1 = 0;
-                        gunInt = (int)Model.toplantiTarihi.Value.Day;
-                        string ay1 = Model.toplantiTarihi.Value.Month.ToString();
-                        string yil1 = Model.toplantiTarihi.Value.Year.ToString();
-                        string gun1;
-                        if (gunInt1 <= 9)
+                        string toplantiTarihi = "-";
+                        if (Model.toplantiTarihi != null)
                         {
-                            gun1 = "0" + Model.toplantiTarihi.Value.Day.ToString();
-                        }
-                        else
-                        {
-                            gun1 = Model.toplantiTarihi.Value.Day.ToString();
-                        }
+                            int gunInt1 = 0;
+                            gunInt1 = (int)Model.toplantiTarihi.Value.Day;
+                            string ay1 = Model.toplantiTarihi.Value.Month.ToString();
+                            string yil1 = Model.toplantiTarihi.Value.Year.ToString();
+                            string gun1;
+                            if (gunInt1 <= 9)
+                            {
+                                gun1 = "0" + Model.toplantiTarihi.Value.Day.ToString();
+                            }
+                            else
+                            {
+                                gun1 = Model.toplantiTarihi.Value.Day.ToString();
+                            }
 
-                        string toplantiTarihi = yil1 + "-" + ay1 + "-" + gun1;
+                            toplantiTarihi = yil1 + "-" + ay1 + "-" + gun1;
+                        }
                     }
                         <table style="width: 100%; height: 90px;" id="table2">
                             <tr>

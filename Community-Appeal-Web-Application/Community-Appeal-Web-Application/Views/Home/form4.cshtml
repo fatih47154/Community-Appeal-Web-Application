@@ -76,19 +76,19 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 1. Danışman Adı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().adi">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().adi" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 1. Danışman Soyadı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().soyadi">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().soyadi" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 1. Danışman Unvanı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().unvan">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().unvan" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 1. Danışman Akademik Birim</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().akademikBirim">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().akademikBirim" maxlength="150" required>
                                         </div>
                                         <text>* Aşağıdaki formları doldurmadan önce danışmanlara ait bilgileri girdikten sonra yandeki button ile danışman bilgilerini kayıt etmelisiniz</text>
                                     </div>
@@ -96,19 +96,19 @@
 
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 2. Danışman Adı.</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().adi">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().adi" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 2. Danışman Soyadı.</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().soyadi">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().soyadi" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 2. Danışman Unvanı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().unvan">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().unvan" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 2. Danışman Akademik Birim</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().akademikBirim">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().akademikBirim" maxlength="150" required>
                                         </div>
                                         <div class="checkbox">
                                             <label>
@@ -137,19 +137,19 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 1. Danışman Adı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi1">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi1" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 1. Danışman Soyadı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi1">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi1" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 1. Danışman Unvanı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan1">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan1" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 1. Danışman Akademik Birim</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim1">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim1" maxlength="150" required>
                                         </div>
                                         <text>* Aşağıdaki formları doldurmadan önce danışmanlara ait bilgileri girdikten sonra yandeki button ile danışman bilgilerini kayıt etmelisiniz</text><br />
 
@@ -158,19 +158,19 @@
 
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 2. Danışman Adı.</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi2">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi2" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 2. Danışman Soyadı.</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi2">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi2" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 2. Danışman Unvanı</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan2">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan2" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Topluluk 2. Danışman Akademik Birim</label>
-                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim2">
+                                            <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim2" maxlength="50" required>
                                         </div>
                                         <div class="checkbox">
                                             <label>
@@ -197,11 +197,11 @@
                             <form role="form" method="post" action="/Home/faaliyetPlaniEkle">
                                 <div class="form-group">
                                     <label>Faliyet Türü:</label>
-                                    <input name="faliyetTürü" type="text" class="form-control" id="faliyetTürü" required>
+                                    <input name="faliyetTürü" type="text" class="form-control" id="faliyetTürü" maxlength="100" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Faliyet Konusu/İçeriği:</label>
-                                    <input name="faliyetAmaci" type="text" class="form-control" id="faliyetAmaci" required>
+                                    <input name="faliyetAmaci" type="text" class="form-control" id="faliyetAmaci" maxlength="500" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Faliyet Tarihi:</label>
@@ -209,7 +209,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Faliyet Yerleşkesi:</label>
-                                    <input name="yerleske" type="text" class="form-control" id="yerleske" required>
+                                    <input name="yerleske" type="text" class="form-control" id="yerleske" maxlength="50" required>
                                 </div>
                                 <a id="ekle" style="margin-right: 5px; float: right;" class="btn btn-success">Ekle</a>
                             </form>
@@ -248,7 +248,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Toplantı yeri:</label>
-                                        <input name="mekan" type="text" class="form-control" required>
+                                        <input name="mekan" type="text" class="form-control" maxlength="100" required>
                                     </div>
                                     <button type="submit" id="button" style="margin-right: 5px; float: right;" class="btn btn-info">Kaydet</button>
                                 </form>
@@ -300,19 +300,19 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Topluluk 1. Danışman Adı</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().adi">
+                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().adi" maxlength="50" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Topluluk 1. Danışman Soyadı</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().soyadi">
+                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().soyadi" maxlength="50" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Topluluk 1. Danışman Unvanı</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().unvan">
+                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().unvan" maxlength="50" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Topluluk 1. Danışman Akademik Birim</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().akademikBirim">
+                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim1" value="@Model.Danisman.Where(x=>x.aktif==true).SingleOrDefault().akademikBirim" maxlength="150" required>
                                     </div>
                                     <text>* Aşağıdaki formları doldurmadan önce danışmanlara ait bilgileri girdikten sonra yandeki button ile danışman bilgilerini kayıt etmelisiniz</text>
                                 </div>
@@ -320,19 +320,19 @@
 
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Topluluk 2. Danışman Adı.</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().adi">
+                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="adi2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().adi" maxlength="50" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Topluluk 2. Danışman Soyadı.</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().soyadi">
+                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="soyadi2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().soyadi" maxlength="50" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Topluluk 2. Danışman Unvanı</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().unvan">
+                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="unvan2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().unvan" maxlength="50" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Topluluk 2. Danışman Akademik Birim</label>
-                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().akademikBirim">
+                                        <input type="text" class="form-control" onkeyup="myFunction()" id="toplulukAmac" name="akademikBirim2" value="@Model.Danisman.Where(x=>x.aktif==false).SingleOrDefault().akademikBirim" maxlength="150" required>
                                     </div>
                                     <div class="checkbox">
                                         <label>
@@ -358,11 +358,11 @@
                             <form role="form" method="post" action="/Home/faaliyetPlaniEkle">
                                 <div class="form-group">
                                     <label>Faliyet Türü:</label>
-                                    <input name="faliyetTürü" type="text" class="form-control" id="faliyetTürü" required>
+                                    <input name="faliyetTürü" type="text" class="form-control" id="faliyetTürü" maxlength="100" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Faliyet Konusu/İçeriği:</label>
-                                    <input name="faliyetAmaci" type="text" class="form-control" id="faliyetAmaci" required>
+                                    <input name="faliyetAmaci" type="text" class="form-control" id="faliyetAmaci" maxlength="500"  required>
                                 </div>
                                 <div class="form-group">
                                     <label>Faliyet Tarihi:</label>
@@ -370,7 +370,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Faliyet Yerleşkesi:</label>
-                                    <input name="yerleske" type="text" class="form-control" id="yerleske" required>
+                                    <input name="yerleske" type="text" class="form-control" id="yerleske" maxlength="50"  required>
                                 </div>
                                 <a id="ekle" style="margin-right: 5px; float: right;" class="btn btn-success">Ekle</a>
                             </form>
@@ -416,7 +416,7 @@
 
                                             string toplantiTarihi = yil + "-" + ay + "-" + gun;
                                         }
-                                        <input name="toplantiTarihi" type="date" class="form-control" id="toplantiTarihi" value="@toplantiTarihi" required>
+                                        <input name="toplantiTarihi" type="date" class="form-control" id="toplantiTarihi" value="@toplantiTarihi"  required>
                                     </div>
                                     <div class="form-group">
                                         <label>Toplantı Saati:</label>
@@ -428,7 +428,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Toplantı yeri:</label>
-                                        <input name="mekan" type="text" class="form-control" value="@Model.mekan" required>
+                                        <input name="mekan" type="text" class="form-control" value="@Model.mekan" maxlength="50" required>
                                     </div>
                                     <button type="submit" id="button" style="margin-right: 5px; float: right;" class="btn btn-info">Kaydet</button>
 

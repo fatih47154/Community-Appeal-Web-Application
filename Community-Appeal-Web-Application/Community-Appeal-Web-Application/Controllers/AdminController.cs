@@ -112,7 +112,22 @@ namespace Community_Appeal_Web_Application.Controllers
         [HttpGet]
         public ActionResult Basvurular()
         {
-            return View(db.Basvuru.Where(x=>x.adimNo>=9).ToList());
+            return View(db.Basvuru.Where(x=>x.adimNo>=9 && x.kapat != true).ToList());
+        }
+
+        [HttpGet]
+        public ActionResult kapatilanBasvurular()
+        {
+            return View(db.Basvuru.Where(x => x.adimNo >= 9 && x.kapat==true).ToList());
+        }
+
+       
+        public ActionResult basvuruKapat(int id)
+        {
+            Basvuru b = db.Basvuru.Where(x=>x.ID==id).SingleOrDefault();
+            b.kapat = true;
+            db.SaveChanges();
+            return RedirectToAction("Basvurular");
         }
 
         [HttpGet]
@@ -124,15 +139,30 @@ namespace Community_Appeal_Web_Application.Controllers
         [HttpGet]
         public ActionResult Guncellemeler()
         {
-            return View(db.Guncelle.Where(x => x.adimNo >= 6).ToList());
+            return View(db.Guncelle.Where(x => x.adimNo >= 7 && x.kapat==false).ToList());
         }
+
 
         [HttpGet]
         public ActionResult tamamlanmayanGuncellemer()
         {
-            return View(db.Guncelle.Where(x => x.adimNo <= 6).ToList());
+            return View(db.Guncelle.Where(x => x.adimNo <= 7).ToList());
         }
 
+        [HttpGet]
+        public ActionResult kapatilanGuncellemeler()
+        {
+            return View(db.Guncelle.Where(x => x.adimNo >= 7 && x.kapat == true).ToList());
+        }
+
+
+        public ActionResult guncelleKapat(int id)
+        {
+            Guncelle b = db.Guncelle.Where(x => x.ID == id).SingleOrDefault();
+            b.kapat = true;
+            db.SaveChanges();
+            return RedirectToAction("Guncellemeler");
+        }
 
         public ActionResult KayitliKullanicilar()
         {

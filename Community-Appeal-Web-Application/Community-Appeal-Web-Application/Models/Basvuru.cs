@@ -93,6 +93,8 @@ namespace Community_Appeal_Web_Application.Models
         [StringLength(400)]
         public string bkUyeSecimi { get; set; }
 
+        public bool? kapat { get; set; }
+
         public virtual Kullanici Kullanici { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

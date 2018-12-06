@@ -33,7 +33,7 @@
                                 <div class="form-group">
                                     <label>Yönetim Kurulu Başkanı</label>
                                     <select class="form-control" name="ID" required>
-                                        <option value="default">Yönetim Kurulu Başkanı Seçiniz..</option>
+                                        <option value="">Yönetim Kurulu Başkanı Seçiniz..</option>
                                         @foreach (var item in ViewBag.Ogreciler)
                                         {
                                             <option value="@item.ID"> @item.adi @item.soyadi</option>
@@ -118,7 +118,7 @@
                                 <div class="form-group">
                                     <label>Yönetim Kurulu Başkanı</label>
                                     <select class="form-control" name="ID" required>
-                                        <option value="default">Yönetim Kurulu Başkanı Seçiniz..</option>
+                                        <option value="">Yönetim Kurulu Başkanı Seçiniz..</option>
                                         @foreach (OgrenciListesi item in ViewBag.Ogreciler)
                                         {
                                             if (item.ogrNo == baskan.ogrNo)
