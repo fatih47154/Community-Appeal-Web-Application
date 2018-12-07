@@ -16,7 +16,6 @@ namespace Community_Appeal_Web_Application.Models
             DenetimKurulu = new HashSet<DenetimKurulu>();
             FaliyetPlani = new HashSet<FaliyetPlani>();
             OgrenciListesi = new HashSet<OgrenciListesi>();
-            YeniUye = new HashSet<YeniUye>();
             YonetimKurulu = new HashSet<YonetimKurulu>();
         }
 
@@ -108,9 +107,6 @@ namespace Community_Appeal_Web_Application.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OgrenciListesi> OgrenciListesi { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<YeniUye> YeniUye { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<YonetimKurulu> YonetimKurulu { get; set; }

@@ -146,7 +146,7 @@ namespace Community_Appeal_Web_Application.Controllers
         [HttpGet]
         public ActionResult tamamlanmayanGuncellemer()
         {
-            return View(db.Guncelle.Where(x => x.adimNo <= 7).ToList());
+            return View(db.Guncelle.Where(x => x.adimNo < 7).ToList());
         }
 
         [HttpGet]

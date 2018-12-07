@@ -22,12 +22,10 @@
         public virtual DbSet<GFaliyetPlani> GFaliyetPlani { get; set; }
         public virtual DbSet<GOgrenciListesi> GOgrenciListesi { get; set; }
         public virtual DbSet<Guncelle> Guncelle { get; set; }
-        public virtual DbSet<GYeniUye> GYeniUye { get; set; }
         public virtual DbSet<GYonetimKurulu> GYonetimKurulu { get; set; }
         public virtual DbSet<Kullanici> Kullanici { get; set; }
         public virtual DbSet<OgrenciListesi> OgrenciListesi { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<YeniUye> YeniUye { get; set; }
         public virtual DbSet<YonetimKurulu> YonetimKurulu { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

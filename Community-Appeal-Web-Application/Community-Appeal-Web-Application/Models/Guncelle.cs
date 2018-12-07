@@ -16,7 +16,6 @@ namespace Community_Appeal_Web_Application.Models
             GDenetimKurulu = new HashSet<GDenetimKurulu>();
             GFaliyetPlani = new HashSet<GFaliyetPlani>();
             GOgrenciListesi = new HashSet<GOgrenciListesi>();
-            GYeniUye = new HashSet<GYeniUye>();
             GYonetimKurulu = new HashSet<GYonetimKurulu>();
         }
 
@@ -108,9 +107,6 @@ namespace Community_Appeal_Web_Application.Models
         public virtual ICollection<GOgrenciListesi> GOgrenciListesi { get; set; }
 
         public virtual Kullanici Kullanici { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GYeniUye> GYeniUye { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GYonetimKurulu> GYonetimKurulu { get; set; }

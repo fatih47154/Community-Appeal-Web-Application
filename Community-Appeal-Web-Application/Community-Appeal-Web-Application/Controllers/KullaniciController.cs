@@ -132,13 +132,16 @@ namespace Community_Appeal_Web_Application.Controllers
 
             k.adi= Functions.IlkHarfleriBuyut(k.adi);
             k.soyadi = Functions.IlkHarfleriBuyut(k.soyadi);
+            k.kayitTarihi = DateTime.Now;
 
             Basvuru b = new Basvuru();
             b.kullanıcıID = k.ID;
+            b.kapat = false;
             b.adimNo = 1;
 
             Guncelle g = new Guncelle();
             g.kullanıcıID = k.ID;
+            g.kapat = false;
             g.adimNo = 1;
 
             GOgrenciListesi gol = new GOgrenciListesi();
